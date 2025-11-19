@@ -1,0 +1,300 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 STYLES - Carousel Card
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * Estilos para tarjeta individual del carrusel
+ */
+
+.tarjeta {
+  background-color: var(--color-fondo);
+  border-radius: var(--radio-borde-lg);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: 1px solid var(--color-fondo-gris);
+  display: flex;
+  flex-direction: column;
+  height: 340px;
+  position: relative;
+  z-index: 1;
+  will-change: auto;
+}
+
+.tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.15), 
+              0 10px 15px -8px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-imagen {
+  height: 45%;
+  min-height: 45%;
+  background: var(--gradiente-secundario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-texto-blanco);
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-bold);
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transicion-normal);
+}
+
+.tarjeta:hover .tarjeta-imagen img {
+  transform: scale(1.05);
+}
+
+.tarjeta-imagen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+}
+
+/* ═══ BADGE DE DESCUENTO ═══ */
+.tarjeta-descuento-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-weight: var(--peso-bold);
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  z-index: 10;
+  min-width: 50px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.tarjeta-contenido {
+  padding: var(--espaciado-md);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tarjeta-info {
+  margin-bottom: var(--espaciado-sm);
+}
+
+.tarjeta-categoria {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-claro);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: var(--espaciado-xs);
+  font-weight: var(--peso-medium);
+}
+
+/* ═══ TÍTULO CON BOTÓN DE FAVORITO ═══ */
+.tarjeta-titulo-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--espaciado-sm);
+  margin: 0 0 var(--espaciado-xs) 0;
+  padding: 0 2px;
+}
+
+.tarjeta-titulo {
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: var(--color-texto-principal);
+  font-weight: var(--peso-bold);
+  line-height: 1.3;
+  margin: 0;
+  flex: 1;
+  transition: transform 0.3s ease;
+}
+
+.tarjeta-favorito {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  box-shadow: none;
+}
+
+.tarjeta-favorito:hover {
+  background: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.tarjeta-favorito.active {
+  color: #ef4444;
+  animation: heartBeat 0.4s ease-out;
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+/* ═══ PRECIOS ═══ */
+.tarjeta-precios {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  margin-top: auto;
+}
+
+.tarjeta-precio-actual {
+  font-size: var(--texto-lg);
+  color: #1e293b;
+  font-weight: var(--peso-bold);
+}
+
+.tarjeta-precio-anterior {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-claro);
+  text-decoration: line-through;
+}
+
+/* ═══ BOTONES ═══ */
+.tarjeta-botones {
+  display: flex;
+  gap: var(--espaciado-sm);
+}
+
+.tarjeta-botones .button {
+  flex: 1;
+  font-size: 13px !important;
+  padding: 10px 12px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tarjeta-boton {
+  flex: 1;
+  background-color: var(--color-primario);
+  color: var(--color-texto-blanco);
+  border: none;
+  padding: 10px 12px;
+  border-radius: var(--radio-borde-md);
+  font-weight: var(--peso-semibold);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13px;
+  transform: translateZ(0);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.tarjeta-boton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.tarjeta-boton:hover {
+  background-color: var(--color-primario-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tarjeta-boton:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.tarjeta-boton-secundario {
+  background-color: transparent;
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+}
+
+.tarjeta-boton-secundario:hover {
+  background-color: var(--color-primario);
+  color: var(--color-texto-blanco);
+}
+
+/* ═══ ESTADO AGREGADO ═══ */
+.tarjeta-boton--agregado {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.tarjeta-boton--agregado:hover {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  transform: translateY(0) scale(1);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.tarjeta-boton:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* ═══ EFECTO BRILLO ═══ */
+.efecto-brillo {
+  position: relative;
+  overflow: hidden;
+}
+
+.efecto-brillo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.efecto-brillo:hover::before {
+  left: 100%;
+}

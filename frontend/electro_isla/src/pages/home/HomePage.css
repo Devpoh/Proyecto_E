@@ -1,0 +1,87 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 📄 PAGE - Home Styles
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
+ * Estilos para la página principal
+ * - Contenedor con márgenes laterales
+ * - Hero section con carrusel
+ * - Responsive
+ */
+
+/* ═══ PÁGINA PRINCIPAL ═══ */
+.home-page {
+  width: 100%;
+  background: #ffffff;
+  padding-top: 86px;
+}
+
+/* ═══ CONTENEDOR REUTILIZABLE ═══ */
+.home-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 60px);
+  box-sizing: border-box;
+}
+
+/* ═══ HERO SECTION ═══ */
+.home-hero-section {
+  width: 100%;
+  padding: clamp(16px, 3vw, 24px) 0;
+  background: #F5F5F5;
+}
+
+/* ═══ ANIMACIONES ═══ */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .home-hero-section {
+    padding: clamp(20px, 4vw, 40px) 0;
+  }
+
+  .home-hero-header {
+    margin-bottom: clamp(20px, 4vw, 30px);
+  }
+
+  .home-hero-title {
+    font-size: clamp(24px, 5vw, 36px);
+  }
+
+  .home-hero-subtitle {
+    font-size: clamp(13px, 2.5vw, 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 0 clamp(12px, 3vw, 16px);
+  }
+
+  .home-hero-section {
+    padding: clamp(16px, 3vw, 24px) 0;
+  }
+
+  .home-hero-header {
+    margin-bottom: clamp(16px, 3vw, 20px);
+  }
+
+  .home-hero-title {
+    font-size: clamp(20px, 4vw, 28px);
+  }
+
+  .home-hero-subtitle {
+    font-size: clamp(12px, 2vw, 14px);
+  }
+}

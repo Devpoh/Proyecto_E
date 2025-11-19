@@ -1,0 +1,56 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 STYLES - ScrollBar
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * Barra de progreso de scroll que aparece debajo del navbar
+ * 
+ * 🎯 SOLUCIÓN FINAL:
+ * - Position: fixed (se mantiene en viewport)
+ * - Top: dinámico desde JS (medida de altura del navbar)
+ * - Z-index: 997 (debajo del Navbar 998, pero visible)
+ * - pointer-events: none (no interfiere con interacciones)
+ * 
+ * ✅ VENTAJAS:
+ * - ScrollBar siempre debajo del navbar
+ * - Se adapta a cambios de tamaño de ventana
+ * - No interfiere con clics
+ * - Animación suave y visible
+ */
+
+.scroll-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  z-index: 997;
+  pointer-events: none;
+  /* top: se define dinámicamente desde JS */
+}
+
+.scroll-bar--visible {
+  background: transparent;
+}
+
+.scroll-bar-progress {
+  height: 100%;
+  background: linear-gradient(90deg, rgb(255, 170, 0), rgb(255, 200, 0), rgb(255, 170, 0));
+  box-shadow: 0 0 15px rgba(255, 170, 0, 0.9);
+  width: 0;
+}
+
+.scroll-bar--visible .scroll-bar-progress {
+  animation: loadBarSlide 0.8s ease-out forwards;
+}
+
+@keyframes loadBarSlide {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}

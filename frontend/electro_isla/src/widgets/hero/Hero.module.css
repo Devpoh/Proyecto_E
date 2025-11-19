@@ -1,0 +1,196 @@
+/* Hero Section */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Carousel Container */
+.carouselContainer {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 100%;
+}
+
+/* Slide */
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Slide Image */
+.slideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Content Overlay */
+.contentOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+  width: 90%;
+  max-width: 800px;
+}
+
+/* Title */
+.title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Subtitle */
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* CTA Button */
+.ctaButton {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+  background-color: var(--color-primario, #ffd700);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.ctaButton:hover {
+  background-color: var(--color-primario-hover, #ffed4e);
+  transform: scale(1.05);
+}
+
+.ctaButton:active {
+  transform: scale(0.98);
+}
+
+/* Navigation Arrow */
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navArrow:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Previous Arrow */
+.prevArrow {
+  left: 20px;
+}
+
+/* Next Arrow */
+.nextArrow {
+  right: 20px;
+}
+
+/* Dots Indicator Container */
+.dotsContainer {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+/* Dot Button */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background-color: var(--color-primario, #ffd700);
+}
+
+.dot:hover {
+  border-color: var(--color-primario, #ffd700);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .heroSection {
+    height: 400px;
+  }
+
+  .navArrow {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .prevArrow {
+    left: 10px;
+  }
+
+  .nextArrow {
+    right: 10px;
+  }
+
+  .dotsContainer {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    height: 300px;
+  }
+
+  .navArrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+
+  .ctaButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

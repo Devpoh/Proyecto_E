@@ -1,0 +1,210 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 STYLES - All Products Section
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
+ * Estilos profesionales y elegantes para la sección de todos los productos.
+ * Implementa principios Apple/iOS con animaciones suaves y diseño responsivo.
+ * 
+ * NOTA: Las tarjetas usan el componente CarouselCard que importa su propio CSS.
+ * No importamos CarouselCard.css aquí para evitar conflictos de especificidad.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SECCIÓN PRINCIPAL
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.all-products-section {
+  width: 100%;
+  background: #F5F5F5;
+  position: relative;
+  padding: var(--espaciado-xl) 0 var(--espaciado-2xl) 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.all-products-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(40px, 8vw, 80px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   ENCABEZADO
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.all-products-header {
+  margin-bottom: var(--espaciado-3xl);
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   GRID DE PRODUCTOS
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.all-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--espaciado-lg);
+  max-height: 900px;
+  overflow: hidden;
+  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: var(--espaciado-lg);
+  margin: 0;
+}
+
+.all-products-grid--expanded {
+  max-height: 3000px;
+  transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   TARJETA DE PRODUCTO EN GRID - Usa CarouselCard
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Las tarjetas usan el componente CarouselCard directamente con sus propios estilos */
+/* No se sobrescriben estilos para evitar conflictos de CSS */
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   BOTONES - SOLO DENTRO DE ALL-PRODUCTS-GRID
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Reducir altura de botones en all-products-grid sin afectar otros componentes */
+.all-products-grid .tarjeta-boton {
+  padding: 13px 12px !important;
+  font-size: 12px !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.all-products-grid .tarjeta-boton-secundario {
+  padding: 7px 12px !important;
+  font-size: 12px !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+/* Estilos para botones Button component en all-products-grid */
+.all-products-grid .button {
+  font-size: 13px !important;
+  padding: 10px 12px !important;
+  height: auto !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   PIE DE PÁGINA - BOTÓN VER MÁS/VER MENOS
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.all-products-footer {
+  display: flex;
+  justify-content: center;
+  padding: var(--espaciado-xl) 0;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.all-products-toggle-button {
+  min-width: 200px;
+  font-weight: var(--peso-semibold);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.all-products-toggle-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-lg);
+}
+
+.all-products-toggle-button:active {
+  transform: scale(0.95);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   LOADING STATE
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.all-products-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  color: var(--color-texto-secundario);
+  font-size: var(--texto-lg);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE - TABLET (768px - 1023px)
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  .all-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--espaciado-md);
+  }
+
+  .all-products-container {
+    padding: 0 var(--espaciado-md);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE - MOBILE (320px - 767px)
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+  .all-products-section {
+    padding: var(--espaciado-2xl) 0;
+  }
+
+  .all-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espaciado-md);
+    max-height: 1400px;
+  }
+
+  .all-products-grid--expanded {
+    max-height: 4000px;
+  }
+
+  .all-products-header {
+    margin-bottom: var(--espaciado-2xl);
+  }
+
+  .all-products-toggle-button {
+    min-width: 150px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   RESPONSIVE - SMALL MOBILE (320px - 480px)
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .all-products-grid {
+    grid-template-columns: 1fr;
+    gap: var(--espaciado-sm);
+    max-height: 2000px;
+  }
+
+  .all-products-grid--expanded {
+    max-height: 6000px;
+  }
+
+  .all-products-container {
+    padding: 0 var(--espaciado-md);
+  }
+
+  .product-grid-card-actions {
+    flex-direction: column;
+  }
+
+  .product-grid-card-actions button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,214 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 COMPONENTE - Button (Reutilizable)
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
+ * Botón profesional siguiendo principios Apple/iOS
+ * - Variantes: primary, secondary, outline, ghost
+ * - Tamaños: sm, md, lg
+ * - Estados: normal, hover, active, disabled, loading
+ * - Responsive con clamp()
+ */
+
+/* ═══ BASE ═══ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 1.5vw, 8px);
+  font-family: inherit;
+  font-weight: var(--peso-bold);
+  border: none;
+  border-radius: clamp(6px, 1.5vw, 8px);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ═══ TAMAÑOS ═══ */
+.button--sm {
+  padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2vw, 12px);
+  font-size: clamp(11px, 2vw, 12px);
+  height: clamp(32px, 8vw, 36px);
+}
+
+.button--md {
+  padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 16px);
+  font-size: clamp(12px, 2.5vw, 14px);
+  height: clamp(36px, 10vw, 44px);
+}
+
+.button--lg {
+  padding: clamp(10px, 2.5vw, 12px) clamp(16px, 3.5vw, 20px);
+  font-size: clamp(13px, 2.8vw, 15px);
+  height: clamp(40px, 11vw, 48px);
+}
+
+/* ═══ VARIANTE PRIMARY (Dorado) ═══ */
+.button--primary {
+  background: linear-gradient(90deg, #ffb800 0%, #ffc933 50%, #ffb800 100%);
+  background-size: 200% 100%;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(255, 184, 0, 0.3);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+.button--primary:hover:not(:disabled) {
+  box-shadow: 0 12px 30px rgba(255, 184, 0, 0.4);
+  transform: scale(1.01);
+}
+
+.button--primary:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ═══ VARIANTE SECONDARY (Gris) ═══ */
+.button--secondary {
+  background: var(--color-fondo-secundario);
+  color: var(--color-texto-principal);
+  border: 2px solid var(--color-fondo-gris);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: var(--color-fondo-hover);
+  border-color: var(--color-primario);
+  transform: scale(1.01);
+}
+
+.button--secondary:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ═══ VARIANTE OUTLINE (Borde) ═══ */
+.button--outline {
+  background: transparent;
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
+}
+
+.button--outline:hover:not(:disabled) {
+  background: transparent;
+  border-color: var(--color-primario);
+  transform: scale(1.01);
+}
+
+.button--outline:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ═══ VARIANTE GHOST (Transparente) ═══ */
+.button--ghost {
+  background: transparent;
+  color: var(--color-primario);
+  border: none;
+}
+
+.button--ghost:hover:not(:disabled) {
+  background: rgba(255, 184, 0, 0.1);
+}
+
+.button--ghost:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+/* ═══ VARIANTE SUCCESS (Verde) ═══ */
+.button--success {
+  background: linear-gradient(90deg, #10b981 0%, #34d399 50%, #10b981 100%);
+  background-size: 200% 100%;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.button--success:hover:not(:disabled) {
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+  transform: scale(1.01);
+}
+
+.button--success:active:not(:disabled) {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ═══ ESTADOS ═══ */
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button--primary:disabled {
+  background: linear-gradient(90deg, #cbd5e1 0%, #d1d5db 50%, #cbd5e1 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: none;
+}
+
+.button--primary:disabled .button-text {
+  text-decoration: line-through;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #000000;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 2px;
+}
+
+/* ═══ ICONOS ═══ */
+.button-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em;
+}
+
+.button-icon--left {
+  order: -1;
+}
+
+.button-icon--right {
+  order: 1;
+}
+
+/* ═══ SPINNER (Loading) ═══ */
+.button-spinner {
+  display: inline-block;
+  width: clamp(12px, 2vw, 16px);
+  height: clamp(12px, 2vw, 16px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-right: 4px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button-text {
+  display: inline-block;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 360px) {
+  .button {
+    gap: clamp(4px, 1vw, 6px);
+  }
+}

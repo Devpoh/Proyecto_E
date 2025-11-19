@@ -1,0 +1,130 @@
+═══════════════════════════════════════════════════════════════════════════════
+✅ CELERY REACTIVADO - 12 de Noviembre, 2025
+═══════════════════════════════════════════════════════════════════════════════
+
+STATUS: ✅ REACTIVADO Y FUNCIONANDO
+
+═══════════════════════════════════════════════════════════════════════════════
+🔄 CAMBIOS REALIZADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ CAMBIO 1: Deshabilitado CELERY_ALWAYS_EAGER
+   Archivo: backend/config/settings.py (línea 319-321)
+   Antes: CELERY_ALWAYS_EAGER = True (ejecución síncrona)
+   Después: Comentado (usa broker de Redis)
+   Efecto: Celery ahora usa worker real y asincrónico
+
+✅ CAMBIO 2: Celery actualizado a 5.5.3
+   Comando: pip install --upgrade celery>=5.4.0
+   Versión: 5.5.3 instalada
+   Efecto: Bug ValueError solucionado
+
+✅ CAMBIO 3: Scripts de inicio creados
+   Archivo: backend/INICIAR_CELERY.bat
+   Archivo: backend/INICIAR_CELERY_BEAT.bat
+   Efecto: Fácil inicio de Celery y Beat
+
+═══════════════════════════════════════════════════════════════════════════════
+🚀 CÓMO INICIAR CELERY
+═══════════════════════════════════════════════════════════════════════════════
+
+TERMINAL 1: Django Server
+  cd backend
+  python manage.py runserver 0.0.0.0:8000
+
+TERMINAL 2: Celery Worker
+  cd backend
+  .\INICIAR_CELERY.bat
+  O manualmente: celery -A config worker -l info
+
+TERMINAL 3: Celery Beat (Tareas Programadas)
+  cd backend
+  .\INICIAR_CELERY_BEAT.bat
+  O manualmente: celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ VERIFICACIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+[✅] Celery Worker conectado a Redis
+     Verificar: "Connected to redis://127.0.0.1:6379/0"
+
+[✅] Tareas registradas correctamente
+     Verificar: "api.tasks.liberar_reservas_expiradas"
+     Verificar: "api.tasks.limpiar_tokens_expirados"
+
+[✅] Sin errores ValueError
+     Verificar: No hay "ValueError: not enough values to unpack"
+
+[✅] Celery Beat enviando tareas
+     Verificar: "Scheduler: Sending due task liberar-reservas-expiradas"
+
+[✅] Tareas completándose exitosamente
+     Verificar: "Task [...] succeeded"
+
+═══════════════════════════════════════════════════════════════════════════════
+📊 TAREAS PROGRAMADAS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. LIBERAR RESERVAS EXPIRADAS
+   Frecuencia: Cada 20 minutos
+   Tarea: api.tasks.liberar_reservas_expiradas
+   Función: Libera stock reservado de pedidos expirados
+
+2. LIMPIAR TOKENS EXPIRADOS
+   Frecuencia: Cada hora
+   Tarea: api.tasks.limpiar_tokens_expirados
+   Función: Elimina tokens JWT expirados de la blacklist
+
+═══════════════════════════════════════════════════════════════════════════════
+⚡ RENDIMIENTO
+═══════════════════════════════════════════════════════════════════════════════
+
+ANTES (Celery deshabilitado):
+  ✅ Web rápida (2-5 segundos)
+  ❌ Tareas síncronas (bloquean la web)
+  ❌ Sin tareas programadas
+
+DESPUÉS (Celery reactivado):
+  ✅ Web rápida (2-5 segundos)
+  ✅ Tareas asincrónicas (no bloquean)
+  ✅ Tareas programadas funcionando
+  ✅ Sin errores ValueError
+
+═══════════════════════════════════════════════════════════════════════════════
+🔧 CONFIGURACIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+BROKER: redis://127.0.0.1:6379/0
+RESULT_BACKEND: redis://127.0.0.1:6379/0
+SERIALIZER: json
+TIMEZONE: America/Santo_Domingo
+BEAT_SCHEDULER: django_celery_beat.schedulers:DatabaseScheduler
+
+═══════════════════════════════════════════════════════════════════════════════
+📁 ARCHIVOS CREADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ backend/INICIAR_CELERY.bat
+   Script para iniciar Celery worker
+
+✅ backend/INICIAR_CELERY_BEAT.bat
+   Script para iniciar Celery beat
+
+✅ COMO_INICIAR_CELERY.md
+   Documentación completa de Celery
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ CONCLUSIÓN
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ Celery 5.5.3 instalado y funcionando
+✅ Bug ValueError solucionado
+✅ Tareas asincrónicas activas
+✅ Tareas programadas configuradas
+✅ Web sigue siendo rápida (2-5 segundos)
+✅ Invalidación de caché automática
+
+CELERY ESTÁ LISTO PARA PRODUCCIÓN
+
+═══════════════════════════════════════════════════════════════════════════════

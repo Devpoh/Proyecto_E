@@ -1,0 +1,292 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 ESTILOS - Dashboard Page
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+
+.dashboard-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--espaciado-md);
+}
+
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: 0 var(--espaciado-sm);
+  }
+}
+
+/* ═══ HEADER ═══ */
+.dashboard-header {
+  margin-bottom: var(--espaciado-2xl);
+}
+
+.dashboard-title {
+  font-size: var(--texto-3xl);
+  font-weight: var(--peso-bold);
+  color: var(--color-texto-principal);
+  margin: 0 0 var(--espaciado-sm) 0;
+}
+
+.dashboard-subtitle {
+  font-size: var(--texto-base);
+  color: var(--color-texto-secundario);
+  margin: 0;
+}
+
+/* ═══ LOADING ═══ */
+.dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: var(--espaciado-lg);
+}
+
+.dashboard-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--color-fondo-gris);
+  border-top-color: var(--color-primario);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══ STATS CARDS ═══ */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--espaciado-lg);
+  margin-bottom: var(--espaciado-2xl);
+}
+
+.dashboard-card {
+  background: var(--color-fondo);
+  border-radius: var(--radio-borde-xl);
+  padding: var(--espaciado-xl);
+  box-shadow: var(--sombra-sm);
+  transition: all var(--transicion-normal);
+  border-left: 4px solid transparent;
+}
+
+.dashboard-card:hover {
+  box-shadow: var(--sombra-lg);
+  transform: translateY(-4px);
+}
+
+.dashboard-card-blue {
+  border-left-color: #3b82f6;
+}
+
+.dashboard-card-green {
+  border-left-color: #10b981;
+}
+
+.dashboard-card-yellow {
+  border-left-color: var(--color-primario);
+}
+
+.dashboard-card-purple {
+  border-left-color: #8b5cf6;
+}
+
+.dashboard-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-md);
+  margin-bottom: var(--espaciado-lg);
+}
+
+.dashboard-card-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radio-borde-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-fondo-gris);
+}
+
+.dashboard-card-blue .dashboard-card-icon-wrapper {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.dashboard-card-green .dashboard-card-icon-wrapper {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.dashboard-card-yellow .dashboard-card-icon-wrapper {
+  background: rgba(255, 187, 0, 0.1);
+  color: var(--color-primario);
+}
+
+.dashboard-card-purple .dashboard-card-icon-wrapper {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.dashboard-card-icon {
+  font-size: var(--texto-xl);
+}
+
+.dashboard-card-title {
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medium);
+  color: var(--color-texto-secundario);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-card-body {
+  margin-bottom: var(--espaciado-md);
+}
+
+.dashboard-card-value {
+  font-size: var(--texto-4xl);
+  font-weight: var(--peso-bold);
+  color: var(--color-texto-principal);
+  margin: 0 0 var(--espaciado-xs) 0;
+}
+
+.dashboard-card-subtitle {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-secundario);
+  margin: 0;
+}
+
+.dashboard-card-footer {
+  padding-top: var(--espaciado-md);
+  border-top: 1px solid var(--color-fondo-gris);
+}
+
+.dashboard-card-trend {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-secundario);
+  font-weight: var(--peso-medium);
+}
+
+/* ═══ SECTION ═══ */
+.dashboard-section {
+  margin-bottom: var(--espaciado-2xl);
+}
+
+.dashboard-section-title {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-semibold);
+  color: var(--color-texto-principal);
+  margin: 0 0 var(--espaciado-lg) 0;
+}
+
+/* ═══ QUICK ACTIONS ═══ */
+.dashboard-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--espaciado-md);
+}
+
+.dashboard-quick-action {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-md);
+  padding: var(--espaciado-lg);
+  background: var(--color-fondo);
+  border-radius: var(--radio-borde-lg);
+  text-decoration: none;
+  color: var(--color-texto-principal);
+  font-weight: var(--peso-medium);
+  box-shadow: var(--sombra-sm);
+  transition: all var(--transicion-normal);
+}
+
+.dashboard-quick-action:hover {
+  box-shadow: var(--sombra-md);
+  transform: translateY(-2px);
+  color: var(--color-primario);
+}
+
+.dashboard-quick-action svg {
+  font-size: var(--texto-xl);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-title {
+    font-size: var(--texto-2xl);
+  }
+
+  .dashboard-card-value {
+    font-size: var(--texto-3xl);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   🎬 SKELETON LOADERS - Animación de carga profesional
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+.dashboard-card-skeleton {
+  background: var(--color-fondo);
+  border: 1px solid var(--color-fondo-gris);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.skeleton-header,
+.skeleton-body,
+.skeleton-footer {
+  background: linear-gradient(
+    90deg,
+    var(--color-fondo-gris) 25%,
+    var(--color-fondo-hover) 50%,
+    var(--color-fondo-gris) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radio-borde-md);
+}
+
+.skeleton-header {
+  height: 60px;
+  margin-bottom: var(--espaciado-md);
+}
+
+.skeleton-body {
+  height: 80px;
+  margin-bottom: var(--espaciado-md);
+}
+
+.skeleton-footer {
+  height: 30px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}

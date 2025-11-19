@@ -1,0 +1,495 @@
+/* Estilos base */
+.nav {
+  background-color: var(--color-azul-marino, #15294e);
+  color: white;
+  padding: 0.5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  
+  /**
+   * 🎯 Z-INDEX STRATEGY - ANÁLISIS PROFUNDO:
+   * 
+   * PROBLEMA ORIGINAL:
+   * - ScrollBar estaba a top: 82px (debajo del navbar)
+   * - Aunque tenía z-index: 999, estaba visualmente debajo
+   * - Razón: La posición top lo colocaba debajo del navbar
+   * 
+   * SOLUCIÓN IMPLEMENTADA:
+   * - ScrollBar: top: 0, z-index: 998 (mismo que Navbar)
+   * - Navbar: top: 0, z-index: 998
+   * - Orden en HTML: ScrollBar se renderiza ANTES que Navbar
+   * - Resultado: Navbar está ENCIMA del ScrollBar (por orden en HTML)
+   * - ScrollBar es VISIBLE en la parte superior (top: 0)
+   * 
+   * JERARQUÍA FINAL:
+   * 9999  → GlobalLoading (encima de todo)
+   * 1001+ → UserMenu/Dropdowns (encima de Navbar)
+   * 998   → Navbar (encima del ScrollBar por orden HTML)
+   * 998   → ScrollBar (visible en parte superior)
+   * 
+   * 🔑 CLAVE: Cuando z-index es igual, el orden en el HTML determina quién está encima.
+   * El Navbar se renderiza DESPUÉS del ScrollBar en Navbar.tsx, por lo que está encima.
+   */
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.5rem 0;
+  margin-right: 1rem;
+}
+
+.logo:hover {
+  transform: translateY(-1px);
+}
+
+.logoIcon {
+  font-size: 2.2rem;
+  color: var(--color-primario, #ffbb00);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.logo:hover .logoIcon {
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.logoText {
+  display: flex;
+  align-items: flex-end;
+  line-height: 1;
+  gap: 0.3rem;
+}
+
+.logoMain {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.logo:hover .logoMain {
+  color: var(--color-primario, #ffbb00);
+  text-shadow: 0 0 10px rgba(255, 187, 0, 0.3);
+}
+
+.logoCorp {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.5px;
+  text-transform: lowercase;
+  transition: all 0.3s ease;
+  position: relative;
+  bottom: -0.2rem;
+  opacity: 0.9;
+  align-self: flex-end;
+  margin-left: 0.2rem;
+  line-height: 1;
+}
+
+.logo:hover .logoCorp {
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 1;
+}
+
+.logo:hover .logoCorp {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Contenedor del buscador */
+.searchWrapper {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  margin: 0 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* Sección derecha */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* Enlaces de navegación */
+.navLinks {
+  display: flex;
+  gap: 1.8rem;
+  margin: 0 1rem 0 0.5rem;
+  flex-shrink: 0;
+}
+
+.navLink {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.7rem 0.6rem;
+  position: relative;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: var(--color-primario, #ffbb00);
+  transform: translateY(-1px);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0.4rem;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primario, #ffbb00), #ffd700);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+}
+
+.navLink:hover::after {
+  width: 100%;
+  left: 0;
+  transform: none;
+}
+
+/* Enlace activo (página actual) */
+.navLinkActive {
+  color: var(--color-primario, #ffbb00);
+}
+
+.navLinkActive::after {
+  width: 100%;
+  left: 0;
+  background: linear-gradient(90deg, var(--color-primario, #ffbb00), #ffd700);
+}
+
+/* Contenedor del botón del carrito */
+.cartButtonContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Botón del carrito */
+.iconButton {
+  position: relative;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  background-color: transparent;
+}
+
+.iconButton:hover {
+  color: var(--color-primario, #ffbb00);
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.iconButton:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.cartBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-peligro, #ef4444);
+  color: white;
+  border-radius: 10px;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0 0.3rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--color-azul-marino, #15294e);
+  z-index: 2;
+}
+
+/* Tooltip del carrito */
+.cartTooltip {
+  position: absolute;
+  bottom: -38px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: #2d3748;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  min-width: 120px;
+  text-align: center;
+}
+
+.cartTooltip::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background-color: #2d3748;
+  border-radius: 2px;
+}
+
+.cartButtonContainer:hover .cartTooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Contenedor del botón de inicio de sesión */
+.loginButtonContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Botón de inicio de sesión */
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--color-primario, #ffbb00), #ff9500);
+  border: none;
+  border-radius: 50%;
+  color: #15294e;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  padding: 0;
+}
+
+.loginButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.5s;
+}
+
+.loginButton:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 187, 0, 0.4);
+}
+
+.loginButton:hover::before {
+  left: 100%;
+}
+
+.loginButton:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 2px 8px rgba(255, 187, 0, 0.3);
+}
+
+/* Tooltip */
+.loginTooltip {
+  position: absolute;
+  bottom: -42px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  background-color: #2d3748;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  min-width: 120px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.loginTooltip::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background-color: #2d3748;
+  border-radius: 2px;
+}
+
+.loginButtonContainer:hover .loginTooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Contenedor del buscador */
+.searchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 1440px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 1.5rem;
+    gap: 1rem;
+  }
+  
+  .navLinks {
+    gap: 1.2rem;
+    margin: 0 0.5rem 0 0;
+  }
+  
+  .navLink {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.3rem;
+  }
+  
+  .searchForm {
+    margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .navLinks {
+    gap: 1.5rem;
+    margin: 0 1.5rem 0 0.5rem;
+  }
+  
+  .navLink {
+    font-size: 0.95rem;
+    padding: 0.6rem 0.3rem;
+  }
+  
+  .rightSection {
+    gap: 1.5rem;
+  }
+  
+  .logoMain {
+    font-size: 1.6rem;
+  }
+  
+  .logoCorp {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .navLinks {
+    display: none; /* Ocultar en móviles por ahora */
+  }
+  
+  .rightSection {
+    gap: 1rem;
+  }
+  
+  .logoMain {
+    font-size: 1.5rem;
+  }
+  
+  .logoIcon {
+    font-size: 1.8rem;
+  }
+  
+  .loginButton {
+    padding: 0.5rem;
+    border-radius: 6px;
+    width: auto;
+    height: auto;
+  }
+  
+  .loginButton span {
+    display: none;
+  }
+  
+  .iconButton {
+    width: 36px;
+    height: 36px;
+  }
+}

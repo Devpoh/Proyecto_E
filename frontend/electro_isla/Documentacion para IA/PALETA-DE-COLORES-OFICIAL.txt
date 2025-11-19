@@ -1,0 +1,224 @@
+═══════════════════════════════════════════════════════════════════════════════
+🎨 PALETA DE COLORES OFICIAL - ELECTRÓNICA ISLA
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠️ REGLA DE ORO #158: "Paleta de Colores Única y Obligatoria"
+
+DESCRIPCIÓN: Esta es la ÚNICA paleta de colores autorizada para todo el proyecto.
+Está PROHIBIDO usar colores fuera de esta paleta sin autorización explícita.
+
+UBICACIÓN: Frontend/src/index.css (Variables CSS)
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 COLORES PRINCIPALES
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable                    | Hex       | Visual | Uso
+---------------------------|-----------|--------|----------------------------------
+--color-primario           | #ffbb00   | 🟡     | Botones, enlaces, elementos principales (amarillo dorado)
+--color-primario-hover     | #e6a600   | 🟠     | Estado hover de elementos primarios (amarillo oscuro)
+--color-primario-claro     | #ffcc33   | 🟡     | Variante clara del primario (amarillo claro)
+--color-secundario         | #ff9500   | 🟠     | Acentos, elementos secundarios (naranja)
+--color-secundario-hover   | #e6850e   | 🟠     | Estado hover de elementos secundarios (naranja oscuro)
+--color-navbar             | #423D37   | 🟤     | Navbar, header, fondos estructurales (marrón oscuro)
+--color-azul-marino        | #15294e   | 🔵     | Azul marino oscuro para elementos estructurales
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 COLORES DE ESTADO
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable                    | Hex       | Visual | Uso
+---------------------------|-----------|--------|----------------------------------
+--color-exito              | #10b981   | 🟢     | Mensajes de éxito, confirmaciones
+--color-peligro            | #ef4444   | 🔴     | Errores, alertas, acciones destructivas
+--color-advertencia        | #f59e0b   | 🟡     | Advertencias, precauciones
+--color-info               | #06b6d4   | 🔷     | Información, tips, ayuda
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 COLORES DE TEXTO
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable                    | Hex       | Visual | Uso
+---------------------------|-----------|--------|----------------------------------
+--color-texto-principal    | #423D37   | 🟤     | Títulos, texto principal (marrón oscuro)
+--color-texto-secundario   | #6B645C   | 🟫     | Subtítulos, texto secundario (marrón medio)
+--color-texto-claro        | #8A8379   | ◼️     | Texto deshabilitado, hints (marrón claro)
+--color-texto-muy-claro    | #B5B0A8   | ◻️     | Placeholders, texto muy sutil (beige)
+--color-texto-blanco       | #ffffff   | ⬜     | Texto sobre fondos oscuros
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 COLORES DE FONDO
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable                    | Hex       | Visual | Uso
+---------------------------|-----------|--------|----------------------------------
+--color-fondo              | #ffffff   | ⬜     | Fondo principal de la app
+--color-fondo-secundario   | #f8fafc   | ◻️     | Fondos de secciones alternativas
+--color-fondo-hover        | #f1f5f9   | ◻️     | Estados hover de elementos
+--color-fondo-oscuro       | #0f172a   | ⬛     | Fondos oscuros, footer, header
+--color-fondo-gris         | #e2e8f0   | ◼️     | Bordes, separadores, dividers
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 GRADIENTES
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable                    | Valor
+---------------------------|--------------------------------------------------------
+--gradiente-primario       | linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)
+                           | Uso: Botones principales, CTAs, elementos destacados
+
+--gradiente-secundario     | linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%)
+                           | Uso: Tarjetas, fondos decorativos, imágenes placeholder
+
+--gradiente-fondo          | linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f3e8ff 100%)
+                           | Uso: Fondos de secciones, hero sections, páginas
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 SOMBRAS
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable        | Valor
+---------------|----------------------------------------------------------------
+--sombra-xs    | 0 1px 2px 0 rgba(0, 0, 0, 0.05)
+--sombra-sm    | 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)
+--sombra-md    | 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)
+--sombra-lg    | 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)
+--sombra-xl    | 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)
+--sombra-2xl   | 0 25px 50px -12px rgba(0, 0, 0, 0.25)
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 ESPACIADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable          | Valor      | Píxeles
+-----------------|------------|----------
+--espaciado-xs   | 0.25rem    | 4px
+--espaciado-sm   | 0.5rem     | 8px
+--espaciado-md   | 1rem       | 16px
+--espaciado-lg   | 1.5rem     | 24px
+--espaciado-xl   | 2rem       | 32px
+--espaciado-2xl  | 3rem       | 48px
+--espaciado-3xl  | 4rem       | 64px
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 BORDES
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable                 | Valor      | Píxeles
+------------------------|------------|----------
+--radio-borde-sm        | 0.375rem   | 6px
+--radio-borde-md        | 0.5rem     | 8px
+--radio-borde-lg        | 0.75rem    | 12px
+--radio-borde-xl        | 1rem       | 16px
+--radio-borde-2xl       | 1.5rem     | 24px
+--radio-borde-completo  | 9999px     | ∞
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 TIPOGRAFÍA - TAMAÑOS
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable       | Valor       | Píxeles
+--------------|-------------|----------
+--texto-xs    | 0.75rem     | 12px
+--texto-sm    | 0.875rem    | 14px
+--texto-base  | 1rem        | 16px
+--texto-lg    | 1.125rem    | 18px
+--texto-xl    | 1.25rem     | 20px
+--texto-2xl   | 1.5rem      | 24px
+--texto-3xl   | 1.875rem    | 30px
+--texto-4xl   | 2.25rem     | 36px
+--texto-5xl   | 3rem        | 48px
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 TIPOGRAFÍA - PESOS
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable           | Valor
+------------------|-------
+--peso-normal     | 400
+--peso-medio      | 500
+--peso-semibold   | 600
+--peso-bold       | 700
+--peso-extrabold  | 800
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 TRANSICIONES
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable                | Valor
+-----------------------|----------------------
+--transicion-rapida    | 150ms ease-in-out
+--transicion-normal    | 300ms ease-in-out
+--transicion-lenta     | 500ms ease-in-out
+
+═══════════════════════════════════════════════════════════════════════════════
+📌 Z-INDEX
+═══════════════════════════════════════════════════════════════════════════════
+
+Variable              | Valor
+---------------------|-------
+--z-dropdown         | 1000
+--z-sticky           | 1020
+--z-fixed            | 1030
+--z-modal-backdrop   | 1040
+--z-modal            | 1050
+--z-popover          | 1060
+--z-tooltip          | 1070
+
+═══════════════════════════════════════════════════════════════════════════════
+⚠️ REGLAS OBLIGATORIAS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. ✅ USAR SIEMPRE: Usar ÚNICAMENTE las variables CSS definidas en esta paleta
+2. ❌ PROHIBIDO: Hardcodear colores directamente (ej. color: #3b82f6)
+3. ✅ CORRECTO: Usar variables (ej. color: var(--color-primario))
+4. ❌ PROHIBIDO: Crear nuevos colores sin autorización
+5. ✅ CONSISTENCIA: Mantener la paleta en todos los componentes
+6. ✅ ACCESIBILIDAD: Los colores cumplen con WCAG AA/AAA
+7. ✅ PERFORMANCE: Usar variables CSS para cambios dinámicos
+
+═══════════════════════════════════════════════════════════════════════════════
+📝 EJEMPLOS DE USO CORRECTO
+═══════════════════════════════════════════════════════════════════════════════
+
+/* ✅ CORRECTO */
+.mi-boton {
+  background: var(--gradiente-primario);
+  color: var(--color-texto-blanco);
+  padding: var(--espaciado-md);
+  border-radius: var(--radio-borde-md);
+  box-shadow: var(--sombra-md);
+  transition: all var(--transicion-rapida);
+}
+
+.mi-boton:hover {
+  background: var(--color-primario-hover);
+  box-shadow: var(--sombra-xl);
+}
+
+/* ❌ INCORRECTO */
+.mi-boton {
+  background: #3b82f6;              /* ❌ Hardcoded */
+  color: white;                     /* ❌ No usa variable */
+  padding: 16px;                    /* ❌ No usa variable */
+  border-radius: 8px;               /* ❌ No usa variable */
+  box-shadow: 0 4px 6px rgba(...);  /* ❌ No usa variable */
+}
+
+═══════════════════════════════════════════════════════════════════════════════
+🎯 TOTAL DE REGLAS: 164 REGLAS DORADAS
+═══════════════════════════════════════════════════════════════════════════════
+
+METODOLOGÍA DE TRABAJO ACTUALIZADA:
+- ANTES de cada acción, leer TODAS las reglas (ahora 164 reglas TOTALES)
+- SIEMPRE usar variables CSS de esta paleta
+- NUNCA hardcodear colores, espaciados, sombras o transiciones
+- MANTENER consistencia visual en toda la aplicación
+- VERIFICAR que los colores cumplan con accesibilidad
+
+═══════════════════════════════════════════════════════════════════════════════
+Fecha de creación: 2025-10-01
+Última actualización: 2025-10-01
+Versión: 1.0.0
+Estado: OFICIAL Y OBLIGATORIO
+═══════════════════════════════════════════════════════════════════════════════

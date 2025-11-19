@@ -1,0 +1,177 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 ESTILOS - LogoBrand
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
+ * Estilos reutilizables para el logo de Electro Isla
+ * - Enlace (no botón)
+ * - Hover: palma blanca, Electro Isla dorada, .corp blanco
+ */
+
+/* ═══ ENLACE BASE ═══ */
+.logo-brand {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.logo-brand:focus {
+  outline: none;
+}
+
+/* ═══ ICONO ═══ */
+.logo-brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border-radius: 0;
+}
+
+.logo-brand-palm {
+  width: 32px;
+  height: 32px;
+  color: #ffb800;
+  transition: color 0.3s ease;
+}
+
+/* ═══ TEXTO ═══ */
+.logo-brand-text {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.logo-brand-main {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #423D37;
+  transition: color 0.3s ease;
+}
+
+.logo-brand-corp {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffb800;
+  transition: color 0.3s ease;
+}
+
+/* ═══ HOVER EFFECTS ═══ */
+.logo-brand:hover .logo-brand-palm {
+  color: #ffffff;
+}
+
+.logo-brand:hover .logo-brand-main {
+  color: #ffb800;
+}
+
+.logo-brand:hover .logo-brand-corp {
+  color: #ffffff;
+}
+
+/* ═══ VARIANTE NAVBAR ═══ */
+.logo-brand-navbar {
+  padding: 0;
+  background: transparent;
+  gap: 4px;
+}
+
+.logo-brand-navbar .logo-brand-icon {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+}
+
+.logo-brand-navbar .logo-brand-palm {
+  width: 44px;
+  height: 44px;
+}
+
+.logo-brand-navbar .logo-brand-main {
+  font-size: 1.35rem;
+  color: #ffffff;
+}
+
+.logo-brand-navbar .logo-brand-corp {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.logo-brand-navbar:active {
+  transform: scale(0.95);
+}
+
+/* ═══ VARIANTE LOGIN ═══ */
+.logo-brand-login {
+  padding: 0;
+}
+
+.logo-brand-login .logo-brand-icon {
+  width: 44px;
+  height: 44px;
+}
+
+.logo-brand-login .logo-brand-palm {
+  width: 36px;
+  height: 36px;
+}
+
+.logo-brand-login .logo-brand-main {
+  font-size: 1.2rem;
+}
+
+.logo-brand-login .logo-brand-corp {
+  font-size: 1rem;
+}
+
+.logo-brand-login:hover {
+  background: transparent;
+}
+
+.logo-brand-login:hover .logo-brand-palm {
+  color: #ffb800;
+}
+
+.logo-brand-login:hover .logo-brand-main {
+  color: #423D37;
+}
+
+.logo-brand-login:hover .logo-brand-corp {
+  color: #ffb800;
+}
+
+.logo-brand-login:active {
+  transform: scale(0.98);
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 768px) {
+  .logo-brand-navbar .logo-brand-text {
+    display: none;
+  }
+
+  .logo-brand-navbar {
+    padding: 4px;
+  }
+
+  .logo-brand-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .logo-brand-palm {
+    width: 24px;
+    height: 24px;
+  }
+}

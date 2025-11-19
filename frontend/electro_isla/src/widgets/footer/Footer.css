@@ -1,0 +1,592 @@
+/**
+ * Estilos para Footer - Electrónica Isla
+ * Footer profesional con microinteracciones GPU-optimized
+ * 
+ * 🛡️ REGLAS APLICADAS:
+ * - Regla 15: CSS Modules para encapsulación
+ * - Regla 16: Diseño responsivo
+ * - Regla 19: Variables CSS para consistencia
+ * - Regla 146: Microinteracciones con propósito
+ * - Regla 158: Paleta de colores oficial
+ * - Regla 129: Mobile First
+ */
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+
+.footer {
+  background: var(--color-azul-marino);
+  color: var(--color-texto-blanco);
+  padding: var(--espaciado-xl) 0 var(--espaciado-sm); /* Más compacto */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efecto decorativo de fondo */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255, 187, 0, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -15%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 149, 0, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer__contenedor {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--espaciado-lg);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   GRID DE COLUMNAS
+   ============================================ */
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr 1fr 0.9fr; /* Más compacto */
+  gap: var(--espaciado-lg) var(--espaciado-2xl); /* Gap horizontal más grande */
+  margin-bottom: var(--espaciado-lg); /* Más compacto */
+  padding-left: var(--espaciado-md); /* Espacio a la izquierda */
+}
+
+/* ============================================
+   COLUMNAS
+   ============================================ */
+
+.footer__columna {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Mover columnas 2, 3, 4 más a la derecha */
+.footer__columna:nth-child(2),
+.footer__columna:nth-child(3),
+.footer__columna:nth-child(4) {
+  padding-left: var(--espaciado-lg);
+}
+
+/* Título principal (columna 1) - Espejo del Navbar */
+.footer__titulo {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-xs);
+  font-family: var(--fuente-logo);
+  font-size: var(--texto-2xl);
+  font-weight: var(--peso-extrabold);
+  background: var(--gradiente-primario);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 var(--espaciado-md) 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  cursor: pointer;
+  /* 🚀 GPU-optimized transition */
+  transition: transform var(--transicion-rapida),
+              filter var(--transicion-rapida);
+  will-change: transform;
+}
+
+.footer__titulo:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+}
+
+.footer__titulo:active {
+  transform: translateY(0);
+}
+
+.footer__titulo_icono {
+  color: var(--color-primario);
+  flex-shrink: 0;
+}
+
+.footer__titulo_corp {
+  font-family: var(--fuente-logo);
+  font-size: 0.74em;
+  font-weight: var(--peso-medio);
+  opacity: 0.9;
+  vertical-align: baseline;
+  margin-left: 1px;
+  letter-spacing: 0.5px;
+  background: var(--gradiente-primario);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* Descripción de la empresa */
+.footer__descripcion {
+  font-size: var(--texto-xs); /* Más compacto */
+  line-height: 1.6; /* Más compacto */
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 350px; /* Más estrecho */
+}
+
+/* Subtítulos de columnas */
+.footer__subtitulo {
+  font-size: var(--texto-base); /* Más compacto */
+  font-weight: var(--peso-semibold);
+  color: var(--color-texto-blanco);
+  margin: 0 0 2px 0;
+  letter-spacing: 0.02em;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  width: fit-content;
+}
+
+/* Línea dorada debajo de subtítulos - ajustada al texto */
+.footer__subtitulo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primario) 0%,
+    var(--color-secundario) 100%
+  );
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(255, 187, 0, 0.4);
+}
+
+/* ============================================
+   LISTAS Y ENLACES
+   ============================================ */
+
+.footer__lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-xs);
+}
+
+.footer__link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: var(--texto-sm);
+  display: inline-block;
+  position: relative;
+  
+  /* 🚀 GPU-optimized transition */
+  transition: color var(--transicion-rapida),
+              transform var(--transicion-rapida);
+  will-change: transform, color;
+}
+
+/* Efecto hover con línea animada */
+.footer__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primario);
+  
+  /* 🚀 GPU-optimized */
+  transition: width var(--transicion-normal);
+  will-change: width;
+}
+
+.footer__link:hover {
+  color: var(--color-primario);
+  transform: translateX(4px);
+}
+
+.footer__link:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   CONTACTO
+   ============================================ */
+
+.footer__contacto_item {
+  display: flex;
+  flex-direction: row; /* Horizontal */
+  align-items: center;
+  gap: var(--espaciado-xs);
+  margin-bottom: 0; /* Sin margin-bottom */
+  margin-top: var(--espaciado-sm); /* Separación igual para todos */
+}
+
+.footer__contacto_icono {
+  color: var(--color-primario); /* Dorado */
+  flex-shrink: 0;
+}
+
+.footer__contacto_label {
+  font-size: var(--texto-xs); /* Más compacto */
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  flex-shrink: 0;
+}
+
+.footer__contacto_text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--texto-xs); /* Más compacto */
+  line-height: 1.6; /* Mejor separación entre líneas */
+  display: inline-block; /* Para respetar el <br /> */
+}
+
+.footer__direccion {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer__direccion .footer__contacto_text {
+  display: block;
+}
+
+.footer__contacto_item .footer__link {
+  display: inline-block;
+  font-size: var(--texto-xs); /* Más compacto */
+}
+
+/* Contacto: sin efectos de hover (sin línea dorada, sin transform) */
+.footer__contacto_item .footer__link::after {
+  display: none; /* Eliminar línea dorada */
+}
+
+.footer__contacto_item .footer__link:hover {
+  transform: none; /* Sin desplazamiento */
+  color: var(--color-primario); /* Solo cambio de color */
+}
+
+/* ============================================
+   REDES SOCIALES
+   ============================================ */
+
+.footer__redes {
+  margin-top: 0; /* Eliminar margin superior */
+}
+
+.footer__redes_iconos {
+  display: flex;
+  gap: var(--espaciado-sm);
+  margin-top: var(--espaciado-sm);
+}
+
+.footer__red_social {
+  width: 36px; /* Más compacto */
+  height: 36px; /* Más compacto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radio-borde-md);
+  color: var(--color-texto-blanco);
+  text-decoration: none;
+  
+  /* 🚀 GPU-optimized transitions */
+  transition: background var(--transicion-rapida),
+              transform var(--transicion-rapida),
+              box-shadow var(--transicion-rapida);
+  will-change: transform, background;
+  backface-visibility: hidden;
+}
+
+.footer__red_social svg {
+  width: 18px; /* Más compacto */
+  height: 18px; /* Más compacto */
+  /* 🚀 Mantener color blanco en hover */
+  transition: none;
+}
+
+/* Hover: fondo dorado, icono blanco */
+.footer__red_social:hover {
+  background: var(--color-primario);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(255, 187, 0, 0.5);
+}
+
+.footer__red_social:hover svg {
+  color: var(--color-texto-blanco);
+}
+
+.footer__red_social:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* ============================================
+   SEPARADOR
+   ============================================ */
+
+.footer__separador {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+  margin: var(--espaciado-sm) 0; /* Más compacto */
+}
+
+/* ============================================
+   COPYRIGHT - CENTRADO
+   ============================================ */
+
+.footer__copyright_container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: var(--espaciado-xs); /* Más compacto */
+}
+
+.footer__copyright {
+  font-size: var(--texto-xs); /* Más compacto */
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+  text-align: center;
+  font-weight: var(--peso-medio);
+}
+
+/* ============================================
+   RESPONSIVE - TABLET
+   ============================================ */
+
+@media (max-width: 1024px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-lg);
+  }
+  
+  .footer {
+    padding: var(--espaciado-xl) 0 var(--espaciado-md);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MÓVIL (768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr; /* 2 columnas en móvil */
+    gap: var(--espaciado-md) var(--espaciado-lg);
+    row-gap: var(--espaciado-lg);
+  }
+  
+  .footer {
+    padding: var(--espaciado-lg) 0 var(--espaciado-sm);
+  }
+  
+  .footer__contenedor {
+    padding: 0 var(--espaciado-md);
+  }
+  
+  /* Primera columna (Logo) ocupa ambas columnas */
+  .footer__columna:first-child {
+    grid-column: 1 / -1;
+  }
+  
+  /* Productos (2) y Soporte (3) en la segunda fila */
+  .footer__columna:nth-child(2) {
+    grid-column: 1;
+  }
+  
+  .footer__columna:nth-child(3) {
+    grid-column: 2;
+  }
+  
+  /* Legal (4) y Síguenos en la tercera fila */
+  .footer__columna:nth-child(4) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-lg);
+    align-items: start; /* Alinear al inicio */
+  }
+  
+  /* Legal a la izquierda */
+  .footer__columna:nth-child(4) > .footer__subtitulo:first-of-type,
+  .footer__columna:nth-child(4) > .footer__lista {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  
+  /* Redes sociales a la derecha - alineadas con Legal */
+  .footer__columna:nth-child(4) > .footer__redes {
+    grid-column: 2;
+    grid-row: 1 / -1; /* Ocupar todas las filas */
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-self: start; /* Alinear al inicio */
+  }
+  
+  .footer__titulo {
+    font-size: var(--texto-xl);
+  }
+  
+  .footer__titulo_icono {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .footer__descripcion {
+    font-size: var(--texto-xs);
+    line-height: 1.5;
+    max-width: 100%;
+  }
+  
+  .footer__subtitulo {
+    font-size: var(--texto-base);
+    margin-bottom: var(--espaciado-xs);
+    padding-bottom: var(--espaciado-xs);
+  }
+  
+  .footer__lista {
+    gap: var(--espaciado-xs);
+    margin-top: 0;
+  }
+  
+  .footer__link {
+    font-size: var(--texto-xs);
+  }
+  
+  .footer__separador {
+    margin: var(--espaciado-md) 0 var(--espaciado-sm);
+  }
+  
+  .footer__redes {
+    margin-top: var(--espaciado-sm);
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MÓVIL PEQUEÑO (480px)
+   ============================================ */
+
+@media (max-width: 480px) {
+  .footer {
+    padding: var(--espaciado-md) 0 var(--espaciado-sm);
+  }
+  
+  .footer__grid {
+    grid-template-columns: 1fr 1fr; /* Mantener 2 columnas */
+    gap: var(--espaciado-sm) var(--espaciado-md);
+    row-gap: var(--espaciado-md);
+  }
+  
+  /* Logo ocupa todo el ancho */
+  .footer__columna:first-child {
+    grid-column: 1 / -1;
+  }
+  
+  /* Productos y Soporte lado a lado */
+  .footer__columna:nth-child(2),
+  .footer__columna:nth-child(3) {
+    grid-column: auto;
+  }
+  
+  /* Legal y Síguenos en grid de 2 columnas */
+  .footer__columna:nth-child(4) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-md);
+    align-items: start; /* Alinear al inicio */
+  }
+  
+  /* Asegurar que Legal esté en la columna 1 */
+  .footer__columna:nth-child(4) > .footer__subtitulo:first-of-type,
+  .footer__columna:nth-child(4) > .footer__lista {
+    grid-column: 1;
+  }
+  
+  /* Redes sociales alineadas con Legal */
+  .footer__columna:nth-child(4) > .footer__redes {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: start;
+  }
+  
+  .footer__titulo {
+    font-size: var(--texto-lg);
+    margin-bottom: var(--espaciado-sm);
+  }
+  
+  .footer__titulo_icono {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .footer__descripcion {
+    display: none; /* Ocultar descripción en móviles muy pequeños */
+  }
+  
+  .footer__subtitulo {
+    font-size: var(--texto-sm);
+  }
+  
+  .footer__lista {
+    gap: 6px;
+  }
+  
+  .footer__link {
+    font-size: 11px;
+  }
+  
+  .footer__redes {
+    margin-top: 0;
+  }
+  
+  .footer__redes_iconos {
+    gap: var(--espaciado-xs);
+    justify-content: flex-start;
+  }
+  
+  .footer__red_social {
+    width: 34px;
+    height: 34px;
+  }
+  
+  .footer__red_social svg {
+    width: 17px;
+    height: 17px;
+  }
+  
+  .footer__separador {
+    margin: var(--espaciado-sm) 0 6px;
+  }
+  
+  .footer__copyright {
+    font-size: 11px;
+  }
+}

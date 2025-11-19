@@ -1,0 +1,783 @@
+Aquí tienes la primera tanda de 50 prompts, cubriendo las primeras categorías de reglas generales, backend y seguridad que te di, transformadas en instrucciones precisas:
+
+Primera Tanda de 50 Prompts
+
+Categoría: Principios Generales y de Código
+
+Regla: Regla de Oro para Optimización de Código y Estructura de Proyecto
+"Como IA experta en análisis de código y optimización de proyectos, tu misión es examinar meticulosamente la carpeta que te indicaré, con el objetivo de identificar, verificar y eliminar de forma segura código muerto, código en desuso, archivos redundantes y carpetas vacías que puedan afectar el rendimiento o el mantenimiento del proyecto.
+Procedimiento Riguroso de Análisis y Eliminación:
+Exploración Completa: Inicia un escaneo recursivo de cada archivo y subcarpeta dentro del directorio raíz proporcionado.
+Identificación Preliminar de Candidatos:
+Código Muerto/En Desuso: Analiza el contenido de cada archivo de código (ej. .js, .py, .java, .cpp, .php, .html, .css, etc.) para identificar funciones, clases, variables o bloques de código que no sean llamados, importados, referenciados o utilizados en ningún otro lugar del proyecto. Presta especial atención a:
+Funciones o métodos no invocados.
+Variables declaradas pero no leídas.
+Importaciones no utilizadas.
+Bloques if/else con condiciones siempre falsas o verdaderas, que dejen ramas inaccesibles.
+Archivos de configuración o scripts antiguos que no parecen tener un propósito activo.
+Archivos Redundantes: Busca archivos duplicados o archivos que contengan contenido idéntico a otros.
+Carpetas Vacías: Identifica cualquier carpeta que no contenga archivos ni subcarpetas.
+Verificación Exhaustiva (¡200% de Seguridad!): Para cada candidato identificado en el paso 2:
+Rastreo de Referencias Cruzadas: Realiza una búsqueda global dentro de todos los archivos del proyecto para verificar si el código, archivo o carpeta candidato es referenciado, importado, llamado o utilizado de alguna manera. Considera nombres de funciones, rutas de archivos, nombres de clases, etc.
+Análisis de Flujo de Ejecución: Si es posible, simula o analiza el flujo de ejecución para confirmar que el código identificado nunca se alcanzará bajo ninguna circunstancia.
+Contexto del Proyecto: Si hay archivos de construcción (ej. webpack.config.js, Makefile), scripts de despliegue, o archivos de configuración, analízalos para asegurarte de que el candidato no forma parte de un proceso oculto o condicional.
+Confirmación Negativa: Solo si después de todas estas verificaciones no encuentras absolutamente ninguna referencia ni uso del candidato, considera que es seguro para la eliminación.
+Eliminación Segura (Solo si es 200% seguro):
+Una vez que estés 200% segura de que un fragmento de código, un archivo o una carpeta cumple con los criterios de código muerto/en desuso/vacío y no tiene ninguna referencia activa en el proyecto, procede a su eliminación.
+¡Prioridad: No Romper Nada! Si existe la más mínima duda sobre el uso de un elemento, no lo elimines. Es preferible conservar un poco de código en desuso a introducir un error crítico.
+Reporte Final:
+Al finalizar el proceso, proporciona un informe detallado que incluya:
+Una lista de todos los archivos y fragmentos de código eliminados.
+Una justificación breve para cada eliminación.
+Una lista de cualquier archivo o código que consideraste dudoso y decidiste no eliminar, con la razón.
+¡Tu objetivo principal es optimizar sin comprometer la funcionalidad ni la estabilidad del proyecto!"
+
+Regla: ⚠️ Consideraciones de seguridad al usar Zod (y gestión de estado/rutas en frontend)
+
+Validar todos los datos que vienen del exterior
+Usa Zod para validar respuestas de APIs, incluso si vienen de tu propio backend.
+Nunca confíes ciegamente en que el backend o una API externa enviará datos en el formato correcto.
+
+Zod no protege contra ataques, pero ayuda a prevenir errores que pueden abrir puertas
+Por ejemplo, si no validas bien un formulario y envías datos corruptos, podrías generar un fallo de seguridad en el backend o en tu lógica del cliente.
+
+No asumas que un dato ya está limpio solo porque pasó una validación
+Zod valida estructura y tipo, no contenido malicioso.
+Un string como <script>alert('x')</script> puede pasar como un string válido.
+🔒 Complementa con sanitización, especialmente si estás aceptando texto libre del usuario.
+
+Zod no reemplaza la validación del backend
+Puedes usar Zod en Node.js, pero si usas Spring Boot, valida también allí (@Valid, @NotNull, etc.).
+La validación del cliente es solo una ayuda para la UX, no para la seguridad real.
+
+Evita mostrar errores técnicos de Zod al usuario final directamente
+Mapea los errores a mensajes amigables. Exponer estructuras internas puede dar pistas a un atacante.
+
+Cuida la performance de esquemas muy grandes o dinámicos
+Zod es rápido, pero si tienes muchos niveles anidados o reglas complejas, prueba el rendimiento.
+
+🛡️ Consideraciones adicionales al usar Zustand + protección de rutas (integración con Zod)
+
+Zustand no es una fuente confiable de seguridad
+Es útil para manejar isAuthenticated, userRole, etc., pero esa información vive en memoria del cliente y puede ser manipulada fácilmente desde DevTools.
+
+Guards de rutas deben ser solo una capa de experiencia, no de seguridad real
+Puedes evitar que un usuario navegue a /admin, pero si el backend no verifica el rol, no sirve de nada.
+➤ El backend debe verificar los permisos con tokens, roles y lógica real.
+
+Los roles y permisos deben provenir del backend
+Nunca confíes en lo que está almacenado en Zustand o cualquier estado del frontend para autorizar acciones críticas.
+
+El frontend debe limpiar el estado al cerrar sesión
+Si usas Zustand para guardar información del usuario, asegúrate de que se borre correctamente al hacer logout.
+
+Tokens y credenciales no deben guardarse en Zustand ni en localStorage sin protección
+Usa HttpOnly cookies cuando sea posible, y asegúrate de no exponer estos datos al JavaScript del cliente.
+
+La protección de rutas es una práctica útil, pero solo funciona bien cuando:
+
+Se verifica la existencia y validez del token (por ejemplo, mediante una llamada /auth/me).
+
+Se sincroniza el estado del frontend con la realidad del backend.
+
+🛡️ Buenas prácticas con Zod
+
+Define todos tus esquemas en un lugar común (schemas/, validators/, etc.) para que sean reutilizables.
+
+Usa safeParse para evitar que errores de validación exploten la app con excepciones.
+
+Si validas respuestas de una API externa, lanza un error claro si el formato no es válido (mejor explotar controladamente que aceptar datos corruptos).
+
+Para inputs del usuario (formularios, comentarios, etc.), combina Zod con sanitización (por ejemplo, usando DOMPurify si es HTML).
+
+Si usas Zod en el backend (ej: con Express), puedes generar esquemas compartidos (zod-to-json-schema) para evitar duplicación entre frontend y backend.
+
+🚫 Qué evitar
+Práctica insegura	¿Por qué?
+Usar .parse() sin try/catch	Si el dato es inválido, tirará una excepción sin manejar.
+No validar las respuestas de APIs externas	Puedes introducir datos mal formados o maliciosos en tu app.
+Mostrar error.message de Zod directamente al usuario	Puedes filtrar detalles internos o estructuras técnicas innecesarias.
+Guardar isAuthenticated, role o tokens sensibles en Zustand sin control	El usuario puede modificar este estado desde el navegador.
+Confiar en guards de frontend como única protección de rutas	El backend debe siempre validar la autorización real.
+Asumir que pasar la validación de Zod significa que el dato es "seguro"	Puede contener scripts, SQL injection u otro contenido malicioso.
+
+Regla: ⚠️ Consideraciones de seguridad al usar Axios:
+
+No pongas tokens sensibles directamente en el código
+
+Nunca hardcodees tokens o claves de API en archivos del frontend.
+
+Usa variables de entorno (.env) y asegúrate de que lo que expones en el cliente esté pensado para el cliente (por ejemplo, no incluyas secretos de backend).
+
+Usa https:// en todas las peticiones
+
+Evita enviar datos por http://, ya que se pueden interceptar fácilmente (man-in-the-middle).
+
+Asegúrate de que el backend tenga un certificado SSL válido.
+
+Configura correctamente los interceptores
+
+Puedes usar interceptores para añadir cabeceras (como tokens JWT), manejar errores globales, etc.
+
+Asegúrate de limpiar los tokens y cancelar peticiones si el usuario cierra sesión.
+
+No agregues tokens a dominios de terceros por error.
+
+Protege los datos sensibles en tránsito
+
+No envíes datos personales sin encriptación si no es necesario.
+
+Aunque se use HTTPS, cuida qué datos mandas en headers, URL params o cuerpo.
+
+Manejo adecuado de errores y respuestas
+
+No expongas mensajes de error del backend directamente al usuario sin sanitizar.
+
+Evita mostrar información sensible (como trazas de error internas) en el frontend.
+
+Limita el tamaño de las respuestas y peticiones
+
+Axios permite recibir respuestas grandes. Si no controlas eso, puedes exponerte a DoS (Denial of Service) en ciertos escenarios.
+
+CORS y CSRF no dependen de Axios, pero interactúan con él
+
+Asegúrate de configurar correctamente el backend para manejar CORS y proteger contra CSRF si usas cookies para autenticar.
+
+🛡️ Buenas prácticas recomendadas
+
+Centraliza la configuración de Axios en un archivo común (shared/api/axios.ts, por ejemplo).
+
+Usa interceptores para manejar tokens y errores, pero con validaciones claras.
+
+Elimina tokens del almacenamiento cuando el usuario cierre sesión.
+
+Si usas autenticación basada en tokens, guárdalos en cookies con HttpOnly siempre que puedas (esto requiere ajustes en el backend).
+
+Implementa lógica para renovar tokens de forma segura (refresh tokens).
+
+Usa headers personalizados solo si sabes que el backend los espera y los valida correctamente.
+
+🚫 Qué evitar
+Práctica insegura	¿Por qué?
+axios.defaults.headers.common['Authorization'] = token; en cualquier parte del frontend	Expones tokens de forma global, incluso para dominios externos.
+Guardar tokens en localStorage sin protección	Facilita ataques XSS si hay alguna vulnerabilidad.
+Mostrar error.response.data directamente en la UI	Puedes exponer detalles internos del backend.
+
+Regla: ⚠️ Consideraciones de seguridad al usar Zustand:
+
+No guardes información sensible en el estado global del cliente
+
+Ejemplos de datos sensibles: tokens JWT, contraseñas, datos personales identificables (DPI), etc.
+
+El estado en el cliente es fácilmente inspeccionable desde el navegador (DevTools), por lo tanto, no lo trates como un lugar seguro.
+
+Ten cuidado con la persistencia del estado
+
+Zustand tiene middlewares que permiten persistir el estado en localStorage o sessionStorage.
+
+Si decides persistir, encripta y limita la información. No guardes datos sensibles sin protección.
+
+Revisa bien qué datos se están serializando.
+
+Protege el acceso a funcionalidades críticas
+
+Zustand puede almacenar una bandera como isAuthenticated, pero no debe ser la única barrera de seguridad.
+
+Las protecciones reales deben venir del backend (verificación de tokens, roles, permisos, etc.).
+
+Evita fugas de información
+
+Asegúrate de que Zustand no mantenga en memoria datos de usuarios anteriores (ej: si alguien cierra sesión, limpia el store correctamente).
+
+Controla el acceso desde extensiones y scripts
+
+Zustand expone el estado en memoria; si hay una extensión maliciosa o un script inyectado, puede leer esos datos.
+
+Aunque esto es un riesgo general del frontend, evita exponer más de lo necesario.
+
+Usa middlewares con precaución
+
+Zustand permite usar middlewares (logger, persist, devtools, etc.). Revisa si alguno introduce riesgos o si filtra datos.
+
+🛡️ Buenas prácticas recomendadas
+
+Usa Zustand solo para UI y estado no sensible (ej: menús, flags, tema, carrito, etc.).
+
+Usa cookies seguras (httpOnly) o almacenamiento seguro del lado del servidor para tokens de sesión.
+
+Si persistes el estado, aplica una estrategia de limpieza al cerrar sesión.
+
+No confíes en el estado del cliente para decisiones de seguridad o autorización.
+
+Mantén Zustand actualizado para evitar problemas conocidos o bugs.
+
+Regla: Consejos para usar React Query de forma segura:
+
+Nunca caches datos sensibles en React Query que puedan ser leídos fácilmente por otros scripts.
+
+Controla bien los tokens de autenticación (ej. usa HttpOnly cookies cuando sea posible).
+
+Maneja correctamente errores 401/403 para renovar o redirigir al login.
+
+Usa HTTPS en producción para proteger datos en tránsito.
+
+Valida y sanitiza siempre en backend.
+
+Regla: Es importante que cada vez que hagas un error no sigas a realizar otra tarea, quiero que soluciones ese error que realizaste para luego seguir con las otras tareas asi evitamos acumulacion de errores y desorden. Tienes prohibido crear un error y dejarlo sin solucion y seguir trabajando en otras cosas
+
+Regla: Nombres de Archivos y Carpetas:
+Todos los nombres deben ser en español.
+Deben ser descriptivos y reflejar claramente su contenido o responsabilidad.
+Utiliza kebab-case para los nombres de carpetas y archivos (ej. listado-productos.tsx, servicio-usuarios.ts).
+Los archivos que contienen componentes de React (o el framework elegido) deben usar la extensión adecuada (ej. .tsx o .jsx). Los archivos de lógica pura o servicios pueden usar .ts o .js.
+Nombres de Clases y Funciones:
+Todos los nombres deben ser en español.
+Utiliza PascalCase para las clases y componentes (ej. BotonPrimario, ComponenteTarjetaProducto).
+Utiliza camelCase para las funciones y variables (ej. obtenerDatosUsuario, validarFormulario).
+Los nombres deben ser explícitos y autodescriptivos, reflejando su propósito exacto.
+Contenido de Ejemplo: Para cada archivo y función/clase, incluye un esqueleto de código básico que demuestre su intención. Por ejemplo:
+Clases de componentes: un export default function ComponenteNombre() { return <div>...</div>; } simple.
+Funciones de utilidad: un export function nombreFuncion() { /* lógica */ } con un comentario.
+Archivos de API: un export const obtenerRecurso = async () => { /* petición */ };
+Tipos: export interface TipoEntidad { id: string; nombre: string; }
+Modularidad y Encapsulación: Asegúrate de que las clases y funciones estén diseñadas para ser reutilizables y con una única responsabilidad, encapsulando su lógica.
+Principios Generales: Incorpora los principios de código limpio, DRY y legibilidad en los nombres y la estructura, todo en español.
+
+Regla: Tener en el proyecto una arquitectura Modular por Funcionalidad.src/
+├── app/                    # Configuración de la aplicación
+│   ├── providers/         # Context providers, store setup
+│   ├── styles/           # Estilos globales
+│   └── index.tsx         # App entry point
+├── pages/                 # Páginas de la aplicación
+│   ├── home/
+│   ├── products/
+│   ├── cart/
+│   └── checkout/
+├── widgets/              # Bloques de UI complejos
+│   ├── header/
+│   ├── footer/
+│   ├── product-catalog/
+│   └── shopping-cart/
+├── features/             # Funcionalidades de negocio
+│   ├── auth/
+│   ├── product-search/
+│   ├── add-to-cart/
+│   └── payment/
+├── entities/             # Entidades de negocio
+│   ├── user/
+│   ├── product/
+│   ├── order/
+│   └── category/
+└── shared/               # Código reutilizable
+    ├── ui/               # Componentes UI básicos
+    ├── lib/              # Utilidades, helpers
+    ├── api/              # Configuración API
+    └── config/           # Configuraciones
+
+Regla: Conoce tus Fundamentos: Domina HTML, CSS y JavaScript a fondo.
+
+Prompt: Siempre utiliza las funcionalidades nativas de HTML, CSS y JavaScript cuando sea apropiado. Demuestra maestría en los fundamentos de la web.
+
+Regla: Mantén el Código Limpio y Legible: Usa nombres de variables y funciones descriptivos, y sigue un estilo de codificación consistente.
+
+Prompt: Escribe código con nombres de identificadores (variables, funciones, clases) que sean explícitos y autodescriptivos. Aplica un estilo de formato uniforme (sangría, espaciado, comillas) en todo el proyecto.
+
+Regla: No te Repitas (DRY): Refactoriza el código duplicado en funciones o componentes reutilizables.
+
+Prompt: Identifica y elimina la duplicación de código. Abstrae la lógica repetida en funciones, componentes o módulos reutilizables.
+
+Regla: Haz el Código Reutilizable: Diseña componentes y módulos que puedan usarse en diferentes partes de la aplicación.
+
+Prompt: Construye componentes y módulos con una interfaz bien definida y una lógica encapsulada, diseñados para ser utilizados en múltiples contextos sin modificaciones.
+
+Regla: Haz el Código Modular: Divide tu aplicación en módulos pequeños y manejables.
+
+Prompt: Descompone la aplicación en módulos cohesivos y de acoplamiento bajo, cada uno con una responsabilidad clara y única. Utiliza mecanismos estándar de importación/exportación.
+
+Regla: Escribe Comentarios Clares: Documenta el "por qué" de las decisiones de código complejas, no solo el "qué".
+
+Prompt: Añade comentarios al código para explicar la lógica compleja, las decisiones de diseño clave, los compromisos técnicos o las razones de implementaciones no obvias. Evita comentar código evidente.
+
+Regla: Prioriza el Rendimiento: Optimiza los recursos (imágenes, fuentes, CSS, JS) para tiempos de carga rápidos.
+
+Prompt: Implementa técnicas de optimización de rendimiento como compresión, minificación, lazy loading de recursos y carga asíncrona de scripts para asegurar una experiencia de usuario rápida.
+
+Regla: Depura con Eficacia: Aprende a usar las herramientas de desarrollo del navegador para identificar y solucionar problemas rápidamente.
+
+Prompt: Demuestra el uso efectivo de las herramientas de desarrollo del navegador (consola, depurador, panel de red, inspección de elementos) para diagnosticar y resolver problemas de forma eficiente.
+
+Regla: Mantente Actualizado: El ecosistema frontend cambia constantemente; aprende nuevas herramientas y prácticas.
+
+Prompt: Aplica las últimas características de los estándares web (HTML, CSS, JavaScript) y las mejores prácticas de las librerías/frameworks populares, indicando el estándar o la versión utilizada.
+
+Regla: Practica la Arquitectura de Componentes: Piensa en tu UI como un árbol de componentes anidados.
+
+Prompt: Estructura la interfaz de usuario como un árbol de componentes, donde cada uno tiene una responsabilidad única y se comunica de forma clara a través de props y eventos.
+
+Categoría: HTML
+
+Regla: Usa HTML Semántico: Emplea las etiquetas HTML adecuadas para dar significado a tu contenido.
+
+Prompt: Utiliza etiquetas HTML semánticas (ej. <header>, <nav>, <main>, <article>, <section>, <footer>, <aside>) para estructurar el contenido según su significado, no solo por su apariencia.
+
+Regla: Valida tu HTML: Asegúrate de que tu HTML sea válido para evitar comportamientos inesperados y mejorar la accesibilidad.
+
+Prompt: Genera HTML que cumpla con los estándares de validación de W3C. Evita errores de sintaxis o uso incorrecto de etiquetas y atributos.
+
+Regla: Prioriza la Accesibilidad (ARIA): Haz tu contenido accesible para todos los usuarios, incluyendo aquellos que usan lectores de pantalla.
+
+Prompt: Implementa atributos ARIA (ej. aria-label, aria-describedby, role), textos alternativos para imágenes (alt), y asegura una navegación de teclado coherente para garantizar la accesibilidad.
+
+Regla: Optimiza las Etiquetas Meta: Utiliza las etiquetas meta adecuadas para SEO y la visualización en redes sociales.
+
+Prompt: Incluye metaetiquetas esenciales (charset, viewport, description, keywords) y Open Graph/Twitter Cards para un SEO efectivo y una visualización atractiva en redes sociales.
+
+Categoría: CSS
+
+Regla: Escribe CSS Escalable: Considera metodologías como BEM, SMACSS o CSS-in-JS para organizar tu CSS.
+
+Prompt: Organiza el CSS utilizando una metodología escalable (ej. BEM, CSS Modules, Styled Components) para evitar colisiones de nombres, mejorar la legibilidad y facilitar el mantenimiento.
+
+Regla: Haz tu Diseño Responsivo: Asegúrate de que tu sitio web se vea bien en todos los tamaños de pantalla.
+
+Prompt: Implementa un diseño responsivo utilizando media queries, Flexbox y/o CSS Grid para asegurar que la UI se adapte y funcione correctamente en todos los dispositivos y tamaños de pantalla.
+
+Regla: Evita el CSS Global Excesivo: Utiliza selectores específicos o CSS Scope para evitar conflictos de estilos.
+
+Prompt: Minimiza el uso de selectores CSS globales. Prefiere selectores específicos, CSS con scope (ej. módulos CSS) o CSS-in-JS para encapsular estilos y prevenir efectos secundarios no deseados.
+
+Regla: Minimiza la Especificidad CSS: Evita usar !important y selectores excesivamente específicos.
+
+Prompt: Escribe reglas CSS con la especificidad mínima necesaria. Evita el uso de !important y selectores anidados profundos para mantener el CSS predecible y fácil de sobrescribir.
+
+Regla: Usa Variables CSS (Custom Properties): Define colores, fuentes y espaciados para facilitar la consistencia y el mantenimiento.
+
+Prompt: Define y utiliza variables CSS (propiedades personalizadas) para valores reutilizables como colores, tipografía, espaciados y tamaños, facilitando la consistencia y cambios de tema.
+
+Regla: Optimiza la Entrega de CSS: Considera el "critical CSS" para una carga más rápida.
+
+Prompt: Optimiza la entrega de CSS extrayendo y cargando el CSS crítico (necesario para el contenido visible inicial) de forma síncrona, y cargando el resto de forma asíncrona o con lazy loading.
+
+Categoría: JavaScript
+
+Regla: Entiende el Event Loop de JavaScript: Comprende cómo funciona el asincronismo y la ejecución de tareas.
+
+Prompt: Al escribir código asíncrono, demuestra un claro entendimiento del Event Loop de JavaScript. Utiliza Promises y async/await de manera efectiva para gestionar operaciones no bloqueantes.
+
+Regla: Manejo de Errores Robusto: Implementa try...catch y otras estrategias para manejar errores graciosamente.
+
+Prompt: Implementa bloques try...catch para manejar errores en operaciones críticas. Proporciona mensajes de error claros al usuario y mecanismos de recuperación cuando sea posible.
+
+Regla: Conoce ES6+ (ECMAScript): Familiarízate con las características modernas de JavaScript.
+
+Prompt: Utiliza las características modernas de ECMAScript (ES6+) como funciones flecha, const/let, desestructuración, operadores spread/rest, async/await para escribir código conciso y eficiente.
+
+Regla: Optimiza el Rendimiento de JavaScript: Evita operaciones costosas en el hilo principal y minimiza el tamaño de los bundles.
+
+Prompt: Minimiza la carga de JavaScript en el hilo principal. Evita cálculos complejos o manipulaciones DOM intensivas en un solo ciclo, y optimiza el tamaño del bundle de JavaScript.
+
+Regla: Protege tu Código de Inyecciones (XSS): Sanea la entrada del usuario y ten cuidado al insertar contenido dinámico en el DOM.
+
+Prompt: Sanea y escapa siempre cualquier entrada de usuario o contenido dinámico antes de insertarlo en el DOM para prevenir ataques de Cross-Site Scripting (XSS). Nunca uses innerHTML con datos no confiables.
+
+Regla: Usa Bundlers (Webpack, Vite, Rollup): Aprende a configurar y usar herramientas para compilar y optimizar tu JavaScript.
+
+Prompt: Configura y utiliza un bundler (ej. Webpack, Vite, Rollup) para compilar, optimizar y empaquetar los activos de JavaScript, CSS y otros recursos para producción.
+
+Regla: Gestiona el Estado de Forma Eficiente: Elige una estrategia o librería para la gestión del estado.
+
+Prompt: Implementa una estrategia o librería de gestión de estado (ej. Redux, Zustand, Vuex, Pinia, Context API) adecuada para la complejidad de la aplicación, manteniendo el estado predecible y centralizado.
+
+Regla: Entiende los Frameworks/Librerías (React, Vue, Angular): Domina al menos uno a fondo.
+
+Prompt: Desarrolla soluciones utilizando el framework o librería frontend elegido (ej. React, Vue, Angular) de acuerdo con sus mejores prácticas, patrones y convenciones.
+
+Regla: Limita las Manipulaciones Directas del DOM: Siempre que sea posible, deja que tu framework maneje el DOM por ti.
+
+Prompt: Minimiza las manipulaciones directas del DOM. Prefiere que el framework/librería de UI gestione las actualizaciones del DOM para optimizar el rendimiento y la consistencia del estado.
+
+Categoría: Flujo de Trabajo y Herramientas
+
+Regla: Control de Versiones (Git): Usa Git religiosamente para rastrear cambios, colaborar y revertir errores.
+
+Prompt: Utiliza Git para el control de versiones, realizando commits atómicos con mensajes claros, gestionando ramas y resolviendo conflictos de fusión de manera eficiente.
+
+Regla: Escribe Pruebas (Unitarias, de Integración, E2E): Asegura la calidad y estabilidad de tu código.
+
+Prompt: Escribe pruebas unitarias, de integración y/o E2E utilizando frameworks de testing (ej. Jest, React Testing Library, Cypress) para asegurar la funcionalidad y estabilidad del código.
+
+Regla: Usa un Linter y Formateador (ESLint, Prettier): Mantén un estilo de código consistente y atrapa errores comunes.
+
+Prompt: Configura y utiliza un linter (ej. ESLint) y un formateador (ej. Prettier) para aplicar automáticamente un estilo de código consistente y detectar problemas de calidad de código y errores potenciales.
+
+Regla: Automatiza Tareas Repetitivas: Usa scripts o herramientas para automatizar el build, la optimización, etc.
+
+Prompt: Automatiza tareas repetitivas del flujo de trabajo (build, pruebas, optimización de activos, despliegue) utilizando scripts de NPM, Gulp, Webpack u otras herramientas de automatización.
+
+Regla: Colabora Efectivamente: Comunícate claramente con tu equipo y documenta tus decisiones.
+
+Prompt: Comunica proactivamente el progreso, los desafíos y las decisiones técnicas al equipo. Proporciona documentación clara para facilitar la colaboración.
+
+Regla: Entiende el Proceso de Build: Conoce cómo tu código se transforma de desarrollo a producción.
+
+Prompt: Demuestra conocimiento del proceso de construcción de la aplicación, desde el código fuente hasta los archivos de producción optimizados, y cómo se gestionan los activos.
+
+Categoría: Mentalidad y Habilidades Blandas
+
+Regla: Sé Curioso y Sigue Aprendiendo: La tecnología frontend evoluciona rápidamente.
+
+Prompt: Demuestra una mentalidad de aprendizaje continuo, explorando nuevas tecnologías, patrones y mejores prácticas del ecosistema frontend.
+
+Regla: Pide Ayuda y Ofrece Ayuda: No temas preguntar y comparte tu conocimiento.
+
+Prompt: Fomenta la colaboración activa: haz preguntas cuando encuentres dificultades y comparte tu conocimiento y experiencia con otros miembros del equipo.
+
+Regla: Entiende el Negocio/Objetivo: Comprende el propósito de lo que estás construyendo.
+
+Prompt: Alinea las decisiones técnicas y de diseño con los objetivos de negocio y el propósito general del producto, entendiendo cómo tu trabajo contribuye al valor.
+
+Regla: Prioriza la Experiencia del Usuario (UX): Diseña y desarrolla pensando siempre en el usuario final.
+
+Prompt: Todas las decisiones de diseño y desarrollo deben centrarse en la facilidad de uso, la intuición y la satisfacción del usuario final.
+
+Regla: Sé Paciente y Perseverante: La depuración y la resolución de problemas son partes integrales del desarrollo.
+
+Prompt: Demuestra paciencia y perseverancia al enfrentar problemas complejos o al depurar errores, manteniendo un enfoque metódico hasta encontrar una solución.
+
+Categoría: Interacción con el Backend (primeras 10 de 40)
+
+Regla: Definir un Contrato API Claro y Estable: Colabora con el equipo de backend para establecer un formato de datos, endpoints y convenciones de API bien documentados antes de escribir código.
+
+Prompt: Antes de implementar la lógica de frontend para la interacción con el backend, asegura la existencia de un contrato API detallado y bien documentado, definido en colaboración con el equipo de backend (ej. Swagger/OpenAPI).
+
+Regla: Entender los Tipos de Datos del Backend: Conoce los tipos de datos que el backend enviará y espera (string, number, boolean, array, object, null) para evitar errores de deserialización/serialización.
+
+Prompt: Al consumir o enviar datos a la API, asegúrate de comprender y respetar los tipos de datos esperados por el backend para cada campo, evitando errores de tipo y conversiones inesperadas.
+
+Regla: Manejar Errores de API de Manera Uniforme: Establece una estrategia común para capturar y mostrar errores provenientes del backend.
+
+Prompt: Implementa una estrategia global y consistente para capturar, procesar y mostrar mensajes de error provenientes de las respuestas de la API del backend, basándose en códigos de estado HTTP y estructuras de error definidas.
+
+Regla: Validación de Datos Tanto en Frontend como en Backend: Implementa validaciones frontend para una UX inmediata, pero nunca confíes en ellas; el backend debe realizar su propia validación.
+
+Prompt: Aplica validaciones de entrada de datos en el frontend para feedback inmediato al usuario. Sin embargo, siempre asume que el backend realizará la validación final de todos los datos antes de su procesamiento.
+
+Regla: Comunicación Asíncrona Robusta: Todas las interacciones con el backend deben ser asíncronas, utilizando async/await o Promesas para evitar bloquear la UI.
+
+Prompt: Ejecuta todas las peticiones a la API de forma asíncrona utilizando async/await o Promesas. Asegura que la interfaz de usuario permanezca responsiva y no se bloquee durante las operaciones de red.
+
+Regla: Serialización y Deserialización Consistente: Asegúrate de que los datos se envíen al backend en el formato exacto que espera y de que los datos recibidos se conviertan correctamente para su uso en el frontend.
+
+Prompt: Implementa mecanismos de serialización (al enviar) y deserialización (al recibir) para garantizar que los datos entre frontend y backend se conviertan correctamente al formato esperado por cada sistema.
+
+Regla: Mapeo de Datos Claros: Si los nombres de los campos del backend no son ideales para el frontend, crea funciones de mapeo para transformar los datos en un formato más amigable para la UI.
+
+Prompt: Cuando la estructura o nombres de campos de la respuesta de la API no se alineen con la UI, crea funciones de mapeo explícitas para transformar los datos del backend al formato óptimo para el frontend.
+
+Regla: Gestión de Credenciales y Autenticación: Entiende y aplica el mecanismo de autenticación (tokens JWT, OAuth, sesiones) de forma segura y consistente.
+
+Prompt: Implementa el flujo de autenticación de la aplicación (ej. JWT, OAuth, sesiones) de forma segura, gestionando la adquisición, el almacenamiento y el envío de credenciales o tokens a la API de manera consistente.
+
+Regla: Autorización (Roles y Permisos): Diseña la UI para reflejar los permisos del usuario obtenidos del backend, ocultando o deshabilitando funcionalidades si no tiene acceso.
+
+Prompt: Adapta dinámicamente la interfaz de usuario (ocultando elementos, deshabilitando botones, redirigiendo) basándose en los roles y permisos del usuario obtenidos del backend.
+
+Regla: Evitar la Inferencia de Datos: No asumas cómo serán los datos del backend. Consulta siempre la documentación de la API o al equipo de backend.
+
+Prompt: Nunca asumas la estructura o el contenido de las respuestas de la API. Siempre consulta la documentación del contrato API o comunícate con el equipo de backend para confirmar las expectativas de datos.
+
+Segunda Tanda de 50 Prompts
+Categoría: Interacción con el Backend (Continuación)
+Regla: Centralizar las Llamadas a la API: Crea una capa de servicio o un módulo de API para encapsular todas las llamadas HTTP, facilitando la gestión de errores, la autenticación y el caching.
+Prompt: Encapsula todas las llamadas HTTP a la API dentro de una capa de servicio o módulo centralizado. Este módulo debe manejar la configuración base, la autenticación, el manejo de errores y posibles estrategias de caching.
+Regla: Manejo de Estados de Carga: Implementa indicadores visuales (spinners, esqueletos de carga) para informar al usuario que se está esperando una respuesta del backend.
+Prompt: Muestra indicadores visuales de carga (ej. spinners, estados esqueleto) en la UI mientras se esperan respuestas del backend para mejorar la experiencia del usuario.
+Regla: Gestión de Estados Vacíos/Sin Datos: Diseña la UI para manejar elegantemente escenarios donde el backend devuelve listas vacías o no hay datos disponibles.
+Prompt: Prevé y diseña estados UI específicos para cuando el backend devuelve listas vacías o no hay datos disponibles, mostrando mensajes claros al usuario en lugar de interfaces rotas.
+Regla: Manejo de Reintentos (Retries) en Peticiones Fallidas: Considera implementar lógica para reintentar peticiones a la API en caso de fallos temporales de red o del servidor.
+Prompt: Implementa una lógica de reintento con un backoff exponencial para peticiones a la API que fallen debido a errores de red transitorios o del servidor.
+Regla: Caching Estratégico de Respuestas del Backend: Implementa caché en el frontend para datos que no cambian con frecuencia, reduciendo la carga del backend y mejorando la velocidad percibida.
+Prompt: Utiliza técnicas de caché en el frontend (ej. memoria, IndexedDB, librerías de caché) para almacenar respuestas de API de datos poco cambiantes, reduciendo peticiones al backend.
+Regla: Uso de Interceptores (Axios, Fetch API): Configura interceptores para añadir headers de autenticación, registrar errores o transformar peticiones/respuestas globalmente.
+Prompt: Configura interceptores HTTP (para Fetch API o librerías como Axios) para gestionar tareas transversales como añadir tokens de autenticación, registrar errores o transformar datos de forma global.
+Regla: Optimización de Cargas Útiles (Payloads): Solicita al backend solo los datos que realmente necesitas para la vista actual, evitando sobrecargar la red.
+Prompt: Al construir peticiones a la API, solicita solo los campos o datos estrictamente necesarios para la vista actual, optimizando el tamaño de la carga útil (payload).
+Regla: Paginación y Filtrado del Lado del Servidor: Implementa paginación, filtrado y ordenación enviando parámetros al backend, para no cargar datos excesivos en el frontend.
+Prompt: Implementa la paginación, filtrado y ordenación de datos enviando los parámetros correspondientes al backend, en lugar de intentar procesar grandes conjuntos de datos en el frontend.
+Regla: Manejo de Concurrencia (Race Conditions): Prevé y maneja escenarios donde múltiples peticiones a la API puedan sobrescribir datos o crear estados inconsistentes en la UI.
+Prompt: Implementa estrategias para prevenir o manejar condiciones de carrera (race conditions) resultantes de múltiples peticiones asíncronas, asegurando la consistencia del estado de la UI.
+Regla: Limpiar Datos Antes de Enviar al Backend: Asegúrate de que los datos enviados desde formularios o la UI estén limpios, formateados correctamente y sin información superflua.
+Prompt: Antes de enviar datos al backend, asegúrate de que estén limpios, correctamente formateados y desprovistos de cualquier información innecesaria o sensible desde la UI.
+Regla: Uso de Herramientas de Desarrollo (Postman, Insomnia, Swagger UI): Familiarízate con estas herramientas para probar y entender la API del backend de forma independiente.
+Prompt: Demuestra el uso de herramientas como Postman, Insomnia o la interfaz de Swagger UI para probar y comprender la funcionalidad de la API del backend de forma independiente.
+Regla: Mockear la API del Backend: Crea "mocks" (datos falsos) o un servidor de desarrollo con una API simulada para desarrollar el frontend en paralelo antes de que el backend esté listo.
+Prompt: Crea mocks de la API del backend o utiliza un servidor de desarrollo con una API simulada para permitir el desarrollo y las pruebas del frontend en paralelo al desarrollo del backend.
+Regla: Colaboración Continua con el Equipo de Backend: Mantén una comunicación fluida para resolver dudas, discutir cambios en la API y coordinar el desarrollo.
+Prompt: Mantén una comunicación bidireccional constante y fluida con el equipo de backend para resolver dudas, coordinar cambios en la API y asegurar una integración armoniosa.
+Regla: Documentación Frontend del Uso de la API: Documenta cómo el frontend consume cada endpoint, los datos que espera y los que envía.
+Prompt: Crea documentación específica en el frontend sobre cómo se consume cada endpoint de la API, incluyendo el formato de la petición, la respuesta esperada y el manejo de errores.
+Regla: Feedback Claro al Backend sobre Inconsistencias: Reporta proactivamente cualquier inconsistencia, error o ambigüedad en la API del backend.
+Prompt: Reporta de manera proactiva y constructiva cualquier inconsistencia, error, ambigüedad o mejora sugerida en la API del backend al equipo correspondiente.
+Regla: Entender el Versionado de la API (API Versioning): Si el backend versiona su API, tenlo en cuenta en tu implementación.
+Prompt: Implementa el consumo de la API considerando su estrategia de versionado (ej. /v1/users, /v2/users), asegurando compatibilidad con las versiones objetivo.
+Regla: Uso de Entornos (Development, Staging, Production): Configura el frontend para conectarse a diferentes entornos de backend (dev, test, prod) según sea necesario.
+Prompt: Configura el frontend para que se conecte a diferentes entornos de backend (desarrollo, staging, producción) utilizando variables de entorno o configuraciones específicas para cada entorno.
+Regla: Envío de Logs y Errores al Backend: Implementa un sistema para enviar logs y errores críticos del frontend al backend para una depuración centralizada.
+Prompt: Implementa un mecanismo para enviar logs de errores críticos y eventos relevantes del frontend a un servicio de logging centralizado, a menudo gestionado por el backend.
+Regla: Optimización de la Comunicación HTTP/2 o WebSockets: Considera el uso de HTTP/2 para multiplexado o WebSockets para comunicación en tiempo real si la aplicación lo requiere.
+Prompt: Evalúa y, si es necesario, implementa protocolos de comunicación avanzados como HTTP/2 para peticiones multiplexadas o WebSockets para comunicación en tiempo real.
+Regla: No Exponer Lógica Sensible del Backend: Asegúrate de que ninguna lógica crítica de negocio o credencial sensible del backend esté presente o sea deducible desde el frontend.
+Prompt: Garantiza que el frontend no contenga, revele o permita la deducción de lógica de negocio sensible, credenciales de backend o claves de API que deberían residir exclusivamente en el servidor.
+Regla: Diseño Desacoplado del Backend: La UI no debe estar rígidamente acoplada a una estructura de backend específica; debe ser lo suficientemente flexible para adaptarse a cambios.
+Prompt: Diseña la interfaz de usuario de manera desacoplada de la implementación específica del backend, permitiendo flexibilidad para cambios en la API sin requerir una reescritura significativa del frontend.
+Regla: Manejar Respuestas Inesperadas del Backend: Programa de forma defensiva para situaciones donde el backend devuelva datos en un formato inesperado o con campos faltantes.
+Prompt: Escribe código defensivo para manejar respuestas inesperadas de la API, como estructuras de datos incorrectas, campos nulos o faltantes, o formatos de datos no conformes.
+Regla: Uso de Schemas o Tipado Fuerte (TypeScript): Si usas TypeScript, define interfaces o tipos para las respuestas de la API para garantizar la consistencia.
+Prompt: Si utilizas TypeScript, define interfaces o tipos de datos claros y precisos para las estructuras de respuesta esperadas de la API, garantizando la consistencia y la seguridad de tipos.
+Regla: Considerar la Escalabilidad de la API: Diseña las llamadas a la API pensando en cómo afectarán el rendimiento si el volumen de datos o usuarios crece.
+Prompt: Al diseñar interacciones con la API, considera cómo escalará el volumen de peticiones y datos a medida que la aplicación crezca, planificando la eficiencia y el uso de recursos.
+Regla: Gestión de Sesiones y Expiración: Entiende y maneja la expiración de sesiones/tokens, redirigiendo al usuario a la autenticación cuando sea necesario.
+Prompt: Implementa el manejo de la expiración de tokens de sesión o JWT, incluyendo la lógica para renovarlos o redirigir al usuario a la pantalla de inicio de sesión cuando sea necesario.
+Regla: Limpieza de Datos al Desmontar Componentes: Asegúrate de cancelar peticiones API pendientes o limpiar el estado relacionado con el backend cuando un componente se desmonta para evitar fugas de memoria o errores.
+Prompt: Al desmontar componentes, cancela cualquier petición API pendiente y limpia los estados o suscripciones relacionados con el backend para prevenir fugas de memoria y errores.
+Regla: Manejo de Conectividad sin Conexión (Offline First/PWA): Si es un requisito, implementa Service Workers y estrategias de almacenamiento offline para una experiencia robusta sin conexión.
+Prompt: Si la aplicación requiere funcionamiento offline, implementa Service Workers y estrategias de almacenamiento en caché para proporcionar una experiencia de usuario robusta sin conexión a la red.
+Regla: Feedback Visual en Tiempo Real para Acciones del Usuario: Confirma rápidamente las acciones del usuario en la UI (ej. "Guardando...", "Eliminado") incluso antes de recibir la confirmación del backend.
+Prompt: Proporciona feedback visual inmediato en la UI para las acciones del usuario (ej. "Guardando...", "Actualizado"), incluso antes de que la respuesta del backend se reciba.
+Regla: Planificar para Cambios en la API: Asume que la API evolucionará. Diseña tu código para que sea flexible ante adiciones o pequeños cambios en los endpoints o estructuras de datos.
+Prompt: Diseña el código de interacción con la API con flexibilidad, anticipando que la API evolucionará y permitiendo la adaptación a cambios o adiciones en los endpoints y estructuras de datos.
+Regla: Probar la Integración Temprano y Frecuentemente: No esperes a que todo el frontend y el backend estén listos. Realiza pruebas de integración incrementalmente para identificar problemas a tiempo.
+Prompt: Realiza pruebas de integración entre el frontend y el backend de forma temprana y continua en el ciclo de desarrollo para detectar y resolver problemas de compatibilidad rápidamente.
+Categoría: Seguridad Impecable (primeras 20 de 40)
+Regla: Nunca Insertes HTML de Fuentes No Confiables Directamente en el DOM: Siempre sanea o escapa cualquier contenido dinámico que provenga de usuarios o APIs antes de mostrarlo.
+Prompt: Prohíbe la inserción directa de HTML proveniente de fuentes no confiables (ej. entrada de usuario, APIs externas) en el DOM. Siempre sanea o escapa el contenido antes de renderizarlo.
+Regla: Utiliza API de Saneamiento Seguras: Emplea librerías o frameworks que proporcionen métodos seguros para escapar contenido.
+Prompt: Utiliza APIs y librerías de saneamiento de contenido (ej. DOMPurify) que escapen automáticamente los caracteres peligrosos, o las funcionalidades nativas de seguridad de los frameworks (ej. textContent en lugar de innerHTML).
+Regla: Codifica Salidas Específicas al Contexto: Escapa los caracteres especiales según el contexto (HTML, URL, JavaScript) para evitar que el código inyectado sea interpretado.
+Prompt: Codifica o escapa los caracteres especiales de las salidas de datos dinámicos según el contexto en el que se van a insertar (HTML, URL, JavaScript) para prevenir inyecciones.
+Regla: Configura una Política de Seguridad de Contenido (CSP) Robusta: Define qué recursos (scripts, estilos, imágenes) pueden ser cargados por la página y desde dónde, mitigando ataques XSS.
+Prompt: Implementa una Política de Seguridad de Contenido (CSP) estricta a través de cabeceras HTTP o metaetiquetas, definiendo explícitamente las fuentes permitidas para scripts, estilos y otros recursos.
+Regla: Evita eval(), setTimeout(string), setInterval(string): Estas funciones pueden ejecutar código arbitrario y son vectores comunes para XSS.
+Prompt: Prohíbe el uso de eval(), setTimeout() con cadenas de texto y setInterval() con cadenas de texto, ya que pueden ejecutar código arbitrario y son vectores de ataque.
+Regla: No Uses javascript: URLs en Atributos href o src:** Son una fuente conocida de inyección de código malicioso.
+Prompt: No permitas el uso de URLs que comiencen con javascript: en atributos como href o src, ya que pueden ser utilizados para ejecutar código malicioso.
+Regla: Utiliza Tokens Anti-CSRF Generados por el Backend: El backend debe emitir un token único que el frontend incluya en cada solicitud que modifique el estado.
+Prompt: Integra tokens anti-CSRF generados por el backend en todas las peticiones que modifiquen el estado (POST, PUT, DELETE), asegurando que el token se incluya y valide en cada solicitud.
+Regla: Envía Tokens CSRF en un Encabezado Personalizado (Header): Evita enviarlos en cookies que el navegador pueda adjuntar automáticamente a solicitudes cross-site.
+Prompt: Envía los tokens CSRF en encabezados HTTP personalizados (ej. X-CSRF-Token) en lugar de en cookies, para evitar que sean enviados automáticamente en solicitudes cross-site.
+Regla: Asegúrate de que las Cookies de Sesión Tengan el Atributo SameSite=Lax o Strict:** Esto limita el envío de cookies en solicitudes cross-site, reduciendo el riesgo de CSRF.
+Prompt: Asegura que todas las cookies de sesión y autenticación tengan el atributo SameSite configurado como Lax o Strict para mitigar ataques CSRF.
+Regla: Para Operaciones Sensibles, Requiere Re-autenticación o Confirmación: Un paso adicional de seguridad para acciones críticas.
+Prompt: Para operaciones de alta sensibilidad (ej. cambio de contraseña, eliminación de cuenta), implementa un paso adicional de re-autenticación o confirmación explícita del usuario.
+Regla: Nunca Almacenes Credenciales Sensibles (Contraseñas, Secretos) en el Frontend:** Las contraseñas deben ser enviadas al backend (preferiblemente cifradas/hasheadas en tránsito) y nunca guardadas localmente.
+Prompt: Prohíbe el almacenamiento de credenciales sensibles (ej. contraseñas, claves API) en el frontend, incluyendo localStorage, sessionStorage o cookies no HttpOnly.
+Regla: Maneja Tokens de Autenticación de Forma Segura: Almacena tokens JWT o de sesión en localStorage o sessionStorage solo si entiendes los riesgos. Las Cookies HttpOnly son más seguras contra XSS.
+Prompt: Gestiona los tokens de autenticación de forma segura. Prioriza el uso de cookies HttpOnly para tokens de sesión o JWT, o implementa protecciones adicionales si se almacenan en localStorage.
+Regla: Usa Tokens de Corta Duración con Refresh Tokens: Si usas JWT, implementa tokens de acceso de corta duración y un mecanismo seguro para renovarlos con un refresh token.
+Prompt: Cuando se utilicen tokens JWT, implementa tokens de acceso de corta duración y un mecanismo seguro de "refresh tokens" para renovarlos, limitando la ventana de exposición en caso de compromiso.
+Regla: Protege las Rutas Sensibles del Frontend: Implementa guardias de ruta (route guards) para asegurar que solo los usuarios autenticados y autorizados puedan acceder a ciertas secciones de la aplicación.
+Prompt: Implementa guardias de ruta (route guards) en el frontend para proteger las rutas sensibles, permitiendo el acceso solo a usuarios autenticados y con los roles/permisos necesarios.
+Regla: Siempre Confirma la Autorización del Lado del Servidor: El frontend puede ocultar opciones, pero la validación final de si un usuario puede realizar una acción siempre debe ser del backend.
+Prompt: Aunque el frontend pueda ajustar la UI según la autorización, siempre asume que la validación final y decisiva de la autorización de un usuario para realizar una acción se realizará en el backend.
+Regla: No Reveles Información Sensible en el Frontend: Evita mostrar IDs internos de base de datos, URLs de API sensibles o lógicas de negocio críticas en el código fuente o en las respuestas de la API.
+Prompt: Evita exponer información sensible (ej. IDs internos de BD, URLs de API confidenciales, lógica de negocio crítica) en el código fuente del frontend, el DOM o las respuestas de la API.
+Regla: Implementa Logout Seguro: Asegura que, al cerrar sesión, se invaliden los tokens del frontend y, si es posible, también en el backend.
+Prompt: Implementa un proceso de cierre de sesión seguro que invalide el token de autenticación en el frontend y, preferiblemente, también en el backend, y elimine cualquier dato de sesión local.
+Regla: Configura HTTPS para Toda la Comunicación: Todas las comunicaciones entre el frontend y el backend deben ser cifradas usando TLS/SSL para prevenir ataques Man-in-the-Middle.
+Prompt: Asegura que toda la comunicación entre el frontend y el backend se realice exclusivamente a través de HTTPS/TLS para cifrar los datos en tránsito y prevenir ataques Man-in-the-Middle.
+Regla: Habilita HTTP Strict Transport Security (HSTS): Fuerza a los navegadores a usar HTTPS para futuras conexiones, incluso si el usuario intenta acceder vía HTTP.
+Prompt: Configura la cabecera HTTP Strict-Transport-Security (HSTS) para forzar al navegador a utilizar siempre HTTPS para futuras conexiones a tu dominio.
+Regla: Configura los Headers X-Content-Type-Options: nosniff:** Previene que el navegador "adivine" el tipo de MIME del contenido, evitando ataques de inyección de scripts.
+* Prompt: Establece la cabecera HTTP X-Content-Type-Options a nosniff para evitar el "MIME-sniffing" del navegador, previniendo la ejecución de contenido malicioso como script.
+
+Categoría: Seguridad Impecable (Continuación)
+Regla: Configura los Headers X-Frame-Options: DENY o SAMEORIGIN:** Protege contra ataques de Clickjacking, evitando que tu página se incruste en un <iframe> de otro dominio.
+* Prompt: Configura la cabecera HTTP X-Frame-Options a DENY o SAMEORIGIN para proteger la aplicación contra ataques de Clickjacking.
+Regla: Configura el Header Referrer-Policy:** Controla la cantidad de información del Referer que se envía con las solicitudes.
+* Prompt: Establece una Referrer-Policy adecuada (ej. no-referrer, same-origin) para controlar la información del Referer enviada en las solicitudes HTTP.
+Regla: Controla el Access-Control-Allow-Origin (CORS): Define explícitamente qué orígenes pueden acceder a tus recursos, evitando accesos no autorizados.
+* Prompt: Configura cuidadosamente el encabezado Access-Control-Allow-Origin en el backend para permitir el acceso CORS solo desde los dominios autorizados del frontend.
+Regla: Valida Todas las Entradas del Usuario en el Frontend:** Si bien el backend validará, el frontend debe realizar validaciones básicas para dar feedback instantáneo y mejorar la UX.
+* Prompt: Implementa validaciones frontend exhaustivas para todas las entradas de usuario, proporcionando feedback instantáneo y guiando al usuario hacia datos válidos.
+Regla: Nunca Uses Datos de Entrada del Usuario Directamente en Consultas SQL o Lógicas Críticas:** Esto es más del backend, pero el frontend no debe construir consultas con entradas directas.
+* Prompt: El frontend nunca debe utilizar directamente la entrada del usuario para construir consultas de base de datos o lógica crítica; toda la validación y construcción de consultas debe ser manejada por el backend.
+Regla: Escapa o Sanea Contenido de Terceros o APIs Externas:** Trata el contenido de cualquier fuente externa con el mismo nivel de desconfianza que el contenido del usuario.
+* Prompt: Aplica el mismo rigor de saneamiento y escape al contenido proveniente de servicios de terceros o APIs externas que a la entrada directa del usuario.
+Regla: Audita las Dependencias de Terceros Regularmente:** Usa herramientas como npm audit o Snyk para identificar vulnerabilidades en tus librerías y frameworks.
+* Prompt: Realiza auditorías de seguridad regulares de todas las dependencias de terceros (ej. npm audit, Snyk) para identificar y remediar vulnerabilidades conocidas.
+Regla: Mantén tus Dependencias Actualizadas:** Las versiones más recientes a menudo contienen parches de seguridad importantes.
+* Prompt: Mantén las librerías, frameworks y dependencias del proyecto actualizadas a sus últimas versiones estables para beneficiarse de parches de seguridad y mejoras de rendimiento.
+Regla: Revisa el Código Fuente de las Librerías Críticas (si es posible):** Especialmente para librerías de autenticación o seguridad.
+* Prompt: Para librerías críticas, especialmente las relacionadas con seguridad o autenticación, realiza revisiones de su código fuente si es posible o confía en fuentes auditadas.
+Regla: Minimiza la Superficie de Ataque:** Incluye solo el código y las librerías que realmente necesitas, reduciendo posibles puntos de vulnerabilidad.
+* Prompt: Minimiza la superficie de ataque del frontend incluyendo solo el código y las dependencias estrictamente necesarias, eliminando funcionalidades no utilizadas.
+Regla: Elimina Código Muerto y Comentarios Sensibles:** No dejes información que pueda ser útil para un atacante en el código de producción.
+* Prompt: Elimina todo el código muerto, comentarios sensibles o información de depuración antes de desplegar la aplicación a producción.
+Regla: Principio de Mínimo Privilegio:** La aplicación frontend solo debe tener los permisos y acceder a los recursos estrictamente necesarios.
+* Prompt: Diseña la aplicación con el principio de mínimo privilegio en mente: el frontend solo debe tener los permisos y acceder a los recursos estrictamente necesarios para su funcionamiento.
+Regla: Usa Content Security Policy (CSP) en Modo de Reporte Primero:** Despliégala inicialmente en modo solo de reporte para identificar infracciones sin bloquear el sitio.
+* Prompt: Antes de aplicar una CSP en modo de imposición, despliégala en modo de "solo reporte" (Content-Security-Policy-Report-Only) para monitorear violaciones sin bloquear el contenido legítimo.
+Regla: Educación Continua en Seguridad:** Mantente actualizado sobre las últimas vulnerabilidades, ataques y mejores prácticas en seguridad frontend.
+* Prompt: Mantente continuamente informado sobre las últimas amenazas de seguridad frontend, vulnerabilidades, ataques comunes y mejores prácticas de defensa.
+Regla: Realiza Pruebas de Penetración Regularmente:** Contrata a expertos para que intenten encontrar fallas de seguridad en tu aplicación.
+* Prompt: En fases avanzadas del proyecto, recomienda y participa en pruebas de penetración profesionales para identificar vulnerabilidades de seguridad que las pruebas automatizadas podrían pasar por alto.
+Regla: No Confíes en la Ofuscación del Código:** La ofuscación puede dificultar un poco la ingeniería inversa, pero no es una medida de seguridad efectiva.
+* Prompt: No consideres la ofuscación del código JavaScript como una medida de seguridad robusta. Utilízala solo para dificultar la ingeniería inversa, no para proteger lógica sensible.
+Regla: Deshabilita las Herramientas de Desarrollo en Producción:** Aunque es difícil, minimiza la información que puedan obtener los atacantes.
+* Prompt: En el entorno de producción, minimiza la información disponible a través de las herramientas de desarrollo del navegador, deshabilitando sourcemaps o minimizando logs sensibles.
+Regla: Maneja los Mensajes de Error con Cuidado:** Evita dar demasiada información sobre la infraestructura o la base de datos en los mensajes de error públicos.
+* Prompt: Al mostrar mensajes de error al usuario, evita revelar detalles técnicos sensibles sobre la infraestructura del servidor, bases de datos o lógica interna.
+Regla: No Hardcodées IDs de Usuarios, Claves API o Información Sensible:** Estas deben ser manejadas por el backend y enviadas de forma segura cuando sea necesario.
+* Prompt: Nunca codifiques (hardcode) IDs de usuario, claves de API, secretos o cualquier otra información sensible directamente en el código del frontend.
+Regla: Desarrolla con un Modelo de Amenazas en Mente:** Piensa como un atacante. ¿Cómo intentarías romper tu propia aplicación?
+* Prompt: Al desarrollar, adopta una mentalidad de modelado de amenazas: anticipa cómo un atacante podría intentar explotar vulnerabilidades en la aplicación.
+Categoría: Principios de Arquitectura y Diseño Sólido (Tus reglas adicionales)
+Regla: Principio de Responsabilidad Única (SRP): Cada clase/función debe tener una sola razón para cambiar.
+* Prompt: Diseña funciones, clases y componentes de modo que cada uno tenga una única responsabilidad bien definida y, por lo tanto, solo una razón para cambiar.
+Regla: Inversión de Dependencias: Depender de abstracciones, no de implementaciones concretas.
+* Prompt: Al diseñar la arquitectura, haz que los módulos de alto nivel no dependan de los de bajo nivel. Ambos deben depender de abstracciones (interfaces o tipos), no de implementaciones concretas.
+Regla: Separación de Concerns: UI, lógica de negocio y datos deben estar claramente separados.
+* Prompt: Estructura el código de manera que las preocupaciones de la interfaz de usuario, la lógica de negocio y la gestión de datos estén claramente separadas y encapsuladas.
+Regla: Principio de Composición sobre Herencia: Favorecer composición para mayor flexibilidad.
+* Prompt: Prefiere la composición de pequeños componentes o funciones para construir funcionalidades complejas, en lugar de depender excesivamente de la herencia de clases.
+Regla: Arquitectura por Capas: Estructura clara entre presentación, lógica y datos.
+* Prompt: Implementa una arquitectura por capas donde la presentación, la lógica de aplicación/negocio y la capa de acceso a datos estén claramente definidas y separadas.
+Regla: Principio KISS (Keep It Simple, Stupid): Prefiere soluciones sencillas a las complejas.
+* Prompt: Busca siempre la solución más simple y directa a un problema, evitando la complejidad innecesaria incluso si otras soluciones parecen más "elegantes".
+Categoría: Prácticas de Desarrollo Moderno y Experiencia de Usuario (Tus reglas adicionales)
+Regla: TypeScript First: Tipado estático para prevenir errores en tiempo de compilación.
+* Prompt: Desarrolla la aplicación utilizando TypeScript desde el inicio, definiendo tipos explícitos para variables, funciones y estructuras de datos para prevenir errores en tiempo de compilación.
+Regla: Progressive Enhancement: La aplicación debe funcionar sin JavaScript como base.
+* Prompt: Diseña la aplicación siguiendo el principio de "Progressive Enhancement", asegurando una experiencia funcional básica incluso si JavaScript está deshabilitado o no se carga.
+Regla: Mobile First: Diseñar primero para móvil, luego escalar a desktop.
+* Prompt: Adopta una estrategia de diseño "Mobile First", desarrollando y probando la interfaz de usuario primero en dispositivos móviles y luego escalando para pantallas más grandes.
+Regla: Performance Budget: Establecer límites de tamaño de bundle y tiempo de carga.
+* Prompt: Establece y adhiere a un "Performance Budget" (presupuesto de rendimiento) claro para métricas como el tamaño del bundle, el tiempo de carga y la interactividad.
+Regla: Atomic Design: Componentes organizados en átomos, moléculas, organismos, templates y páginas.
+* Prompt: Organiza los componentes de la interfaz de usuario utilizando la metodología de Atomic Design (átomos, moléculas, organismos, plantillas, páginas) para promover la consistencia y reutilización.
+Categoría: Flujo de Trabajo, Calidad y Mantenimiento (Tus reglas adicionales)
+Regla: CI/CD Pipeline: Integración y despliegue continuo automatizado.
+* Prompt: Configura e implementa una pipeline de CI/CD (Integración Continua/Despliegue Continuo) para automatizar la construcción, prueba y despliegue del frontend.
+Regla: Environment Parity: Desarrollo, staging y producción deben ser idénticos.
+* Prompt: Asegura que los entornos de desarrollo, staging y producción sean lo más parecidos posible en términos de configuración, dependencias y datos para evitar problemas de "funciona en mi máquina".
+Regla: Feature Flags: Despliegue de funcionalidades controlado y reversible.
+* Prompt: Implementa "Feature Flags" (interruptores de características) para habilitar o deshabilitar funcionalidades de forma remota, permitiendo lanzamientos controlados y reversiones rápidas.
+Regla: Code Review Obligatorio: Todo código debe ser revisado por al menos un peer.
+* Prompt: Haz que la revisión de código por al menos un compañero sea un requisito obligatorio antes de fusionar cualquier cambio en la rama principal.
+Regla: Documentación Viva: README, CHANGELOG y documentación técnica siempre actualizada.
+* Prompt: Mantén la documentación del proyecto (README, CHANGELOG, documentación técnica interna, guías de contribución) siempre actualizada y alineada con el código.
+Categoría: Interacción Backend Específica (Tus reglas adicionales)
+Regla: Control de Transacciones (Backend): Garantizar la integridad de los datos en operaciones de base de datos complejas.
+* Prompt: Si el frontend inicia operaciones que implican transacciones complejas en el backend, el frontend debe ser consciente de la necesidad de integridad de datos y cómo el backend maneja las transacciones.
+Regla: Idempotencia de APIs (Backend): Las APIs deben ser idempotentes cuando sea apropiado.
+* Prompt: El frontend debe saber cuándo las APIs del backend son idempotentes (es decir, que una petición repetida tiene el mismo efecto que la primera) para gestionar reintentos de forma segura y sin efectos secundarios.
+
+Categoría Sugerida: Experiencia de Usuario Avanzada y Resiliencia del Frontend
+Esta categoría se enfocaría en cómo el frontend no solo reacciona, sino que proactivamente gestiona la interacción con el usuario, incluso cuando las cosas no salen según lo planeado (más allá de los errores de API).
+Regla: Diseño de Estados Vacíos y de Error Informativos: No solo "manejar" errores, sino proporcionar mensajes claros, contextualmente relevantes y, si es posible, acciones sugeridas al usuario.
+Prompt: Para cada posible estado de datos vacío (ej. lista de productos vacía, resultados de búsqueda nulos) o error (ej. formulario inválido, recurso no encontrado), diseña una interfaz que proporcione información clara, útil y, si aplica, acciones para que el usuario pueda avanzar.
+Regla: Retroalimentación Contextual y No Intrusiva: Proporcionar feedback al usuario de manera que no interrumpa su flujo, usando notificaciones no modales cuando sea posible.
+Prompt: Implementa un sistema de notificaciones o feedback que sea contextual y no bloqueante (ej. toasts, banners temporales) para informar al usuario sobre el éxito de las operaciones o errores menores, evitando interrupciones innecesarias.
+Regla: Gestión del Historial de Navegación y URLs Amigables: Asegurar que la navegación sea consistente con el historial del navegador y que las URLs sean significativas para el usuario y el SEO.
+Prompt: Gestiona el historial de navegación de forma consistente, permitiendo que el botón "atrás" del navegador funcione como se espera. Utiliza URLs limpias y semánticas que reflejen el estado actual de la aplicación.
+Regla: Manejo de Entradas del Usuario (Input Management) Inteligente: Optimizar la experiencia de entrada de datos, incluyendo autofoco, formato automático, máscaras y sugerencias.
+Prompt: Mejora la experiencia de entrada de datos del usuario implementando funciones como autofoco en el campo relevante, formato automático de datos (ej. números de teléfono), sugerencias de autocompletado y máscaras de entrada.
+Regla: Pre-carga y Precaching (User Anticipation): Anticipar las necesidades del usuario cargando recursos o datos antes de que sean explícitamente solicitados, mejorando la fluidez.
+Prompt: Identifica puntos clave en la interacción del usuario donde se pueda precargar o hacer precaching de recursos (ej. imágenes de la siguiente página, datos de un módulo probable) para mejorar la velocidad percibida y la fluidez de la navegación.
+Regla: Consideración de la Latencia (Optimistic UI): Diseñar interfaces que respondan instantáneamente a las acciones del usuario, actualizando la UI de forma "optimista" antes de la confirmación del backend.
+Prompt: Implementa patrones de "Optimistic UI" donde sea apropiado, actualizando la interfaz de usuario inmediatamente después de una acción del usuario y revirtiendo solo si el backend reporta un error.
+Regla: Microinteracciones y Animaciones con Propósito: Utilizar animaciones y microinteracciones para guiar la atención del usuario, proporcionar feedback o mejorar la percepción de rendimiento, sin ser intrusivo.
+Prompt: Incorpora microinteracciones y animaciones sutiles y con propósito para guiar la atención del usuario, proporcionar feedback visual sobre las acciones o mejorar la percepción de la velocidad.
+
+Categoría: Componentes de Seguridad Reutilizables
+Regla #159: Sanitización de Datos de Entrada (Anti-XSS) 🟢
+Prompt: "Crea un componente de React llamado SecureInput.tsx usando TypeScript. Este componente debe ser un input o textarea que, al recibir cualquier dato del usuario, lo sanitice de forma automática y en tiempo real para prevenir ataques de Cross-Site Scripting (XSS). La lógica de sanitización debe usar la biblioteca dompurify para eliminar cualquier script o etiqueta maliciosa. Incluye los comandos de instalación de la biblioteca y sus tipos de TypeScript. El componente debe tener un estado interno para el valor sanitizado y un onChange que actualice este estado y, opcionalmente, pase el valor sanitizado a un padre. Proporciona ejemplos de uso, uno donde se muestre el valor crudo (sin sanitizar) y otro donde se muestre el valor sanitizado para ilustrar la diferencia. Añade comentarios detallados en el código para explicar el proceso de sanitización."
+
+Regla #160: Uso de HTTPS (Comunicación Segura) 🟡
+Prompt: "Describe y proporciona las instrucciones paso a paso para configurar un servidor de desarrollo de React con Vite para que use HTTPS en lugar de HTTP. El objetivo es simular un entorno de producción seguro. Explica cómo generar certificados SSL autofirmados usando la terminal, cómo modificar el archivo vite.config.ts para habilitar el servidor HTTPS y cómo configurar las opciones de certificado. Incluye un ejemplo completo de vite.config.ts con comentarios que expliquen cada configuración. Al final, proporciona el comando para ejecutar el servidor de desarrollo en modo seguro."
+
+Regla #161: Implementación de CSP (Content Security Policy) 🟢
+Prompt: "Genera una política de seguridad de contenido (CSP) exhaustiva para una aplicación de React que se carga desde una CDN. La política debe ser lo más estricta posible, permitiendo solo recursos de confianza. Especifica las directivas para: script-src (solo desde el propio dominio y la CDN), style-src (dominio propio y Google Fonts), img-src (dominio propio y un servicio de almacenamiento como Cloudinary), font-src (Google Fonts), y connect-src (solo para las APIs de tu backend y una API de pagos de terceros). Proporciona el código completo del meta tag HTML y explica brevemente la función de cada directiva. Además, incluye la directiva report-uri para enviar informes de violaciones a un servicio de monitoreo."
+
+Regla #162: Protección contra Clickjacking 🟢
+Prompt: "Explica en detalle qué es un ataque de clickjacking y cómo los atacantes lo usan para engañar a los usuarios. Luego, proporciona las dos mejores prácticas para mitigar este riesgo. La primera, usando la cabecera HTTP X-Frame-Options con el valor deny o SAMEORIGIN. La segunda, usando la directiva frame-ancestors en la política de seguridad de contenido (CSP). Muestra ejemplos de código para ambos métodos y explica por qué la directiva frame-ancestors es la opción más moderna y flexible."
+
+Regla #163: Manejo Seguro de Cookies y Almacenamiento 🟡
+Prompt: "Describe la forma más segura de manejar tokens de sesión o de autenticación en el frontend de una tienda online. Explica las diferencias entre almacenar un token en localStorage y en una cookie. Luego, argumenta por qué las cookies con los atributos HttpOnly y Secure son la opción preferida para datos sensibles. Detalla la función de estos dos atributos y añade la explicación del atributo SameSite y por qué es crucial para prevenir ataques CSRF. Proporciona un pseudocódigo que ilustre cómo el backend debería establecer una cookie de autenticación segura."
+
+Regla #164: Validación de Datos en el Frontend con Esquemas 🟢
+Prompt: "Crea un componente de React con TypeScript para un formulario de inicio de sesión que incluya campos para correo electrónico y contraseña. La validación del formulario debe realizarse en el frontend usando una biblioteca de validación de esquemas como Zod. El esquema debe validar: 1) El correo electrónico, asegurándose de que tenga un formato válido. 2) La contraseña, con requisitos de al menos 8 caracteres, una letra mayúscula, un número y un carácter especial. El componente debe mostrar mensajes de error claros al usuario por cada campo que no cumpla con los requisitos. Incluye los comandos para instalar Zod y un ejemplo completo del componente y el esquema de validación."
+
+Categoría: Optimización de Rendimiento
+Regla #165: Lazy Loading y Code Splitting 🟢
+Prompt: "Implementa lazy loading y code splitting en una aplicación React con React Router. Muestra cómo usar React.lazy() y Suspense para cargar componentes de forma diferida. Incluye ejemplos de cómo dividir el código por rutas, cómo crear un componente de loading, y cómo optimizar el bundle size. Explica los beneficios de rendimiento y proporciona métricas de mejora esperadas."
+
+Regla #166: Progressive Web App (PWA) 🟢
+Prompt: "Configura una aplicación React + Vite como PWA. Incluye la creación del manifest.json con todos los campos necesarios (name, short_name, icons, theme_color, etc.), la configuración del service worker para cache offline, y cómo hacer la app instalable. Proporciona ejemplos de estrategias de cache y explica cómo probar la PWA en diferentes dispositivos."
+
+Regla #167: SEO Optimization 🟢
+Prompt: "Implementa optimización SEO en una aplicación React. Incluye meta tags dinámicos, Open Graph para redes sociales, Twitter Cards, structured data (JSON-LD), sitemap.xml, y robots.txt. Muestra cómo usar React Helmet o similar para gestionar meta tags por página. Proporciona ejemplos completos y mejores prácticas para mejorar el ranking en buscadores."
+
+═══════════════════════════════════════════════════════════════════════════════
+Categoría: OPTIMIZACIÓN Y EFICIENCIA DEL FRONTEND ⚡
+═══════════════════════════════════════════════════════════════════════════════
+
+Regla #168: Factores Clave para la Eficiencia del Proyecto 🔥
+Prompt: "Para que el proyecto sea eficiente, más que enfocarse en el peso total en MB de la carpeta, debes priorizar los siguientes aspectos críticos de optimización del frontend. Implementa y verifica que se cumplan TODOS estos puntos clave antes de considerar el proyecto optimizado."
+
+Regla #169: Minificación y Bundling Obligatorio 🟢
+Prompt: "Asegúrate de que TODOS los archivos JS y CSS estén minificados (espacios y comentarios eliminados) y agrupados (bundled). El HTML debe estar limpio y optimizado. Configura tu herramienta de build (Vite, Webpack, etc.) para aplicar minificación automática en producción. Proporciona la configuración exacta y verifica que los archivos finales no contengan código de desarrollo, console.logs, o comentarios innecesarios."
+
+Regla #170: Tree Shaking Riguroso 🟢
+Prompt: "La herramienta de build DEBE eliminar cualquier código o librería que no se esté utilizando (código muerto). Configura tree shaking en tu bundler para que analice las importaciones y elimine módulos no utilizados. Verifica que las librerías importadas sean tree-shakeable (usen ES modules) y que solo se incluya el código que realmente se ejecuta. Proporciona ejemplos de cómo importar correctamente para maximizar tree shaking (import { specific } from 'library' vs import * as library)."
+
+Regla #171: Code Splitting (División de Código) Estratégico 🟢
+Prompt: "El JavaScript solo debería cargar el código necesario para la pantalla actual; el resto se carga de forma diferida (lazy loading). Implementa code splitting por rutas usando React.lazy() o dynamic imports. Divide el bundle en chunks más pequeños basados en las rutas de la aplicación. El chunk inicial debe contener solo el código crítico para la primera carga. Proporciona una estrategia completa de code splitting con ejemplos de configuración."
+
+Regla #172: Lazy Loading de Imágenes Obligatorio 🟢
+Prompt: "Implementa Lazy Loading para TODAS las imágenes que están 'debajo del pliegue' (fuera de la vista inicial/above the fold). Usa el atributo loading='lazy' nativo de HTML para imágenes, o implementa IntersectionObserver para casos más avanzados. Las imágenes críticas (above the fold) deben tener loading='eager' o no especificar el atributo. Proporciona ejemplos de implementación para ambos casos y explica cómo determinar qué imágenes están 'above the fold'."
+
+Regla #173: Métricas de Eficiencia Requeridas 🔥
+Prompt: "El proyecto debe cumplir con estas métricas mínimas de eficiencia antes de ser considerado optimizado:
+1. First Contentful Paint (FCP): < 1.8s
+2. Largest Contentful Paint (LCP): < 2.5s
+3. Time to Interactive (TTI): < 3.8s
+4. Total Bundle Size (JS inicial): < 200KB (gzipped)
+5. Total Bundle Size (CSS inicial): < 50KB (gzipped)
+6. Lighthouse Performance Score: > 90
+
+Implementa herramientas de medición (Lighthouse, WebPageTest) y proporciona un reporte de métricas antes y después de las optimizaciones."
+
+Regla #174: Optimización de Assets Críticos 🟢
+Prompt: "Optimiza TODOS los assets críticos del proyecto:
+- Imágenes: Convertir a WebP/AVIF, implementar responsive images con srcset
+- Fuentes: Usar font-display: swap, preload de fuentes críticas, subset de caracteres
+- CSS: Critical CSS inline, resto en async
+- JavaScript: Async/defer para scripts no críticos
+
+Proporciona una guía paso a paso de optimización para cada tipo de asset con ejemplos de código y configuración."
+
+Regla #175: Verificación de Optimización Pre-Deploy 🔥
+Prompt: "Antes de cada deploy a producción, DEBES verificar y confirmar que se cumplen TODOS estos puntos:
+✅ Minificación activa (JS, CSS, HTML)
+✅ Tree shaking configurado y funcionando
+✅ Code splitting implementado por rutas
+✅ Lazy loading de imágenes implementado
+✅ Bundle analyzer ejecutado y bundles optimizados
+✅ Lighthouse score > 90
+✅ No hay console.logs en producción
+✅ Source maps NO incluidos en producción (solo en staging)
+✅ Compression (gzip/brotli) habilitada en servidor
+
+Crea un checklist automatizado y un script de verificación pre-deploy que valide todos estos puntos."
+
+═══════════════════════════════════════════════════════════════════════════════
+NOTAS IMPORTANTES SOBRE EFICIENCIA:
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠️ El peso total de la carpeta del proyecto NO es el indicador principal de eficiencia.
+✅ Lo que importa es: Bundle size final, tiempo de carga, métricas Core Web Vitals.
+🔥 Un proyecto puede tener 500MB en node_modules pero servir solo 150KB al cliente.
+💡 Enfócate en optimizar lo que el usuario final descarga, no el tamaño del repositorio.
+
+═══════════════════════════════════════════════════════════════════════════════

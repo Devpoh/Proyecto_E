@@ -1,0 +1,73 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 ESTILOS - Export Buttons
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+
+.export-buttons {
+  display: flex;
+  gap: var(--espaciado-sm);
+  flex-wrap: wrap;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--espaciado-sm);
+  padding: var(--espaciado-sm) var(--espaciado-lg);
+  border: none;
+  border-radius: var(--radio-borde-md);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medium);
+  cursor: pointer;
+  transition: all var(--transicion-rapida);
+  color: var(--color-texto-blanco);
+  box-shadow: var(--sombra-md);
+}
+
+.export-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.export-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-lg);
+}
+
+.export-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.export-btn svg {
+  font-size: var(--texto-lg);
+}
+
+/* PDF Button */
+.export-btn-pdf {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.export-btn-pdf:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+}
+
+/* Excel Button */
+.export-btn-excel {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.export-btn-excel:hover:not(:disabled) {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .export-btn span {
+    display: none;
+  }
+
+  .export-btn {
+    padding: var(--espaciado-sm);
+  }
+}

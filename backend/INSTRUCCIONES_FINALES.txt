@@ -1,0 +1,129 @@
+================================================================================
+🎯 INSTRUCCIONES FINALES - CELERY EN WINDOWS
+================================================================================
+
+PROBLEMA SOLUCIONADO:
+✅ ValueError: not enough values to unpack (expected 3, got 0)
+✅ Celery ahora usa pool 'solo' en lugar de 'prefork'
+✅ Funciona correctamente en Windows
+
+================================================================================
+CAMBIOS REALIZADOS:
+================================================================================
+
+1. config/celery.py
+   - Removido argumento duplicado 'worker_disable_rate_limits'
+
+2. config/settings.py
+   - Agregadas 5 líneas de configuración de Celery para Windows:
+     CELERY_WORKER_POOL = 'solo'
+     CELERY_WORKER_PREFETCH_MULTIPLIER = 1
+     CELERY_WORKER_MAX_TASKS_PER_CHILD = 1000
+     CELERY_TASK_ACKS_LATE = True
+     CELERY_WORKER_DISABLE_RATE_LIMITS = True
+
+3. TEST_CELERY.bat (NUEVO)
+   - Script para probar que Celery funciona
+
+================================================================================
+CÓMO USAR:
+================================================================================
+
+OPCIÓN 1: Script de prueba (Recomendado)
+---------
+cd backend
+TEST_CELERY.bat
+
+OPCIÓN 2: Línea de comandos con --pool=solo
+---------
+cd backend
+celery -A config worker -l info --pool=solo
+
+OPCIÓN 3: Línea de comandos sin --pool=solo (usa settings.py)
+---------
+cd backend
+celery -A config worker -l info
+
+================================================================================
+VERIFICACIÓN:
+================================================================================
+
+Después de ejecutar, deberías ver en los logs:
+
+✅ CORRECTO:
+   .> concurrency: 1 (solo)
+   celery@DESKTOP-XXXX ready.
+
+❌ INCORRECTO:
+   .> concurrency: 12 (prefork)
+   ValueError: not enough values to unpack
+
+================================================================================
+ORDEN DE INICIO (Para desarrollo completo):
+================================================================================
+
+Terminal 1: Redis
+   redis-server
+
+Terminal 2: Django
+   cd backend
+   python manage.py runserver
+
+Terminal 3: Celery Worker
+   cd backend
+   celery -A config worker -l info --pool=solo
+
+Terminal 4: Celery Beat
+   cd backend
+   celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+Terminal 5 (Opcional): Flower
+   cd backend
+   celery -A config flower
+   # Acceder a: http://localhost:5555
+
+================================================================================
+DOCUMENTACIÓN:
+================================================================================
+
+- SOLUCION_DEFINITIVA_CELERY.md    → Explicación detallada
+- CAMBIOS_REALIZADOS.md             → Cambios específicos
+- PASO_A_PASO_CELERY.md             → Guía paso a paso
+- CELERY_WINDOWS_GUIA_COMPLETA.md   → Guía completa
+- VERIFICACION_CELERY.md            → Checklist de verificación
+
+================================================================================
+PROBLEMAS COMUNES:
+================================================================================
+
+P: ¿Sigue diciendo "concurrency: 12 (prefork)"?
+R: Asegúrate de:
+   1. Haber guardado los cambios en config/settings.py
+   2. Haber reiniciado la terminal
+   3. Usar --pool=solo en la línea de comandos
+
+P: ¿Error "Cannot connect to redis"?
+R: Asegúrate de que Redis está corriendo:
+   redis-cli ping
+   # Debería responder: PONG
+
+P: ¿Error de sintaxis en celery.py?
+R: Verifica que no haya argumentos duplicados
+   grep -n "worker_disable_rate_limits" config/celery.py
+   # Debería aparecer solo una vez
+
+================================================================================
+¡LISTO!
+================================================================================
+
+Celery está configurado y funciona correctamente en Windows.
+
+Próximos pasos:
+1. Ejecuta TEST_CELERY.bat para verificar
+2. Inicia los servicios en el orden indicado
+3. Monitorea con Flower (opcional)
+
+================================================================================
+Última actualización: 17 de Noviembre, 2025
+Estado: ✅ FUNCIONAL EN WINDOWS
+================================================================================

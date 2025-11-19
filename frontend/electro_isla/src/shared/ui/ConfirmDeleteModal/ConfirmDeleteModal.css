@@ -1,0 +1,180 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 ESTILOS - ConfirmDeleteModal
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+
+.confirm-delete-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal-backdrop);
+  animation: fadeIn var(--transicion-rapida);
+}
+
+.confirm-delete-modal {
+  background: var(--color-fondo);
+  border-radius: var(--radio-borde-lg);
+  box-shadow: var(--sombra-2xl);
+  padding: var(--espaciado-2xl);
+  max-width: 400px;
+  text-align: center;
+  animation: slideUp var(--transicion-normal);
+  contain: layout style paint;
+}
+
+/* Icono */
+.confirm-delete-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--espaciado-lg);
+  font-size: 28px;
+  color: var(--color-peligro);
+}
+
+/* Título */
+.confirm-delete-title {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-semibold);
+  color: var(--color-texto-principal);
+  margin: 0 0 var(--espaciado-md) 0;
+}
+
+/* Mensaje */
+.confirm-delete-message {
+  font-size: var(--texto-base);
+  color: var(--color-texto-secundario);
+  margin: 0 0 var(--espaciado-md) 0;
+  line-height: 1.5;
+}
+
+.confirm-delete-message strong {
+  color: var(--color-texto-principal);
+  font-weight: var(--peso-semibold);
+  word-break: break-word;
+}
+
+/* Descripción */
+.confirm-delete-description {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-claro);
+  margin: 0 0 var(--espaciado-lg) 0;
+  line-height: 1.5;
+}
+
+/* Acciones */
+.confirm-delete-actions {
+  display: flex;
+  gap: var(--espaciado-md);
+  margin-top: var(--espaciado-xl);
+}
+
+/* Botones */
+.confirm-delete-btn {
+  flex: 1;
+  padding: var(--espaciado-sm) var(--espaciado-lg);
+  border: none;
+  border-radius: var(--radio-borde-md);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+  transition: all var(--transicion-rapida);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
+.confirm-delete-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.confirm-delete-btn-cancel {
+  background: var(--color-fondo-gris);
+  color: var(--color-texto-principal);
+}
+
+.confirm-delete-btn-cancel:hover:not(:disabled) {
+  background: var(--color-fondo-hover);
+}
+
+.confirm-delete-btn-confirm {
+  background: var(--color-peligro);
+  color: white;
+}
+
+.confirm-delete-btn-confirm:hover:not(:disabled) {
+  background: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-md);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .confirm-delete-modal {
+    margin: var(--espaciado-md);
+    max-width: calc(100% - var(--espaciado-md) * 2);
+    padding: var(--espaciado-lg);
+  }
+
+  .confirm-delete-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .confirm-delete-title {
+    font-size: var(--texto-lg);
+  }
+
+  .confirm-delete-actions {
+    flex-direction: column-reverse;
+  }
+
+  .confirm-delete-btn {
+    width: 100%;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .confirm-delete-overlay,
+  .confirm-delete-modal,
+  .confirm-delete-btn {
+    animation: none;
+    transition: none;
+  }
+}

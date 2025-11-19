@@ -1,0 +1,215 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 WIDGET - BottomCarousel Styles
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * Carrusel infinito simple basado en la guía
+ */
+
+/* Importar estilos de CarouselCard al inicio */
+@import './CarouselCard.css';
+
+.seccion-carrusel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espaciado-xl) clamp(40px, 8vw, 80px);
+  width: 100%;
+  min-height: 85vh;
+  overflow: hidden;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* ═══ WRAPPER DEL CARRUSEL ═══ */
+.carrusel-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-lg);
+  width: 100%;
+  position: relative;
+}
+
+/* ═══ BOTONES DE NAVEGACIÓN ═══ */
+.carrusel-nav-btn {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #e5e7eb;
+  color: #202020;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  z-index: 10;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0;
+}
+
+.carrusel-nav-btn:hover:not(:disabled) {
+  transform: scale(1.1);
+  background: #ffffff;
+  border-color: #ffbb00;
+  box-shadow: 0 4px 16px rgba(255, 187, 0, 0.2);
+  color: #ffbb00;
+}
+
+.carrusel-nav-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.carrusel-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.carrusel-nav-btn-left {
+  animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
+}
+
+.carrusel-nav-btn-right {
+  animation: slideInRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.8s both;
+}
+
+.carrusel-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+  border-radius: var(--radio-borde-lg);
+  background-color: transparent;
+  margin-bottom: var(--espaciado-xl);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+}
+
+.carrusel {
+  display: flex;
+  width: max-content;
+  animation: desplazamiento 50s linear infinite;
+  height: 100%;
+  align-items: center;
+  will-change: transform;
+}
+
+.carrusel:hover,
+.carrusel--paused {
+  animation-play-state: paused;
+}
+
+.carrusel-item {
+  flex: 0 0 auto;
+  width: 280px;
+  margin: 0 var(--espaciado-md);
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+/* ═══ EFECTO DIFUMINADO ═══ */
+.carrusel-fade {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 120px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.carrusel-fade-left {
+  left: 0;
+  background: linear-gradient(to right, #ffffff 0%, transparent 100%);
+}
+
+.carrusel-fade-right {
+  right: 0;
+  background: linear-gradient(to left, #ffffff 0%, transparent 100%);
+}
+
+/* ═══ ANIMACIONES ═══ */
+@keyframes desplazamiento {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-280px * 8 - 16px * 8 * 5));
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .carrusel-item {
+    width: 240px;
+  }
+
+  @keyframes desplazamiento {
+    100% {
+      transform: translateX(calc(-240px * 8 - 16px * 8 * 5));
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .carrusel-container {
+    height: 360px;
+  }
+
+  .carrusel-item {
+    width: 240px;
+  }
+
+  @keyframes desplazamiento {
+    100% {
+      transform: translateX(calc(-240px * 8 - 16px * 8 * 5));
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .seccion-carrusel {
+    padding: var(--espaciado-md);
+  }
+
+  .carrusel-container {
+    height: 320px;
+  }
+
+  .carrusel-item {
+    width: 200px;
+    margin: 0 var(--espaciado-sm);
+  }
+
+  .tarjeta {
+    height: 300px;
+  }
+
+  .tarjeta-titulo {
+    font-size: var(--texto-base);
+  }
+
+  @keyframes desplazamiento {
+    100% {
+      transform: translateX(calc(-200px * 8 - 8px * 8 * 5));
+    }
+  }
+}

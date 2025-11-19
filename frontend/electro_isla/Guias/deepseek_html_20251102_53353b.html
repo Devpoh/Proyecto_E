@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel Infinito - ELECTRÓNICA ISLA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables CSS según la paleta oficial */
+        :root {
+            /* Colores principales */
+            --color-primario: #ffbb00;
+            --color-primario-hover: #e6a600;
+            --color-primario-claro: #ffcc33;
+            --color-secundario: #ff9500;
+            --color-secundario-hover: #e6850e;
+            --color-navbar: #423D37;
+            --color-azul-marino: #15294e;
+            
+            /* Colores de estado */
+            --color-exito: #10b981;
+            --color-peligro: #ef4444;
+            --color-advertencia: #f59e0b;
+            --color-info: #06b6d4;
+            
+            /* Colores de texto */
+            --color-texto-principal: #423D37;
+            --color-texto-secundario: #6B645C;
+            --color-texto-claro: #8A8379;
+            --color-texto-muy-claro: #B5B0A8;
+            --color-texto-blanco: #ffffff;
+            
+            /* Colores de fondo */
+            --color-fondo: #ffffff;
+            --color-fondo-secundario: #f8fafc;
+            --color-fondo-hover: #f1f5f9;
+            --color-fondo-oscuro: #0f172a;
+            --color-fondo-gris: #e2e8f0;
+            
+            /* Gradientes */
+            --gradiente-primario: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --gradiente-secundario: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --gradiente-fondo: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f3e8ff 100%);
+            
+            /* Sombras */
+            --sombra-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --sombra-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+            --sombra-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            --sombra-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            --sombra-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            --sombra-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Espaciados */
+            --espaciado-xs: 0.25rem;
+            --espaciado-sm: 0.5rem;
+            --espaciado-md: 1rem;
+            --espaciado-lg: 1.5rem;
+            --espaciado-xl: 2rem;
+            --espaciado-2xl: 3rem;
+            --espaciado-3xl: 4rem;
+            
+            /* Bordes */
+            --radio-borde-sm: 0.375rem;
+            --radio-borde-md: 0.5rem;
+            --radio-borde-lg: 0.75rem;
+            --radio-borde-xl: 1rem;
+            --radio-borde-2xl: 1.5rem;
+            --radio-borde-completo: 9999px;
+            
+            /* Tipografía */
+            --texto-xs: 0.75rem;
+            --texto-sm: 0.875rem;
+            --texto-base: 1rem;
+            --texto-lg: 1.125rem;
+            --texto-xl: 1.25rem;
+            --texto-2xl: 1.5rem;
+            --texto-3xl: 1.875rem;
+            --texto-4xl: 2.25rem;
+            --texto-5xl: 3rem;
+            
+            /* Pesos de fuente */
+            --peso-normal: 400;
+            --peso-medio: 500;
+            --peso-semibold: 600;
+            --peso-bold: 700;
+            --peso-extrabold: 800;
+            
+            /* Transiciones */
+            --transicion-rapida: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transicion-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transicion-lenta: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-fondo);
+            color: var(--color-texto-principal);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .contenedor-principal {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: var(--espaciado-xl);
+        }
+
+        .seccion-carrusel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .titulo {
+            font-size: var(--texto-4xl);
+            color: var(--color-texto-principal);
+            margin-bottom: var(--espaciado-md);
+            text-align: center;
+            font-weight: var(--peso-bold);
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+        }
+
+        .subtitulo {
+            color: var(--color-texto-secundario);
+            font-size: var(--texto-lg);
+            text-align: center;
+            margin-bottom: var(--espaciado-2xl);
+            max-width: 600px;
+            align-self: center;
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+        }
+
+        .carrusel-container {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            overflow: hidden;
+            border-radius: var(--radio-borde-lg);
+            background-color: var(--color-fondo);
+            margin-bottom: var(--espaciado-xl);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+        }
+
+        .carrusel {
+            display: flex;
+            width: max-content;
+            animation: desplazamiento 40s linear infinite;
+            height: 100%;
+            align-items: center;
+        }
+
+        .carrusel:hover {
+            animation-play-state: paused;
+        }
+
+        .carrusel-item {
+            flex: 0 0 auto;
+            width: 280px;
+            margin: 0 var(--espaciado-md);
+            display: flex;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .tarjeta {
+            background-color: var(--color-fondo);
+            border-radius: var(--radio-borde-lg);
+            box-shadow: var(--sombra-lg);
+            overflow: hidden;
+            width: 100%;
+            transition: all var(--transicion-normal);
+            border: 1px solid var(--color-fondo-gris);
+            display: flex;
+            flex-direction: column;
+            height: 340px;
+            transform: translateY(0);
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--sombra-xl);
+        }
+
+        .tarjeta-imagen {
+            height: 45%;
+            min-height: 45%;
+            background: var(--gradiente-secundario);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-texto-blanco);
+            font-size: var(--texto-3xl);
+            font-weight: var(--peso-bold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tarjeta-imagen::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+        }
+
+        .tarjeta-contenido {
+            padding: var(--espaciado-md);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .tarjeta-info {
+            margin-bottom: var(--espaciado-sm);
+        }
+
+        .tarjeta-categoria {
+            font-size: var(--texto-xs);
+            color: var(--color-texto-claro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--espaciado-xs);
+            font-weight: var(--peso-medium);
+        }
+
+        .tarjeta-titulo {
+            font-size: var(--texto-lg);
+            color: var(--color-texto-principal);
+            margin-bottom: var(--espaciado-sm);
+            font-weight: var(--peso-bold);
+            line-height: 1.3;
+        }
+
+        .tarjeta-precios {
+            display: flex;
+            align-items: center;
+            gap: var(--espaciado-sm);
+        }
+
+        .tarjeta-precio-actual {
+            font-size: var(--texto-lg);
+            color: var(--color-primario);
+            font-weight: var(--peso-bold);
+        }
+
+        .tarjeta-precio-anterior {
+            font-size: var(--texto-sm);
+            color: var(--color-texto-claro);
+            text-decoration: line-through;
+        }
+
+        .tarjeta-botones {
+            display: flex;
+            gap: var(--espaciado-sm);
+        }
+
+        .tarjeta-boton {
+            flex: 1;
+            background-color: var(--color-primario);
+            color: var(--color-texto-blanco);
+            border: none;
+            padding: calc(var(--espaciado-sm) * 0.6) var(--espaciado-md);
+            border-radius: var(--radio-borde-md);
+            font-weight: var(--peso-semibold);
+            cursor: pointer;
+            transition: all var(--transicion-rapida);
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: var(--texto-sm);
+            transform: scale(1);
+        }
+
+        .tarjeta-boton:hover {
+            background-color: var(--color-primario-hover);
+            transform: scale(1.03);
+        }
+
+        .tarjeta-boton-secundario {
+            background-color: transparent;
+            color: var(--color-primario);
+            border: 2px solid var(--color-primario);
+        }
+
+        .tarjeta-boton-secundario:hover {
+            background-color: var(--color-primario-claro);
+            color: var(--color-texto-blanco);
+        }
+
+        .contenedor-boton-ver-mas {
+            display: flex;
+            justify-content: center;
+            margin-top: var(--espaciado-lg);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+        }
+
+        .boton-ver-mas {
+            background-color: transparent;
+            color: var(--color-primario);
+            border: 2px solid var(--color-primario);
+            padding: var(--espaciado-sm) var(--espaciado-xl);
+            border-radius: var(--radio-borde-md);
+            font-weight: var(--peso-semibold);
+            cursor: pointer;
+            transition: all var(--transicion-normal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--espaciado-sm);
+            font-size: var(--texto-base);
+            width: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .boton-ver-mas::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left var(--transicion-lenta);
+        }
+
+        .boton-ver-mas:hover::before {
+            left: 100%;
+        }
+
+        .boton-ver-mas:hover {
+            background-color: var(--color-primario);
+            color: var(--color-texto-blanco);
+            transform: translateY(-2px);
+            box-shadow: var(--sombra-md);
+        }
+
+        .flecha {
+            transition: transform var(--transicion-normal) cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            font-size: 0.9rem;
+        }
+
+        .panel-productos {
+            width: 100%;
+            background-color: var(--color-fondo-secundario);
+            border-radius: var(--radio-borde-lg);
+            box-shadow: var(--sombra-lg);
+            margin-top: var(--espaciado-xl);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transicion-lenta) cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .panel-productos.activo {
+            padding: var(--espaciado-xl);
+            max-height: 2000px;
+        }
+
+        .panel-titulo {
+            font-size: var(--texto-2xl);
+            color: var(--color-texto-principal);
+            margin-bottom: var(--espaciado-lg);
+            text-align: center;
+            font-weight: var(--peso-bold);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all var(--transicion-normal) 0.3s;
+        }
+
+        .panel-productos.activo .panel-titulo {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--espaciado-lg);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all var(--transicion-normal) 0.5s;
+        }
+
+        .panel-productos.activo .grid-productos {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animaciones personalizadas */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes desplazamiento {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Efectos de entrada para las tarjetas del grid */
+        .tarjeta-grid {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: cardAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes cardAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Ajustes responsivos */
+        @media (max-width: 768px) {
+            .contenedor-principal {
+                padding: var(--espaciado-lg);
+            }
+            
+            .titulo {
+                font-size: var(--texto-3xl);
+            }
+            
+            .subtitulo {
+                font-size: var(--texto-base);
+            }
+            
+            .carrusel-container {
+                height: 360px;
+            }
+            
+            .carrusel-item {
+                width: 240px;
+            }
+            
+            .tarjeta {
+                height: 320px;
+            }
+            
+            .grid-productos {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        /* Efecto de brillo en hover para elementos interactivos */
+        .efecto-brillo {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .efecto-brillo::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            transform: scale(0);
+            transition: transform var(--transicion-normal);
+            pointer-events: none;
+        }
+
+        .efecto-brillo:hover::after {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-principal">
+        <div class="seccion-carrusel">
+            <h1 class="titulo">ACCESORIOS</h1>
+            <p class="subtitulo">Descubre nuestra selección de productos más populares con la mejor calidad y precios.</p>
+            
+            <div class="carrusel-container">
+                <div class="carrusel" id="carrusel">
+                    <!-- Las tarjetas se generarán dinámicamente con JavaScript -->
+                </div>
+            </div>
+            
+            <div class="contenedor-boton-ver-mas">
+                <button class="boton-ver-mas efecto-brillo" id="verMas">
+                    <span id="textoVerMas">Ver más</span>
+                    <span class="flecha" id="flechaVerMas">
+                        <i class="fas fa-chevron-down"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="panel-productos" id="panelProductos">
+            <h2 class="panel-titulo">Todos Nuestros Productos</h2>
+            <div class="grid-productos" id="gridProductos">
+                <!-- Los productos se mostrarán aquí cuando se abra el panel -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Datos de ejemplo para las tarjetas
+            const productos = [
+                {
+                    id: 1,
+                    categoria: "Lavadora",
+                    titulo: "Lavadora Inteligente EcoTech",
+                    precioActual: "$5663.52",
+                    precioAnterior: "$12312.00",
+                    imagen: "🧺"
+                },
+                {
+                    id: 2,
+                    categoria: "Electrodoméstico",
+                    titulo: "Refrigerador Smart Cool",
+                    precioActual: "$7899.99",
+                    precioAnterior: "$12999.00",
+                    imagen: "❄️"
+                },
+                {
+                    id: 3,
+                    categoria: "Cocina",
+                    titulo: "Horno Multifunción",
+                    precioActual: "$4520.00",
+                    precioAnterior: "$6800.00",
+                    imagen: "🔥"
+                },
+                {
+                    id: 4,
+                    categoria: "Limpieza",
+                    titulo: "Aspiradora Robot",
+                    precioActual: "$3249.50",
+                    precioAnterior: "$4999.00",
+                    imagen: "🤖"
+                },
+                {
+                    id: 5,
+                    categoria: "Climatización",
+                    titulo: "Aire Acondicionado Inverter",
+                    precioActual: "$11200.00",
+                    precioAnterior: "$15999.00",
+                    imagen: "🌬️"
+                },
+                {
+                    id: 6,
+                    categoria: "Entretenimiento",
+                    titulo: "Smart TV 4K UHD",
+                    precioActual: "$8999.00",
+                    precioAnterior: "$12999.00",
+                    imagen: "📺"
+                },
+                {
+                    id: 7,
+                    categoria: "Audio",
+                    titulo: "Sistema de Sonido 5.1",
+                    precioActual: "$5670.25",
+                    precioAnterior: "$8500.00",
+                    imagen: "🔊"
+                },
+                {
+                    id: 8,
+                    categoria: "Cocina",
+                    titulo: "Licuadora Profesional",
+                    precioActual: "$1899.99",
+                    precioAnterior: "$2800.00",
+                    imagen: "🥤"
+                }
+            ];
+
+            const carrusel = document.getElementById('carrusel');
+            const btnVerMas = document.getElementById('verMas');
+            const textoVerMas = document.getElementById('textoVerMas');
+            const flechaVerMas = document.getElementById('flechaVerMas');
+            const panelProductos = document.getElementById('panelProductos');
+            const gridProductos = document.getElementById('gridProductos');
+            
+            let panelAbierto = false;
+            
+            // Función para crear las tarjetas del carrusel
+            function crearTarjetasCarrusel() {
+                carrusel.innerHTML = '';
+                
+                // Duplicamos los productos para crear el efecto infinito
+                const productosDuplicados = [...productos, ...productos];
+                
+                productosDuplicados.forEach((producto, index) => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.className = 'carrusel-item';
+                    
+                    tarjeta.innerHTML = `
+                        <div class="tarjeta efecto-brillo">
+                            <div class="tarjeta-imagen">${producto.imagen}</div>
+                            <div class="tarjeta-contenido">
+                                <div class="tarjeta-info">
+                                    <div class="tarjeta-categoria">${producto.categoria}</div>
+                                    <h3 class="tarjeta-titulo">${producto.titulo}</h3>
+                                    <div class="tarjeta-precios">
+                                        <span class="tarjeta-precio-actual">${producto.precioActual}</span>
+                                        <span class="tarjeta-precio-anterior">${producto.precioAnterior}</span>
+                                    </div>
+                                </div>
+                                <div class="tarjeta-botones">
+                                    <button class="tarjeta-boton tarjeta-boton-secundario efecto-brillo" data-id="${producto.id}">Información</button>
+                                    <button class="tarjeta-boton efecto-brillo" data-id="${producto.id}">Añadir al carrito</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    carrusel.appendChild(tarjeta);
+                });
+            }
+            
+            // Función para crear el grid de productos en el panel
+            function crearGridProductos() {
+                gridProductos.innerHTML = '';
+                
+                productos.forEach((producto, index) => {
+                    const tarjeta = document.createElement('div');
+                    tarjeta.className = 'tarjeta tarjeta-grid efecto-brillo';
+                    tarjeta.style.animationDelay = `${index * 0.1}s`;
+                    
+                    tarjeta.innerHTML = `
+                        <div class="tarjeta-imagen">${producto.imagen}</div>
+                        <div class="tarjeta-contenido">
+                            <div class="tarjeta-info">
+                                <div class="tarjeta-categoria">${producto.categoria}</div>
+                                <h3 class="tarjeta-titulo">${producto.titulo}</h3>
+                                <div class="tarjeta-precios">
+                                    <span class="tarjeta-precio-actual">${producto.precioActual}</span>
+                                    <span class="tarjeta-precio-anterior">${producto.precioAnterior}</span>
+                                </div>
+                            </div>
+                            <div class="tarjeta-botones">
+                                <button class="tarjeta-boton tarjeta-boton-secundario efecto-brillo" data-id="${producto.id}">Información</button>
+                                <button class="tarjeta-boton efecto-brillo" data-id="${producto.id}">Añadir al carrito</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    gridProductos.appendChild(tarjeta);
+                });
+            }
+            
+            // Función para alternar el panel de productos
+            function alternarPanelProductos() {
+                if (panelAbierto) {
+                    // Cerrar panel
+                    panelProductos.classList.remove('activo');
+                    textoVerMas.textContent = 'Ver más';
+                    flechaVerMas.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                    panelAbierto = false;
+                } else {
+                    // Abrir panel
+                    panelProductos.classList.add('activo');
+                    textoVerMas.textContent = 'Ver menos';
+                    flechaVerMas.innerHTML = '<i class="fas fa-chevron-up"></i>';
+                    crearGridProductos();
+                    panelAbierto = true;
+                }
+            }
+            
+            // Event listeners
+            btnVerMas.addEventListener('click', alternarPanelProductos);
+            
+            // Event listener para los botones de las tarjetas
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('tarjeta-boton')) {
+                    const productId = e.target.getAttribute('data-id');
+                    const action = e.target.textContent;
+                    
+                    if (action === 'Añadir al carrito') {
+                        // Animación de confirmación
+                        e.target.textContent = '✓ Añadido';
+                        e.target.style.backgroundColor = 'var(--color-exito)';
+                        setTimeout(() => {
+                            e.target.textContent = 'Añadir al carrito';
+                            e.target.style.backgroundColor = '';
+                        }, 2000);
+                    } else if (action === 'Información') {
+                        // Simular apertura de modal de información
+                        e.target.textContent = 'Cargando...';
+                        setTimeout(() => {
+                            e.target.textContent = 'Información';
+                            alert(`Mostrando información del producto ${productId}`);
+                        }, 500);
+                    }
+                }
+            });
+            
+            // Inicializar el carrusel
+            crearTarjetasCarrusel();
+        });
+    </script>
+</body>
+</html>

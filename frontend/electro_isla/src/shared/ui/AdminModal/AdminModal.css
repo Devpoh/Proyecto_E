@@ -1,0 +1,201 @@
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 🎨 ESTILOS - AdminModal
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+
+.admin-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal-backdrop);
+  animation: fadeIn var(--transicion-rapida);
+}
+
+.admin-modal {
+  background: var(--color-fondo);
+  border-radius: var(--radio-borde-lg);
+  box-shadow: var(--sombra-2xl);
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp var(--transicion-normal);
+  contain: layout style paint;
+}
+
+/* Header */
+.admin-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--espaciado-lg);
+  border-bottom: 1px solid var(--color-fondo-gris);
+  gap: var(--espaciado-md);
+}
+
+.admin-modal-title {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-semibold);
+  color: var(--color-texto-principal);
+  margin: 0;
+}
+
+.admin-modal-close {
+  background: none;
+  border: none;
+  font-size: var(--texto-lg);
+  color: var(--color-texto-secundario);
+  cursor: pointer;
+  padding: var(--espaciado-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radio-borde-md);
+  transition: all var(--transicion-rapida);
+}
+
+.admin-modal-close:hover:not(:disabled) {
+  background: var(--color-fondo-hover);
+  color: var(--color-texto-principal);
+}
+
+.admin-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Content */
+.admin-modal-content {
+  padding: var(--espaciado-lg);
+  max-height: calc(90vh - 200px);
+  overflow-y: auto;
+}
+
+/* Footer */
+.admin-modal-footer {
+  display: flex;
+  gap: var(--espaciado-md);
+  padding: var(--espaciado-lg);
+  border-top: 1px solid var(--color-fondo-gris);
+  justify-content: flex-end;
+}
+
+/* Botones */
+.admin-modal-btn {
+  padding: var(--espaciado-sm) var(--espaciado-lg);
+  border: none;
+  border-radius: var(--radio-borde-md);
+  font-size: var(--texto-sm);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+  transition: all var(--transicion-rapida);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-xs);
+}
+
+.admin-modal-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-modal-btn-cancel {
+  background: var(--color-fondo-gris);
+  color: var(--color-texto-principal);
+}
+
+.admin-modal-btn-cancel:hover:not(:disabled) {
+  background: var(--color-fondo-hover);
+}
+
+.admin-modal-btn-submit {
+  background: var(--color-primario);
+  color: var(--color-texto-principal);
+}
+
+.admin-modal-btn-submit:hover:not(:disabled) {
+  background: var(--color-primario-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-md);
+}
+
+/* Variantes */
+.admin-modal-btn-submit.admin-modal-btn-danger {
+  background: var(--color-peligro);
+  color: white;
+}
+
+.admin-modal-btn-submit.admin-modal-btn-danger:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.admin-modal-btn-submit.admin-modal-btn-success {
+  background: var(--color-exito);
+  color: white;
+}
+
+.admin-modal-btn-submit.admin-modal-btn-success:hover:not(:disabled) {
+  background: #059669;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-modal {
+    margin: var(--espaciado-md);
+    max-width: calc(100% - var(--espaciado-md) * 2);
+  }
+
+  .admin-modal-header {
+    padding: var(--espaciado-md);
+  }
+
+  .admin-modal-content {
+    padding: var(--espaciado-md);
+  }
+
+  .admin-modal-footer {
+    padding: var(--espaciado-md);
+    flex-direction: column-reverse;
+  }
+
+  .admin-modal-btn {
+    width: 100%;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .admin-modal-overlay,
+  .admin-modal,
+  .admin-modal-btn {
+    animation: none;
+    transition: none;
+  }
+}
