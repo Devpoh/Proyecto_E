@@ -346,3 +346,199 @@
 [INFO] 2025-11-19 03:37:58 auth 23536 4064 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
 [INFO] 2025-11-19 03:37:58 auth 23536 4064 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
 [INFO] 2025-11-19 03:38:02 auth 23536 4064 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 11:16:30 auth 1708 11376 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 14:34:31 auth 1708 2112 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 14:34:45 auth 1708 19904 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 17:23:16 auth 1708 18724 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 17:23:20 auth 1708 21476 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 0
+[INFO] 2025-11-19 17:23:20 auth 1708 21476 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 17:23:20 auth 1708 21476 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 17:23:30 auth 1708 10624 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 17:23:58 auth 1708 12116 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 2
+[INFO] 2025-11-19 17:23:58 auth 1708 12116 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 17:23:58 auth 1708 12116 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 17:24:08 auth 1708 12116 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 17:31:34 auth 1708 19724 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 17:34:39 auth 1708 7024 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 17:43:28 auth 1708 13356 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 17:43:33 auth 1708 19464 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 3
+[INFO] 2025-11-19 17:43:33 auth 1708 19464 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 17:43:33 auth 1708 19464 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 17:43:39 auth 1708 19464 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 17:43:43 auth 1708 20024 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 0
+[INFO] 2025-11-19 17:43:43 auth 1708 20024 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 17:43:43 auth 1708 20024 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 17:43:52 auth 1708 18676 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 17:59:38 auth 1708 17620 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:04:22 auth 1708 3664 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:08:30 auth 24096 12320 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:09:13 auth 24096 14364 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:09:51 auth 23044 18028 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:11:04 auth 11412 18004 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:14:13 auth 11412 4372 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:42:36 auth 19520 10868 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 18:42:49 auth 19520 10868 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 18:54:33 auth 19520 23500 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:54:36 auth 19520 23500 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 18:55:34 auth 19520 7904 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:58:00 auth 19520 17104 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:58:33 auth 19520 21936 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:58:36 auth 19520 21936 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 18:58:58 auth 19520 17640 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:59:05 auth 19520 4064 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:59:08 auth 19520 4064 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 18:59:11 auth 19520 4064 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:59:15 auth 19520 23372 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 18:59:50 auth 19520 14668 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:02:48 auth 19520 4664 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:03:24 auth 19520 4664 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:06:48 auth 19520 19700 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:16:28 auth 19520 18636 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:18:05 auth 19520 24704 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:18:14 auth 19520 3588 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:18:26 auth 19520 11780 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:21:05 auth 19520 6252 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:22:59 auth 19520 8632 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:27:25 auth 19520 16348 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:27:30 auth 19520 6800 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:30:34 auth 19520 19904 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:34:24 auth 19520 4644 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:36:32 auth 19520 24720 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 1
+[INFO] 2025-11-19 19:36:32 auth 19520 24720 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:36:32 auth 19520 24720 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:36:37 auth 19520 24720 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-19 19:37:18 auth 19520 10020 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 0
+[INFO] 2025-11-19 19:37:18 auth 19520 10020 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:37:18 auth 19520 10020 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-19 19:37:47 auth 19520 332 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 19:40:27 auth 19520 21500 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 19:40:34 auth 19520 6192 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 19:52:10 auth 19520 18696 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 19:52:16 auth 19520 18696 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 19:55:41 auth 19520 10316 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 19:55:47 auth 19520 5724 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 19:55:48 auth 19520 5724 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 19:55:55 auth 19520 7104 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:01:24 auth 19520 20792 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:01:30 auth 19520 20792 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:01:32 auth 19520 20792 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:01:41 auth 19520 9732 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:08:47 auth 1768 19860 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:08:57 auth 1768 8580 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:11:37 auth 1768 2396 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:17:24 auth 1768 792 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:17:34 auth 1768 15876 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:18:43 auth 1768 8788 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:19:20 auth 1768 7136 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 2
+[INFO] 2025-11-19 20:19:20 auth 1768 7136 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:19:20 auth 1768 7136 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:19:28 auth 1768 9612 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:23:01 auth 1768 24616 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:23:38 auth 1768 16600 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:41:30 auth 1768 17732 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:41:31 auth 1768 15536 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:41:38 auth 1768 15536 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:46:48 auth 1768 21924 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:46:54 auth 1768 23812 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:48:09 auth 1768 19220 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:48:17 auth 1768 22736 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 20:51:28 auth 1768 21156 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 20:51:35 auth 1768 12096 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 21:00:06 auth 1768 3308 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 21:00:13 auth 1768 14568 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 21:02:06 auth 1768 14212 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 21:02:13 auth 1768 18776 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 21:20:02 auth 1768 7172 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 21:31:36 auth 6472 16868 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 21:31:40 auth 6472 16868 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 0
+[INFO] 2025-11-19 21:31:40 auth 6472 16868 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 21:31:40 auth 6472 16868 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 22:11:00 auth 6472 16032 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 22:25:58 auth 6472 11724 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 22:26:04 auth 6472 13956 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-19 22:27:39 auth 6472 4688 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 22:38:35 auth 6472 3308 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 22:44:51 auth 6472 25532 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 22:47:11 auth 6472 10512 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 22:58:38 auth 6472 9228 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:00:17 auth 6472 14524 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:18:55 auth 7668 24540 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:19:40 auth 7668 15984 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:23:03 auth 7668 6688 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:26:24 auth 7668 16220 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:26:34 auth 7668 7332 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:31:02 auth 7668 8984 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:33:10 auth 7668 6704 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:33:55 auth 7668 12912 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:48:24 auth 6980 10760 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-19 23:49:49 auth 6980 17840 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:15:58 auth 27848 28444 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:20:32 auth 8340 27724 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:22:42 auth 8340 19304 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:26:09 auth 28576 12488 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:27:14 auth 28576 26964 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:27:23 auth 28576 27956 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:28:08 auth 28576 27520 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:29:47 auth 28576 13032 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:30:17 auth 28576 7668 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:31:19 auth 28576 15488 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:33:06 auth 28576 14468 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:33:17 auth 28576 12168 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:35:12 auth 28576 2304 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:35:28 auth 28576 6180 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:38:24 auth 28576 13516 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:39:13 auth 28576 26080 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 3
+[INFO] 2025-11-20 00:39:13 auth 28576 26080 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:39:13 auth 28576 26080 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:39:28 auth 28576 9108 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 00:40:58 auth 28576 8788 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 1
+[INFO] 2025-11-20 00:40:58 auth 28576 8788 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 00:40:58 auth 28576 8788 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 01:15:12 auth 28576 6080 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-20 01:18:32 auth 28576 16220 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 3
+[INFO] 2025-11-20 01:18:32 auth 28576 16220 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 01:18:32 auth 28576 16220 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 01:18:42 auth 28576 7384 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 01:32:57 auth 28576 5612 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 01:33:07 auth 28576 13880 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 01:40:48 auth 28576 19416 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 01:40:56 auth 28576 16780 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 01:47:55 auth 28576 24420 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 01:48:01 auth 28576 19012 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 0
+[INFO] 2025-11-20 01:48:01 auth 28576 19012 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 01:48:01 auth 28576 19012 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 01:49:32 auth 28576 7564 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-20 01:50:52 auth 28576 22796 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 2
+[INFO] 2025-11-20 01:50:52 auth 28576 22796 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 01:50:52 auth 28576 22796 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 01:51:37 auth 28576 16116 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-20 01:58:45 auth 28576 22944 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 01:58:48 auth 28576 22944 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 1
+[INFO] 2025-11-20 01:58:48 auth 28576 22944 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 01:58:48 auth 28576 22944 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:00:07 auth 28576 6688 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-20 02:01:04 auth 28576 26496 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 0
+[INFO] 2025-11-20 02:01:04 auth 28576 26496 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:01:04 auth 28576 26496 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:02:55 auth 28576 5952 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-20 02:06:41 auth 28576 15192 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 0
+[INFO] 2025-11-20 02:06:41 auth 28576 15192 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:06:41 auth 28576 15192 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:06:51 auth 28576 13924 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 02:11:38 auth 28576 22468 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-20 02:43:05 auth 19532 4548 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:43:11 auth 19532 10484 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 0
+[INFO] 2025-11-20 02:43:11 auth 19532 10484 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:43:11 auth 19532 10484 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 02:43:24 auth 19532 10484 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 09:00:49 auth 10136 2832 [LOGIN_SUCCESS] Usuario: qqq | Email: eeeeeeeee@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-20 09:49:48 auth 10136 13744 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 09:49:51 auth 10136 20076 [TOKEN_REFRESH] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 09:50:04 auth 10136 21076 [LOGOUT_CART_CLEARED] Usuario: qqq | Items eliminados: 0
+[INFO] 2025-11-20 09:50:04 auth 10136 21076 [LOGOUT_SUCCESS] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 09:50:04 auth 10136 21076 [REFRESH_TOKENS_REVOKED] Usuario: qqq | IP: 127.0.0.1
+[INFO] 2025-11-20 09:54:39 auth 10136 9340 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 11:17:18 auth 10136 13060 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 11:17:37 auth 10136 18532 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 1
+[INFO] 2025-11-20 11:17:37 auth 10136 18532 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 11:17:37 auth 10136 18532 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1

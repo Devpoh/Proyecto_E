@@ -28,7 +28,7 @@ export const BottomCarousel = ({ productos }: BottomCarouselProps) => {
   const isMouseOverButtonRef = useRef(false);
 
   // Duplicar productos para efecto infinito sin saltos
-  const displayProducts = productos && productos.length > 0 ? productos : [];
+  const displayProducts = productos?.filter(p => p.en_carousel_card !== false) || [];
   const infiniteProducts = [...displayProducts, ...displayProducts, ...displayProducts, ...displayProducts, ...displayProducts];
   
   // Obtener favoritos en batch (optimización)
@@ -166,7 +166,7 @@ export const BottomCarousel = ({ productos }: BottomCarouselProps) => {
           <div className="carrusel-fade carrusel-fade-left" />
           
           <div 
-            className={`carrusel ${isHovering ? 'carrusel--paused' : ''}`}
+            className={`carrusel ${isHovering ? 'carrusel--paused' : ''} ${isAnimating ? 'carrusel--animating' : ''}`}
             ref={carouselRef}
           >
             {infiniteProducts.map((product, index) => (

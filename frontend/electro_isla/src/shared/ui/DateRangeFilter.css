@@ -11,12 +11,7 @@
 }
 
 .date-range-label {
-  display: flex;
-  align-items: center;
-  gap: var(--espaciado-sm);
-  font-size: var(--texto-sm);
-  font-weight: var(--peso-medium);
-  color: var(--color-texto-principal);
+  display: none;
 }
 
 .date-range-label svg {
@@ -25,16 +20,17 @@
 }
 
 .date-range-select {
-  padding: var(--espaciado-sm) var(--espaciado-md);
+  padding: var(--espaciado-md) var(--espaciado-lg);
   border: 2px solid var(--color-fondo-gris);
-  border-radius: var(--radio-borde-md);
-  font-size: var(--texto-sm);
+  border-radius: var(--radio-borde-lg);
+  font-size: var(--texto-base);
   font-weight: var(--peso-medium);
   color: var(--color-texto-principal);
   background: var(--color-fondo);
   cursor: pointer;
   transition: all var(--transicion-rapida);
   outline: none;
+  min-width: 180px;
 }
 
 .date-range-select:hover {

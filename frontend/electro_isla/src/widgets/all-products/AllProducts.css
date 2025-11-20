@@ -47,14 +47,16 @@
   gap: var(--espaciado-lg);
   max-height: 900px;
   overflow: hidden;
-  transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.7s ease-out;
   padding: var(--espaciado-lg);
   margin: 0;
+  opacity: 1;
 }
 
 .all-products-grid--expanded {
   max-height: 3000px;
-  transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: max-height 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.9s ease-out;
+  opacity: 1;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
@@ -98,7 +100,7 @@
   display: flex;
   justify-content: center;
   padding: var(--espaciado-xl) 0;
-  animation: fadeIn 0.4s ease-out;
+  animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 @keyframes fadeIn {
@@ -107,6 +109,28 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutDown {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px);
+    opacity: 0;
   }
 }
 

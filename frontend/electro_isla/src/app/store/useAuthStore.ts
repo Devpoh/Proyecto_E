@@ -129,40 +129,67 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     
     // ✅ Intentar refrescar usando el refresh token en HTTP-Only Cookie
     // ✅ Si falla, sesión se pierde (seguro)
-    try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-      
-      console.debug('[useAuthStore] Intentando restaurar sesión desde refresh token...');
-      
-      const response = await fetch(`${apiUrl}/auth/refresh/`, {
-        method: 'POST',
-        credentials: 'include', // ✅ Enviar cookies (refresh token)
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+    const attemptRefresh = async (retries = 3) => {
+      for (let attempt = 0; attempt < retries; attempt++) {
+        try {
+          const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+          
+          if (attempt === 0) {
+            console.debug('[useAuthStore] Intentando restaurar sesión desde refresh token...');
+          } else {
+            console.debug(`[useAuthStore] Reintentando refresh token (intento ${attempt + 1}/${retries})...`);
+          }
+          
+          const response = await fetch(`${apiUrl}/auth/refresh/`, {
+            method: 'POST',
+            credentials: 'include', // ✅ Enviar cookies (refresh token)
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
 
-      if (response.ok) {
-        const data = await response.json();
-        set({ 
-          isAuthenticated: true, 
-          user: data.user,
-          accessToken: data.accessToken,
-          _isInitializing: false
-        });
-        console.debug('[useAuthStore] ✅ Sesión restaurada desde refresh token');
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        console.debug('[useAuthStore] ⚠️ Refresh token inválido o expirado:', {
-          status: response.status,
-          error: errorData.error
-        });
-        // Si falla el refresh, limpiar sesión
-        set({ isAuthenticated: false, user: null, accessToken: null, _isInitializing: false });
+          if (response.ok) {
+            const data = await response.json();
+            set({ 
+              isAuthenticated: true, 
+              user: data.user,
+              accessToken: data.accessToken,
+              _isInitializing: false
+            });
+            console.debug('[useAuthStore] ✅ Sesión restaurada desde refresh token');
+            return true;
+          } else if (response.status === 401 || response.status === 403) {
+            // Token expirado o inválido - no reintentar
+            const errorData = await response.json().catch(() => ({}));
+            console.debug('[useAuthStore] ⚠️ Refresh token inválido o expirado:', {
+              status: response.status,
+              error: errorData.error
+            });
+            set({ isAuthenticated: false, user: null, accessToken: null, _isInitializing: false });
+            return false;
+          } else {
+            // Otro error - reintentar
+            console.warn(`[useAuthStore] Error ${response.status} al refrescar, reintentando...`);
+            if (attempt < retries - 1) {
+              await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+              continue;
+            }
+          }
+        } catch (error) {
+          console.error(`[useAuthStore] Error en intento ${attempt + 1}:`, error);
+          if (attempt < retries - 1) {
+            await new Promise(resolve => setTimeout(resolve, 500 * (attempt + 1)));
+            continue;
+          }
+        }
       }
-    } catch (error) {
-      console.error('[useAuthStore] ❌ Error al restaurar sesión:', error);
+      
+      // Si llegamos aquí, todos los intentos fallaron
+      console.error('[useAuthStore] ❌ Todos los intentos de refresh fallaron');
       set({ isAuthenticated: false, user: null, accessToken: null, _isInitializing: false });
-    }
+      return false;
+    };
+    
+    await attemptRefresh();
   },
 }));

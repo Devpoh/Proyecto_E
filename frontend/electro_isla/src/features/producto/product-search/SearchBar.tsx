@@ -5,13 +5,11 @@ import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
   placeholder?: string;
-  onSearch?: (query: string) => void;
   className?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   placeholder = 'Buscar productos...',
-  onSearch,
   className = ''
 }) => {
   const [query, setQuery] = useState('');
@@ -26,13 +24,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
       
       // Simular loading de 0.6 segundos
       setTimeout(() => {
-        // Si está en productos, solo actualiza la búsqueda
+        // Si está en productos, actualiza la URL con la búsqueda
         if (location.pathname === '/productos') {
-          if (onSearch) {
-            onSearch(query.trim());
-          }
+          // Navegar con la búsqueda, manteniendo la categoría actual si existe
+          const searchParams = new URLSearchParams(location.search);
+          searchParams.set('busqueda', query.trim());
+          navigate(`/productos?${searchParams.toString()}`);
         } else {
-          // Si no está en productos, navega con la búsqueda
+          // Si no está en productos, navega a productos con la búsqueda
           navigate(`/productos?busqueda=${encodeURIComponent(query.trim())}`);
         }
         setIsLoading(false);

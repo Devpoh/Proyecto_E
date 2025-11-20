@@ -30,6 +30,7 @@ from .views_estadisticas import (
     estadisticas_productos,
     reporte_completo
 )
+from . import urls_catalogo  # Corregir import de urls_catalogo
 
 # Router principal
 router = DefaultRouter()
@@ -50,6 +51,7 @@ urlpatterns = [
     # Rutas públicas
     path('', include(router.urls)),
     path('carrusel/', productos_carrusel, name='productos-carrusel'),
+    path('catalogo/', include(urls_catalogo)),  # Agregar ruta catalogo
     path('auth/register/', register, name='register'),
     path('auth/login/', login, name='login'),
     path('auth/logout/', logout, name='logout'),

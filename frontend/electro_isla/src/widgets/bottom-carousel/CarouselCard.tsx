@@ -41,6 +41,15 @@ const CarouselCardComponent = ({
   const { addedProductId, handleAddToCart } = useAddToCart();
   const { isAuthenticated } = useAuthStore();
 
+  // Mapeo de categorías a nombres legibles
+  const nombreCategoria: { [key: string]: string } = {
+    'electrodomesticos': 'Electrodomésticos',
+    'energia_tecnologia': 'Energía y Tecnología',
+    'herramientas': 'Herramientas',
+    'hogar_entretenimiento': 'Hogar y Entretenimiento',
+    'otros': 'Otros Artículos',
+  };
+
   // Actualizar estado cuando cambia initialIsFavorite
   useEffect(() => {
     if (initialIsFavorite !== undefined) {
@@ -160,7 +169,7 @@ const CarouselCardComponent = ({
       </div>
       <div className="tarjeta-contenido">
         <div className="tarjeta-info">
-          <div className="tarjeta-categoria">{categoria}</div>
+          <div className="tarjeta-categoria">{nombreCategoria[categoria] || categoria}</div>
           <div className="tarjeta-titulo-container">
             <h3 className="tarjeta-titulo">{nombre}</h3>
             <button

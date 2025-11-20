@@ -204,6 +204,17 @@ api.interceptors.response.use(
         
         console.error('[Axios] Error al refrescar token. Redirigiendo a login.');
         
+        // ✅ Mostrar notificación amigable
+        try {
+          const toast = (await import('react-hot-toast')).default;
+          toast.error('Tu sesión ha expirado. Por favor, inicia sesión de nuevo.', {
+            duration: 3000,
+            icon: '🔐',
+          });
+        } catch (e) {
+          console.warn('[Axios] No se pudo mostrar toast');
+        }
+        
         // Solo redirigir si no estamos ya en login
         if (!window.location.pathname.includes('/login')) {
           window.location.href = '/login';

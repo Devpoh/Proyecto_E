@@ -531,7 +531,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
         productos_relacionados_serializer = ProductoSerializer(
             productos_relacionados,
             many=True,
-            context={'is_list': True}
+            context={'is_list': True, 'request': request}
         )
         
         return Response({
@@ -1365,7 +1365,7 @@ def mis_favoritos(request):
     # Extraer productos
     productos = [fav.producto for fav in favoritos]
     
-    serializer = ProductoSerializer(productos, many=True)
+    serializer = ProductoSerializer(productos, many=True, context={'request': request})
     
     return Response({
         'count': len(productos),

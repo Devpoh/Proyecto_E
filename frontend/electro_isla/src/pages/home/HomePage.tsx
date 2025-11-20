@@ -7,12 +7,12 @@
  * Implementa code splitting para optimizar el rendimiento inicial.
  */
 
-import { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy, useMemo } from 'react';
 import { ProductCarousel, type ProductCard } from '../../widgets/product-carousel';
 import { AllProducts } from '../../widgets/all-products';
 import { CategoriesSection } from '../../widgets/categories-section';
 import { Footer } from '../../widgets/footer';
-import { useProductosCarrusel } from '@/shared/api/carrusel';
+import { useProductosCarrusel, useProductosCatalogoCompleto } from '@/shared/api/carrusel'; 
 import './HomePage.css';
 
 // Lazy load de componentes pesados para optimizar rendimiento inicial
@@ -37,13 +37,21 @@ const BottomCarouselLazy = lazy(() =>
  */
 
 export const HomePage = () => {
-  const { productos, loading } = useProductosCarrusel();
+  const { productos: productosCarrusel, loading: loadingCarrusel } = useProductosCarrusel();
+  const { productos: productosCatalogo, loading: loadingCatalogo } = useProductosCatalogoCompleto();
   const [displayProducts, setDisplayProducts] = useState<ProductCard[]>([]);
+  
+  // Combinar productos: carrusel + catálogo (memoizado para evitar re-renders)
+  const todosLosProductos = useMemo(() => [
+    ...(productosCarrusel || []),
+    ...(productosCatalogo || [])
+  ], [productosCarrusel, productosCatalogo]);
+  const loading = loadingCarrusel || loadingCatalogo;
 
   useEffect(() => {
-    // SOLO mostrar productos del backend
-    if (productos && productos.length > 0) {
-      const mappedProducts = productos.map((p) => ({
+    // Mostrar todos los productos (carrusel + catálogo)
+    if (todosLosProductos && todosLosProductos.length > 0) {
+      const mappedProducts = todosLosProductos.map((p) => ({
         id: p.id,
         nombre: p.nombre,
         descripcion: p.descripcion,
@@ -52,13 +60,15 @@ export const HomePage = () => {
         imagen_url: p.imagen_url,
         categoria: p.categoria,
         stock: p.stock,
+        en_all_products: p.en_all_products,
+        en_carousel_card: p.en_carousel_card,
       }));
       setDisplayProducts(mappedProducts as ProductCard[]);
     } else {
       // Si no hay productos del backend, mostrar array vacío
       setDisplayProducts([]);
     }
-  }, [productos]);
+  }, [todosLosProductos]);
 
   return (
     <>
@@ -87,7 +97,7 @@ export const HomePage = () => {
 
       {/* Carrusel Inferior - Lazy Loading */}
       <Suspense fallback={<div style={{ minHeight: '300px' }} />}>
-        <BottomCarouselLazy productos={productos} />
+        <BottomCarouselLazy productos={productosCatalogo} />
       </Suspense>
 
       {/* Sección de Todos los Productos */}

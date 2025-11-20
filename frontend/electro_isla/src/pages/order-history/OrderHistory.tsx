@@ -11,7 +11,6 @@ import { MdFavoriteBorder, MdFavorite, MdShoppingBag } from 'react-icons/md';
 import { FiCalendar, FiDollarSign } from 'react-icons/fi';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { Button } from '@/shared/ui';
-import { Footer } from '@/widgets/footer';
 import './OrderHistory.css';
 
 const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000/api';
@@ -214,7 +213,7 @@ export function OrderHistory() {
     }
   }, [activeTab, navigate]);
 
-  // Cargar favoritos
+  // Cargar favoritos (al montar el componente, no solo cuando se hace click en el tab)
   useEffect(() => {
     const cargarFavoritos = async () => {
       try {
@@ -244,10 +243,9 @@ export function OrderHistory() {
       }
     };
 
-    if (activeTab === 'favoritos') {
-      cargarFavoritos();
-    }
-  }, [activeTab]);
+    // ✅ Cargar favoritos siempre al montar el componente
+    cargarFavoritos();
+  }, []);
 
   useEffect(() => {
     setLoading(false);
@@ -293,7 +291,6 @@ export function OrderHistory() {
         <div className="order-history-container">
           <div className="loading">Cargando...</div>
         </div>
-        <Footer />
       </main>
     );
   }
@@ -484,8 +481,6 @@ export function OrderHistory() {
           )}
         </div>
       </div>
-
-      <Footer />
     </main>
   );
 }

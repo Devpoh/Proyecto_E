@@ -88,6 +88,8 @@ class Producto(models.Model):
     imagen = models.ImageField(upload_to='productos/', blank=True, null=True)  # ✅ Nuevo: Archivos reales
     activo = models.BooleanField(default=True)
     en_carrusel = models.BooleanField(default=False, help_text="Mostrar en carrusel principal")
+    en_carousel_card = models.BooleanField(default=True, help_text="Mostrar en CarouselCard (tarjetas inferiores)")
+    en_all_products = models.BooleanField(default=True, help_text="Mostrar en AllProducts (catálogo completo)")
     creado_por = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

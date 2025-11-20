@@ -169,8 +169,6 @@ export const HistorialPage = () => {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
     });
   };
 
@@ -182,8 +180,8 @@ export const HistorialPage = () => {
     doc.setFontSize(18);
     doc.text('Historial de Acciones', 14, 22);
     
-    doc.setFontSize(11);
-    doc.text(`Fecha de generación: ${new Date().toLocaleDateString('es-ES')}`, 14, 30);
+    doc.setFontSize(10);
+    doc.text(`Generado: ${new Date().toLocaleDateString('es-ES')} ${new Date().toLocaleTimeString('es-ES')}`, 14, 30);
     
     const tableData = data.results.map(log => {
       const detalles = formatDetalles(log.detalles);
@@ -195,51 +193,48 @@ export const HistorialPage = () => {
           if (d.esCreacion || d.esEliminacion) {
             return `${d.label}: ${d.valor}`;
           } else if (d.anterior !== undefined && d.nuevo !== undefined) {
-            return `${d.label}: ${d.anterior} → ${d.nuevo}`;
+            return `${d.label}: ${d.anterior} -> ${d.nuevo}`;
           }
           return '';
-        }).filter(Boolean).join(' | ');
+        }).filter(Boolean).join(' | ').substring(0, 150);
       }
       
       return [
-        formatDate(log.timestamp),
+        log.timestamp.split('T')[0],
         log.usuario_nombre_completo,
         log.accion_display,
         log.modulo_display,
         log.objeto_repr,
-        log.ip_address,
-        detallesStr
+        detallesStr || 'N/A'
       ];
     });
 
     autoTable(doc, {
-      head: [['Fecha', 'Usuario', 'Acción', 'Tipo', 'Elemento', 'IP', 'Detalles']],
+      head: [['Fecha', 'Usuario', 'Acción', 'Tipo', 'Elemento', 'Cambios']],
       body: tableData,
       startY: 35,
       styles: { 
-        fontSize: 8,
-        cellPadding: 3,
+        fontSize: 9,
+        cellPadding: 4,
         overflow: 'linebreak',
         halign: 'left',
-        valign: 'top'
+        valign: 'top',
+        textColor: [40, 40, 40]
       },
       headStyles: { 
         fillColor: [255, 187, 0],
         textColor: [255, 255, 255],
         fontStyle: 'bold',
-        halign: 'center'
-      },
-      bodyStyles: {
-        textColor: [50, 50, 50]
+        halign: 'center',
+        fontSize: 10
       },
       columnStyles: {
-        0: { cellWidth: 28 },
-        1: { cellWidth: 22 },
-        2: { cellWidth: 18 },
-        3: { cellWidth: 18 },
-        4: { cellWidth: 22 },
-        5: { cellWidth: 22 },
-        6: { cellWidth: 80 }
+        0: { cellWidth: 18 },
+        1: { cellWidth: 25 },
+        2: { cellWidth: 22 },
+        3: { cellWidth: 22 },
+        4: { cellWidth: 28 },
+        5: { cellWidth: 55 }
       },
       didDrawPage: (data) => {
         // Pie de página
@@ -248,7 +243,7 @@ export const HistorialPage = () => {
         const pageHeight = pageSize.getHeight();
         const pageWidth = pageSize.getWidth();
         
-        doc.setFontSize(10);
+        doc.setFontSize(9);
         doc.text(
           `Página ${data.pageNumber} de ${pageCount}`,
           pageWidth / 2,
@@ -267,12 +262,10 @@ export const HistorialPage = () => {
     const excelData = data.results.map(log => {
       const detalles = formatDetalles(log.detalles);
       const baseData: Record<string, string> = {
-        'Fecha y Hora': formatDate(log.timestamp),
+        'Fecha': formatDate(log.timestamp),
         'Usuario': log.usuario_nombre_completo,
         'Acción': log.accion_display,
         'Tipo': log.modulo_display,
-        'Elemento': log.objeto_repr,
-        'Dirección IP': log.ip_address,
       };
 
       // Agregar detalles como columnas separadas
@@ -331,10 +324,18 @@ export const HistorialPage = () => {
     };
 
     const formatValue = (value: any): string => {
-      if (value === null || value === undefined) return '—';
-      if (typeof value === 'boolean') return value ? 'Sí' : 'No';
+      if (value === null || value === undefined) return '-';
+      if (typeof value === 'boolean') return value ? 'Si' : 'No';
       if (typeof value === 'number') return String(value);
-      return String(value);
+      // Solo limpiar caracteres HTML entities, preservar espacios
+      let str = String(value).trim();
+      str = str.replace(/&amp;/g, '&');
+      str = str.replace(/&lt;/g, '<');
+      str = str.replace(/&gt;/g, '>');
+      str = str.replace(/&quot;/g, '"');
+      str = str.replace(/&#039;/g, "'");
+      // Limitar a 50 caracteres
+      return str.length > 50 ? str.substring(0, 50) : str;
     };
 
     // Procesar cambios_realizados (ediciones)
@@ -351,8 +352,8 @@ export const HistorialPage = () => {
           
           return {
             label: labels[key] || key.replace(/_/g, ' '),
-            anterior,
-            nuevo
+            anterior: anterior,
+            nuevo: nuevo
           };
         })
         .filter(Boolean);
@@ -445,7 +446,7 @@ export const HistorialPage = () => {
         <DateRangeFilter 
           value={dateRangeOption}
           onChange={setDateRangeOption}
-          label="Período"
+          label=""
         />
 
         <select

@@ -8985,3 +8985,384 @@ django.core.exceptions.ImproperlyConfigured: No default throttle rate set for 'a
 [WARNING] 2025-11-19 03:30:38 django.request 23536 16788 Unauthorized: /api/auth/refresh/
 [WARNING] 2025-11-19 03:30:39 security 23536 16788 [REFRESH_FAILED] Refresh token inválido o expirado
 [WARNING] 2025-11-19 03:30:39 django.request 23536 16788 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 11:16:14 security 1708 14872 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 11:16:14 django.request 1708 14872 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 13:22:29 security 1708 22316 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 13:22:29 django.request 1708 22316 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 13:24:20 security 1708 10948 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 13:24:20 django.request 1708 10948 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 14:25:48 security 1708 21128 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 14:25:48 django.request 1708 21128 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 14:32:21 security 1708 16608 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 14:32:21 django.request 1708 16608 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 14:34:19 security 1708 3504 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 14:34:19 django.request 1708 3504 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 17:01:45 security 1708 10620 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 17:01:45 django.request 1708 10620 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 17:23:01 security 1708 23436 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-19 17:23:01 django.request 1708 23436 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 18:42:30 django.request 19520 6988 Unauthorized: /api/carrito/agregar/
+[WARNING] 2025-11-19 18:58:11 django.request 19520 23860 Not Found: /api/favoritos/52/
+[ERROR] 2025-11-19 20:08:59 django.request 1768 8580 Internal Server Error: /api/admin/productos/
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Alejandro\Desktop\Electro-Isla\backend\api\views_admin.py", line 333, in list
+    return super().list(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+[ERROR] 2025-11-19 20:09:00 django.request 1768 8580 Internal Server Error: /api/admin/productos/
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Alejandro\Desktop\Electro-Isla\backend\api\views_admin.py", line 333, in list
+    return super().list(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+[ERROR] 2025-11-19 20:09:05 django.request 1768 20416 Internal Server Error: /api/admin/productos/
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Alejandro\Desktop\Electro-Isla\backend\api\views_admin.py", line 333, in list
+    return super().list(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+[ERROR] 2025-11-19 20:09:06 django.request 1768 20416 Internal Server Error: /api/admin/productos/
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\views\decorators\csrf.py", line 56, in wrapper_view
+    return view_func(*args, **kwargs)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\Alejandro\Desktop\Electro-Isla\backend\api\views_admin.py", line 333, in list
+    return super().list(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\mixins.py", line 40, in list
+    page = self.paginate_queryset(queryset)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\generics.py", line 171, in paginate_queryset
+    return self.paginator.paginate_queryset(queryset, self.request, view=self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\rest_framework\pagination.py", line 216, in paginate_queryset
+    return list(self.page)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\paginator.py", line 174, in __len__
+    return len(self.object_list)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 380, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1881, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1562, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: no existe la columna productos.en_carousel_card
+LINE 1: ... "productos"."activo", "productos"."en_carrusel", "productos...
+                                                             ^
+
+[WARNING] 2025-11-19 20:41:30 django.request 1768 17732 Unauthorized: /api/admin/historial/
+[WARNING] 2025-11-19 21:20:02 django.request 1768 7172 Unauthorized: /api/admin/historial/
+[WARNING] 2025-11-19 21:36:41 security 6472 17276 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-19 21:36:41 django.request 6472 17276 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 21:36:45 security 6472 13868 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-19 21:36:45 django.request 6472 13868 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 22:10:24 security 6472 15536 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-19 22:10:24 django.request 6472 15536 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-19 22:10:53 security 6472 16032 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-19 22:10:53 django.request 6472 16032 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-19 22:25:58 django.request 6472 11724 Unauthorized: /api/admin/dashboard/stats/
+[WARNING] 2025-11-19 22:44:56 django.request 6472 25320 Not Found: /api/catalogo-completo/
+[WARNING] 2025-11-19 22:44:56 django.request 6472 25320 Not Found: /api/catalogo-completo/
+[WARNING] 2025-11-19 23:31:02 django.request 7668 21792 Unauthorized: /api/admin/productos/
+[WARNING] 2025-11-19 23:31:02 django.request 7668 21792 Unauthorized: /api/admin/productos/
+[WARNING] 2025-11-20 00:54:26 security 28576 23228 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 00:54:26 django.request 28576 23228 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 00:55:09 security 28576 5144 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-20 00:55:09 django.request 28576 5144 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 01:09:02 security 28576 11692 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 01:09:02 django.request 28576 11692 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 01:12:50 security 28576 27500 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 01:12:50 django.request 28576 27500 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 01:13:20 security 28576 8004 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 01:13:20 django.request 28576 8004 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 01:14:11 security 28576 18288 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 01:14:11 django.request 28576 18288 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 01:48:39 security 28576 25060 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 01:48:39 django.request 28576 25060 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 01:51:21 security 28576 1976 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 01:51:21 django.request 28576 1976 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 02:01:10 security 28576 22000 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 02:01:10 django.request 28576 22000 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 08:59:41 security 10136 5476 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-20 08:59:41 django.request 10136 5476 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 09:50:23 security 10136 20404 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 09:50:23 django.request 10136 20404 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 09:51:58 security 10136 3708 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-20 09:51:59 django.request 10136 3708 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 13:22:22 security 10136 20484 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-20 13:22:22 django.request 10136 20484 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-20 13:28:04 security 10136 18128 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-20 13:28:04 django.request 10136 18128 Unauthorized: /api/auth/refresh/

@@ -18,7 +18,7 @@ export const LoadingBar = () => {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 600); // 600ms para dar tiempo a la vista a cargar
+    }, 1200); // Aumentado a 1200ms para dar más tiempo a lazy loading
 
     return () => clearTimeout(timer);
   }, [location]);

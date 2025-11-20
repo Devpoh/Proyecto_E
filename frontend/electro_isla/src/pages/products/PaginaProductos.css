@@ -21,7 +21,7 @@
   background-image: url('https://images.unsplash.com/photo-1572365992253-3cb3e56dd362?w=1920&q=80');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   overflow: hidden;
 }
 
@@ -105,10 +105,6 @@
   padding: var(--espaciado-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   border: 1px solid #e5e7eb;
-  position: sticky;
-  top: 100px;
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
 }
 
 .encabezado-filtros {
@@ -397,6 +393,7 @@
   gap: var(--espaciado-xl);
   margin-top: var(--espaciado-lg);
   padding: 0 var(--espaciado-md);
+  contain: layout style paint;
 }
 
 /* Sin Productos */

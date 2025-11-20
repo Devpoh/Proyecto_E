@@ -6,13 +6,14 @@
  */
 
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { FiShoppingCart, FiHeart } from 'react-icons/fi';
 import { MdCheckCircle, MdVerified } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { useAddToCart } from '@/shared/hooks/useAddToCart';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { Button } from '@/shared/ui';
+import { Footer } from '@/widgets/footer/Footer';
 import './ProductDetail.css';
 
 interface Product {
@@ -31,6 +32,14 @@ interface ProductDetailResponse {
   producto: Product;
   productos_relacionados: Product[];
 }
+
+const CATEGORIA_NOMBRES: { [key: string]: string } = {
+  'electrodomesticos': 'Electrodomésticos',
+  'energia_tecnologia': 'Energía y Tecnología',
+  'herramientas': 'Herramientas',
+  'hogar_entretenimiento': 'Hogar y Entretenimiento',
+  'otros': 'Otros Artículos',
+};
 
 const API_BASE_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:8000/api';
 
@@ -278,8 +287,9 @@ export const ProductDetail = () => {
   const favoritosCount = product.favoritos_count || 0;
 
   return (
-    <div className="product-detail-wrapper">
-      <div className="product-detail-container">
+    <Fragment>
+      <div className="product-detail-wrapper">
+        <div className="product-detail-container">
         {/* Main Product Card */}
         <div className="product-card-main">
           {/* Left: Image */}
@@ -299,7 +309,7 @@ export const ProductDetail = () => {
           {/* Right: Details */}
           <div className="product-card-details">
             {/* Category */}
-            <span className="product-card-category">{product.categoria}</span>
+            <span className="product-card-category">{CATEGORIA_NOMBRES[product.categoria] || product.categoria}</span>
 
             {/* Title */}
             <h1 className="product-card-title">{product.nombre}</h1>
@@ -396,10 +406,19 @@ export const ProductDetail = () => {
                   onClick={() => handleRelatedProductClick(relatedProduct.id)}
                 >
                   <div className="related-product-image">
-                    <img
-                      src={relatedProduct.imagen_url}
-                      alt={relatedProduct.nombre}
-                    />
+                    {relatedProduct.imagen_url ? (
+                      <img
+                        src={relatedProduct.imagen_url}
+                        alt={relatedProduct.nombre}
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23f0f0f0" width="100" height="100"/%3E%3Ctext x="50" y="50" text-anchor="middle" dy=".3em" fill="%23999" font-size="12"%3EImagen no disponible%3C/text%3E%3C/svg%3E';
+                        }}
+                      />
+                    ) : (
+                      <div style={{ width: '100%', height: '100%', backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        📦
+                      </div>
+                    )}
                     {relatedProduct.descuento > 0 && (
                       <div className="discount-badge-small">
                         -{relatedProduct.descuento}%
@@ -417,7 +436,9 @@ export const ProductDetail = () => {
             </div>
           </div>
         )}
+        </div>
       </div>
-    </div>
+      <Footer />
+    </Fragment>
   );
 };

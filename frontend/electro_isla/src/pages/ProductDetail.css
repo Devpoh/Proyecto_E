@@ -153,7 +153,7 @@
 }
 
 .product-card-title {
-  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
   font-weight: 700;
   color: var(--color-texto);
   line-height: 1.2;
@@ -319,6 +319,7 @@
 
 .related-products-section {
   margin-top: 3rem;
+  margin-bottom: 4rem;
   animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s backwards;
 }
 
@@ -373,8 +374,8 @@
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background: var(--color-primario);
-  color: var(--color-secundario);
+  background: var(--color-peligro);
+  color: var(--color-fondo);
   padding: 0.25rem 0.75rem;
   border-radius: 50px;
   font-size: 0.8rem;
@@ -401,7 +402,7 @@
 .related-product-price {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--color-primario);
+  color: #1e293b;
   margin: 0;
 }
 

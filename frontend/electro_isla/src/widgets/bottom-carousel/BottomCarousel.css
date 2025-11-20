@@ -99,11 +99,28 @@
   height: 100%;
   align-items: center;
   will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .carrusel:hover,
 .carrusel--paused {
   animation-play-state: paused;
+}
+
+/* ═══ DESACTIVAR INTERACCIONES DURANTE ANIMACIÓN ═══ */
+.carrusel--animating .tarjeta {
+  pointer-events: none;
+}
+
+.carrusel--animating .tarjeta:hover {
+  transform: translateY(0);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.1);
+}
+
+.carrusel--animating .tarjeta-favorito {
+  pointer-events: none;
 }
 
 .carrusel-item {
@@ -113,6 +130,8 @@
   display: flex;
   justify-content: center;
   height: 100%;
+  will-change: auto;
+  contain: layout style paint;
 }
 
 /* ═══ EFECTO DIFUMINADO ═══ */

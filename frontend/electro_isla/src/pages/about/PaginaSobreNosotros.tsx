@@ -134,8 +134,13 @@ export const PaginaSobreNosotros: React.FC = () => {
       {/* ===== SECCIÓN: MÉTODOS DE PAGO ===== */}
       <section className="metodos-pago-section">
         <div className="container">
-          <div className="seccion-layout">
-            {/* Contenido Izquierda */}
+          <div className="seccion-layout seccion-layout-invertida">
+            {/* Imagen Izquierda */}
+            <div className="seccion-imagen">
+              <img src="/SobreNosotros/pagos.png" alt="Métodos de pago seguros" />
+            </div>
+
+            {/* Contenido Derecha */}
             <div className="seccion-contenido">
               <div className="section-header">
                 <h2 className="section-title">¿Por qué utilizamos TropiPay · Zelle?</h2>
@@ -169,11 +174,6 @@ export const PaginaSobreNosotros: React.FC = () => {
               <p className="metodos-destacado">
                 Hemos pensado en las diferentes necesidades: TropiPay para quienes están en Cuba, Zelle para transferencias rápidas desde Estados Unidos. Así garantizamos que todos puedan comprar de forma segura, sin importar su ubicación o preferencia financiera.
               </p>
-            </div>
-
-            {/* Imagen Derecha */}
-            <div className="seccion-imagen">
-              <img src="/SobreNosotros/pagos.png" alt="Métodos de pago seguros" />
             </div>
           </div>
         </div>

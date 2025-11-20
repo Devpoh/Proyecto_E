@@ -94,23 +94,24 @@
   position: absolute;
   top: var(--espaciado-md);
   right: var(--espaciado-md);
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   color: white;
   border: none;
-  border-radius: var(--radio-borde-completo);
+  border-radius: 4px;
   cursor: pointer;
   transition: all var(--transicion-rapida);
-  font-size: var(--texto-lg);
+  font-size: 18px;
+  padding: 0;
 }
 
 .image-upload-remove:hover {
   background: var(--color-peligro);
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 /* ═══ RESPONSIVE ═══ */

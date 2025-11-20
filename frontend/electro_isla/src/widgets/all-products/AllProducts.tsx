@@ -36,19 +36,25 @@ export const AllProducts: React.FC<AllProductsProps> = ({
   const { favoritos } = useFavoritosBatch(productIds);
 
   useEffect(() => {
+    // Filtrar productos por en_all_products
+    const filteredProducts = products.filter(p => p.en_all_products !== false);
     // Mostrar inicialmente 8 productos, o todos si hay menos
-    const initialCount = Math.min(PRODUCTS_PER_PAGE, products.length);
-    setDisplayedProducts(products.slice(0, initialCount));
+    const initialCount = Math.min(PRODUCTS_PER_PAGE, filteredProducts.length);
+    setDisplayedProducts(filteredProducts.slice(0, initialCount));
   }, [products]);
 
   const handleToggleExpand = () => {
     if (isExpanded) {
       // Contraer: mostrar solo 8 productos
-      setDisplayedProducts(products.slice(0, PRODUCTS_PER_PAGE));
+      const filteredProducts = products.filter(p => p.en_all_products !== false);
       setIsExpanded(false);
+      setTimeout(() => {
+        setDisplayedProducts(filteredProducts.slice(0, PRODUCTS_PER_PAGE));
+      }, 400);
     } else {
-      // Expandir: mostrar todos los productos
-      setDisplayedProducts(products);
+      // Expandir: mostrar todos los productos filtrados
+      const filteredProducts = products.filter(p => p.en_all_products !== false);
+      setDisplayedProducts(filteredProducts);
       setIsExpanded(true);
     }
   };
@@ -81,13 +87,29 @@ export const AllProducts: React.FC<AllProductsProps> = ({
 
         {/* Grid de productos */}
         <div className={`all-products-grid ${isExpanded ? 'all-products-grid--expanded' : ''}`}>
-          {displayedProducts.map((product) => (
-            <ProductGridCard 
-              key={product.id} 
-              product={product} 
-              isFavorite={favoritos[String(product.id)] || false}
-            />
-          ))}
+          {displayedProducts.map((product, index) => {
+            const isNewProduct = index >= PRODUCTS_PER_PAGE;
+            const animationStyle = isNewProduct
+              ? isExpanded
+                ? `slideInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${(index - PRODUCTS_PER_PAGE) * 0.05}s both`
+                : `slideOutDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${(index - PRODUCTS_PER_PAGE) * 0.03}s both`
+              : 'none';
+            
+            return (
+            <div 
+              key={product.id}
+              className="all-products-item"
+              style={{
+                animation: animationStyle
+              }}
+            >
+              <ProductGridCard 
+                product={product} 
+                isFavorite={favoritos[String(product.id)] || false}
+              />
+            </div>
+            );
+          })}
         </div>
 
         {/* Botón Ver más/Ver menos */}

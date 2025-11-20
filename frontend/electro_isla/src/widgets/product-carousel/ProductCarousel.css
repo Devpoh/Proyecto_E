@@ -24,7 +24,7 @@
 }
 
 .product-carousel-title {
-  font-size: 24px;
+  font-size: clamp(18px, 4vw, 22px);
   font-weight: var(--peso-bold);
   color: var(--color-texto-principal);
   margin: 0;
@@ -188,7 +188,7 @@
 }
 
 .product-card-name {
-  font-size: 40px;
+  font-size: clamp(22px, 3vw, 22px);
   font-weight: var(--peso-bold);
   color: #1e293b;
   margin: 0;
@@ -197,8 +197,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   max-height: 88px;
 }

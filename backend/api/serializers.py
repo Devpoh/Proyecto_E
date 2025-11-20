@@ -128,16 +128,17 @@ class ProductoSerializer(serializers.ModelSerializer):
             'id', 'nombre', 'descripcion', 'precio', 'descuento', 'categoria', 
             'imagen_url', 'stock', 'stock_total', 'stock_reservado', 'stock_vendido',
             'activo', 'en_carrusel', 'creado_por', 
-            'creado_por_username', 'favoritos_count', 'created_at', 'updated_at'
+            'creado_por_username', 'favoritos_count', 'created_at', 'updated_at',
+            'en_carousel_card', 'en_all_products'
         ]
         read_only_fields = [
             'id', 'creado_por', 'created_at', 'updated_at', 'favoritos_count',
-            'stock', 'stock_reservado', 'stock_vendido'
+            'stock', 'stock_reservado', 'stock_vendido', 'en_carousel_card', 'en_all_products'
         ]
     
     def get_imagen_url(self, obj):
         """
-        ✅ RETORNA LA IMAGEN CORRECTA (archivo o Base64)
+        RETORNA LA IMAGEN CORRECTA (archivo o Base64)
         
         Prioridad:
         1. imagen (ImageField) - URL de archivo real

@@ -8,7 +8,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiUser, FiPackage, FiLogOut, FiSettings } from 'react-icons/fi';
+import { FiPackage, FiLogOut, FiSettings } from 'react-icons/fi';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { logoutUser } from '@/features/auth/login/api/loginApi';
 import './UserMenu.css';
@@ -86,16 +86,6 @@ export const UserMenu = () => {
 
           {/* Menu Items */}
           <div className="user-menu-items">
-            {/* Perfil */}
-            <Link
-              to="/perfil"
-              className="user-menu-item"
-              onClick={() => setIsOpen(false)}
-            >
-              <FiUser className="user-menu-item-icon" />
-              <span>Mi Perfil</span>
-            </Link>
-
             {/* Historial de Pedidos */}
             <Link
               to="/historial-pedidos"

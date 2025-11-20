@@ -23,9 +23,11 @@ interface Producto {
   stock: number;
   categoria: string;
   imagen_url: string | null;
-  imagen?: string | null;  // ✅ URL de archivo
+  imagen?: string | null;  // URL de archivo
   activo: boolean;
   en_carrusel: boolean;
+  en_carousel_card: boolean;
+  en_all_products: boolean;
   creado_por_username: string;
   created_at: string;
 }
@@ -34,13 +36,15 @@ interface ProductoForm {
   nombre: string;
   descripcion: string;
   precio: string;
-  descuento: number;
-  stock: number;
+  descuento: string | number;
+  stock: string | number;
   categoria: string;
   imagen_url?: string;
   imagen?: File | string | null;
   activo: boolean;
   en_carrusel: boolean;
+  en_carousel_card: boolean;
+  en_all_products: boolean;
 }
 
 const CATEGORIAS = [
@@ -74,6 +78,8 @@ const createProducto = async (data: ProductoForm) => {
   formData.append('categoria', data.categoria);
   formData.append('activo', String(data.activo));
   formData.append('en_carrusel', String(data.en_carrusel));
+  formData.append('en_carousel_card', String(data.en_carousel_card));
+  formData.append('en_all_products', String(data.en_all_products));
   
   // Agregar imagen si es un File
   if (data.imagen instanceof File) {
@@ -101,6 +107,8 @@ const updateProducto = async (data: { id: number; updates: Partial<ProductoForm>
   if (data.updates.categoria) formData.append('categoria', data.updates.categoria);
   if (data.updates.activo !== undefined) formData.append('activo', String(data.updates.activo));
   if (data.updates.en_carrusel !== undefined) formData.append('en_carrusel', String(data.updates.en_carrusel));
+  if (data.updates.en_carousel_card !== undefined) formData.append('en_carousel_card', String(data.updates.en_carousel_card));
+  if (data.updates.en_all_products !== undefined) formData.append('en_all_products', String(data.updates.en_all_products));
   
   // Agregar imagen si es un File
   if (data.updates.imagen instanceof File) {
@@ -134,13 +142,15 @@ export const ProductosPage = () => {
     nombre: '',
     descripcion: '',
     precio: '',
-    descuento: 0,
-    stock: 0,
+    descuento: '',
+    stock: '',
     categoria: 'otros',
     imagen_url: '',
     imagen: null,
     activo: true,
     en_carrusel: false,
+    en_carousel_card: true,
+    en_all_products: true,
   });
 
   // Query productos
@@ -196,14 +206,16 @@ export const ProductosPage = () => {
         nombre: producto.nombre,
         descripcion: producto.descripcion,
         precio: producto.precio,
-        descuento: producto.descuento || 0,
-        stock: producto.stock,
+        descuento: producto.descuento ? String(producto.descuento) : '',
+        stock: String(producto.stock),
         categoria: producto.categoria,
         imagen_url: producto.imagen_url || '',
-        // ✅ Mostrar imagen actual (prioridad: imagen > imagen_url)
+        // Mostrar imagen actual (prioridad: imagen > imagen_url)
         imagen: (producto.imagen || producto.imagen_url) as any,
         activo: producto.activo,
         en_carrusel: producto.en_carrusel || false,
+        en_carousel_card: producto.en_carousel_card,
+        en_all_products: producto.en_all_products,
       });
     } else {
       setEditingProducto(null);
@@ -211,13 +223,15 @@ export const ProductosPage = () => {
         nombre: '',
         descripcion: '',
         precio: '',
-        descuento: 0,
-        stock: 0,
+        descuento: '',
+        stock: '',
         categoria: 'otros',
         imagen_url: '',
         imagen: null,
         activo: false,
         en_carrusel: false,
+        en_carousel_card: true,
+        en_all_products: true,
       });
     }
     setShowModal(true);
@@ -479,7 +493,7 @@ export const ProductosPage = () => {
                     min="0"
                     max="100"
                     value={formData.descuento}
-                    onChange={(e) => setFormData({ ...formData, descuento: parseInt(e.target.value) || 0 })}
+                    onChange={(e) => setFormData({ ...formData, descuento: e.target.value })}
                   />
                 </div>
 
@@ -488,7 +502,7 @@ export const ProductosPage = () => {
                   <input
                     type="number"
                     value={formData.stock}
-                    onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) || 0 })}
+                    onChange={(e) => setFormData({ ...formData, stock: e.target.value })}
                     required
                   />
                 </div>
@@ -517,26 +531,56 @@ export const ProductosPage = () => {
                 />
               </div>
 
-              <div className="productos-form-field productos-form-checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.activo}
-                    onChange={(e) => setFormData({ ...formData, activo: e.target.checked })}
-                  />
-                  <span>Producto activo</span>
-                </label>
-              </div>
+              {/* Grid de 2x2 para checkboxes */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: 'var(--espaciado-md)',
+                marginBottom: 'var(--espaciado-lg)'
+              }}>
+                <div className="productos-form-field productos-form-checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.activo}
+                      onChange={(e) => setFormData({ ...formData, activo: e.target.checked })}
+                    />
+                    <span>Producto activo</span>
+                  </label>
+                </div>
 
-              <div className="productos-form-field productos-form-checkbox">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={formData.en_carrusel}
-                    onChange={(e) => setFormData({ ...formData, en_carrusel: e.target.checked })}
-                  />
-                  <span>Mostrar en carrusel principal</span>
-                </label>
+                <div className="productos-form-field productos-form-checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.en_carrusel}
+                      onChange={(e) => setFormData({ ...formData, en_carrusel: e.target.checked })}
+                    />
+                    <span>Carrusel principal</span>
+                  </label>
+                </div>
+
+                <div className="productos-form-field productos-form-checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.en_carousel_card}
+                      onChange={(e) => setFormData({ ...formData, en_carousel_card: e.target.checked })}
+                    />
+                    <span>Tarjetas inferiores</span>
+                  </label>
+                </div>
+
+                <div className="productos-form-field productos-form-checkbox">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={formData.en_all_products}
+                      onChange={(e) => setFormData({ ...formData, en_all_products: e.target.checked })}
+                    />
+                    <span>Catálogo completo</span>
+                  </label>
+                </div>
               </div>
 
               <div className="productos-form-actions">

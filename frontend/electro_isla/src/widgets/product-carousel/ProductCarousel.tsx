@@ -22,6 +22,8 @@ export interface ProductCard {
   imagen?: string;  // ✅ Nuevo: URL de archivo
   categoria?: string;
   stock?: number;
+  en_carousel_card?: boolean;
+  en_all_products?: boolean;
 }
 
 interface ProductCarouselProps {

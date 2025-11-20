@@ -9,7 +9,7 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { FiDownload, FiTrendingUp, FiUsers, FiPackage, FiDollarSign } from 'react-icons/fi';
+import { FiTrendingUp, FiUsers, FiPackage, FiDollarSign } from 'react-icons/fi';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,6 +28,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import api from '@/shared/api/axios';
+import { ExportButtons } from '@/shared/ui/ExportButtons';
 import './EstadisticasPage.css';
 
 // Registrar componentes de Chart.js
@@ -276,14 +277,12 @@ export const EstadisticasPage = () => {
           </p>
         </div>
         <div className="estadisticas-actions">
-          <button className="estadisticas-btn estadisticas-btn-pdf" onClick={exportarPDF}>
-            <FiDownload />
-            <span>Exportar PDF</span>
-          </button>
-          <button className="estadisticas-btn estadisticas-btn-excel" onClick={exportarExcel}>
-            <FiDownload />
-            <span>Exportar Excel</span>
-          </button>
+          <ExportButtons
+            onExportPDF={exportarPDF}
+            onExportExcel={exportarExcel}
+            pdfLabel="Exportar PDF"
+            excelLabel="Exportar Excel"
+          />
         </div>
       </div>
 

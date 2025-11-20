@@ -40,7 +40,7 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaURL || categoriaInicial);
   const [precioMin, setPrecioMin] = useState(0);
   const [precioMax, setPrecioMax] = useState(50000);
-  const [ordenarPor, setOrdenarPor] = useState('popularidad');
+  const [ordenarPor, setOrdenarPor] = useState('precio-menor');
   const [busqueda, setBusqueda] = useState(busquedaURL || busquedaInicial);
   
   // Actualizar búsqueda cuando cambian los parámetros de URL
@@ -89,13 +89,23 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
    */
 
   const categorias = [
-    { nombre: 'Todos los productos', icono: null },
-    { nombre: 'Electrodomésticos', icono: <MdKitchen /> },
-    { nombre: 'Energía y Tecnología', icono: <MdElectricBolt /> },
-    { nombre: 'Herramientas', icono: <MdBuild /> },
-    { nombre: 'Hogar y Entretenimiento', icono: <MdChair /> },
-    { nombre: 'Otros Artículos', icono: <MdMoreHoriz /> }
+    { nombre: 'Todos los productos', valor: 'Todos los productos', icono: null },
+    { nombre: 'Electrodomésticos', valor: 'electrodomesticos', icono: <MdKitchen /> },
+    { nombre: 'Energía y Tecnología', valor: 'energia_tecnologia', icono: <MdElectricBolt /> },
+    { nombre: 'Herramientas', valor: 'herramientas', icono: <MdBuild /> },
+    { nombre: 'Hogar y Entretenimiento', valor: 'hogar_entretenimiento', icono: <MdChair /> },
+    { nombre: 'Otros Artículos', valor: 'otros', icono: <MdMoreHoriz /> }
   ];
+
+  // Mapeo de valores a nombres legibles (para mostrar en la UI)
+  const nombreCategoria: { [key: string]: string } = {
+    'Todos los productos': 'Todos los productos',
+    'electrodomesticos': 'Electrodomésticos',
+    'energia_tecnologia': 'Energía y Tecnología',
+    'herramientas': 'Herramientas',
+    'hogar_entretenimiento': 'Hogar y Entretenimiento',
+    'otros': 'Otros Artículos',
+  };
 
   // SOLO usar productos del API (sin fallback a ejemplos)
   const productos = productosAPI;
@@ -160,12 +170,12 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
                   </div>
                   <div className={`opciones-filtro ${categoriasExpandidas ? 'expandido' : 'colapsado'}`}>
                     {categorias.map((categoria) => (
-                      <label key={categoria.nombre} className="opcion-filtro">
+                      <label key={categoria.valor} className="opcion-filtro">
                         <input
                           type="radio"
                           name="categoria"
-                          value={categoria.nombre}
-                          checked={categoriaSeleccionada === categoria.nombre}
+                          value={categoria.valor}
+                          checked={categoriaSeleccionada === categoria.valor}
                           onChange={(e) => setCategoriaSeleccionada(e.target.value)}
                         />
                         {categoria.icono && <span className="icono-categoria">{categoria.icono}</span>}
@@ -185,20 +195,24 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
                     {preciosExpandidos ? <FiChevronDown /> : <FiChevronRight />}
                   </div>
                   <div className={`rango-precios ${preciosExpandidos ? 'expandido' : 'colapsado'}`}>
-                    <div className="precio-min">
+                    <div className="grupo-input-precio">
                       <label>Precio mínimo:</label>
                       <input 
                         type="number" 
+                        className="input-precio"
                         value={precioMin} 
-                        onChange={(e) => setPrecioMin(parseInt(e.target.value))}
+                        onChange={(e) => setPrecioMin(parseInt(e.target.value) || 0)}
+                        min="0"
                       />
                     </div>
-                    <div className="precio-max">
+                    <div className="grupo-input-precio">
                       <label>Precio máximo:</label>
                       <input 
                         type="number" 
+                        className="input-precio"
                         value={precioMax} 
-                        onChange={(e) => setPrecioMax(parseInt(e.target.value))}
+                        onChange={(e) => setPrecioMax(parseInt(e.target.value) || 50000)}
+                        min="0"
                       />
                     </div>
                   </div>
@@ -213,6 +227,11 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
                 <div className="barra-herramientas">
                   <div className="info-resultados">
                     <span>Mostrando {productosOrdenados.length} de {productos.length} productos</span>
+                    {categoriaSeleccionada !== 'Todos los productos' && (
+                      <span className="indicador-busqueda">
+                        • Categoría: "{nombreCategoria[categoriaSeleccionada]}"
+                      </span>
+                    )}
                     {busqueda && (
                       <span className="indicador-busqueda">
                         • Búsqueda: "{busqueda}"
@@ -235,11 +254,8 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
                         onChange={(e) => setOrdenarPor(e.target.value)}
                         className="selector-ordenamiento"
                       >
-                        <option value="popularidad">Popularidad</option>
                         <option value="precio-menor">Precio: Menor a Mayor</option>
                         <option value="precio-mayor">Precio: Mayor a Menor</option>
-                        <option value="nuevo">Más Nuevos</option>
-                        <option value="rating">Mejor Valorados</option>
                       </select>
                     </div>
                   </div>

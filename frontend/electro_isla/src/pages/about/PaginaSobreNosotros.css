@@ -389,6 +389,8 @@
   gap: var(--espaciado-2xl);
   margin-bottom: var(--espaciado-lg);
   justify-content: center;
+  justify-items: center;
+  width: 100%;
 }
 
 .metodo-card,
@@ -406,6 +408,9 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 240px;
 }
 
 .metodo-card:hover,

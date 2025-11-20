@@ -14,7 +14,7 @@
 
 import { useState, useCallback } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
-import { FiSearch, FiTrash2, FiEdit2, FiX } from 'react-icons/fi';
+import { FiSearch, FiEdit2, FiX } from 'react-icons/fi';
 import api from '@/shared/api/axios';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { GlobalLoading } from '@/shared/ui/GlobalLoading';
@@ -134,14 +134,13 @@ export const UsuariosPage = () => {
     switch (rol) {
       case 'admin': return 'Administrador';
       case 'trabajador': return 'Trabajador';
-      case 'mensajero': return 'Mensajero';
+      case 'mensajero': return 'Repartidor';
       default: return 'Cliente';
     }
   };
 
-  // Verificar permisos (solo admin puede editar y eliminar usuarios)
+  // Verificar permisos (solo admin puede editar usuarios)
   const canEdit = currentUser?.rol === 'admin';
-  const canDelete = currentUser?.rol === 'admin';
 
   return (
     <div className="usuarios-page">
@@ -243,18 +242,6 @@ export const UsuariosPage = () => {
                           disabled={user.id === currentUser?.id}
                         >
                           <FiEdit2 />
-                        </button>
-                      )}
-                      {canDelete && user.id !== currentUser?.id && (
-                        <button
-                          className="usuarios-action-btn usuarios-action-delete"
-                          onClick={() => {
-                            setSelectedUser(user);
-                            setShowDeleteConfirm(true);
-                          }}
-                          title="Eliminar"
-                        >
-                          <FiTrash2 />
                         </button>
                       )}
                     </div>

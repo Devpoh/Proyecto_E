@@ -186,7 +186,7 @@ button {
   background-color: var(--color-primario);
   color: var(--color-texto-blanco);
   cursor: pointer;
-  transition: all var(--transicion-rapida);
+  transition: transform var(--transicion-rapida);
   box-shadow: var(--sombra-sm);
 }
 
