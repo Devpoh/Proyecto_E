@@ -159,25 +159,26 @@
   }
 
   .trust-benefits {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: clamp(12px, 2vw, 16px);
   }
 
   .trust-benefit-item {
-    flex-direction: row;
-    text-align: left;
+    flex-direction: column;
+    text-align: center;
     gap: 12px;
+    padding: clamp(12px, 2vw, 16px);
   }
 
   .trust-benefit-icon {
     width: 48px;
     height: 48px;
-    margin-bottom: 0;
+    margin: 0 auto;
     flex-shrink: 0;
   }
 
   .trust-benefit-content {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .trust-benefit-badge {
@@ -193,6 +194,16 @@
 
   .trust-container {
     padding: 0 12px;
+  }
+
+  .trust-benefits {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .trust-benefit-item {
+    padding: 12px 8px;
+    gap: 10px;
   }
 
   .trust-benefit-title {

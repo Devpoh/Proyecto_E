@@ -18,6 +18,7 @@ import { FiFilter, FiChevronDown, FiTag, FiChevronRight, FiDollarSign } from 're
 import { MdElectricBolt, MdBuild, MdChair, MdMoreHoriz, MdKitchen } from 'react-icons/md';
 import { Footer } from '@/widgets/footer';
 import { CarouselCard } from '@/widgets/bottom-carousel';
+import { useFavoritosBatch } from '@/shared/hooks/useFavoritosBatch';
 import api from '@/shared/api/axios';
 import './PaginaProductos.css';
 
@@ -145,6 +146,10 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
     }
   });
 
+  // ✅ Obtener favoritos en batch (evita N+1 queries)
+  const productIds = productosOrdenados.map((p: any) => p.id);
+  const { favoritos } = useFavoritosBatch(productIds);
+
   return (
     <>
       <main className="pagina-productos">
@@ -195,24 +200,18 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
                     {preciosExpandidos ? <FiChevronDown /> : <FiChevronRight />}
                   </div>
                   <div className={`rango-precios ${preciosExpandidos ? 'expandido' : 'colapsado'}`}>
-                    <div className="grupo-input-precio">
+                    <div className="controles-precio">
                       <label>Precio mínimo:</label>
-                      <input 
-                        type="number" 
-                        className="input-precio"
-                        value={precioMin} 
-                        onChange={(e) => setPrecioMin(parseInt(e.target.value) || 0)}
-                        min="0"
+                      <input
+                        type="number"
+                        value={precioMin}
+                        onChange={(e) => setPrecioMin(parseFloat(e.target.value))}
                       />
-                    </div>
-                    <div className="grupo-input-precio">
                       <label>Precio máximo:</label>
-                      <input 
-                        type="number" 
-                        className="input-precio"
-                        value={precioMax} 
-                        onChange={(e) => setPrecioMax(parseInt(e.target.value) || 50000)}
-                        min="0"
+                      <input
+                        type="number"
+                        value={precioMax}
+                        onChange={(e) => setPrecioMax(parseFloat(e.target.value))}
                       />
                     </div>
                   </div>
@@ -285,6 +284,7 @@ export const PaginaProductos: React.FC<PaginaProductosProps> = ({
                         descuento={parseFloat(producto.descuento) || 0}
                         imagen_url={producto.imagen_url || producto.imagen || null}
                         stock={producto.stock}
+                        initialIsFavorite={favoritos[String(producto.id)] || false}
                       />
                     ))}
                   </div>

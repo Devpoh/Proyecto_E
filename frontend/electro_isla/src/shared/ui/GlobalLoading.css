@@ -17,7 +17,7 @@
   z-index: 9999;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  animation: fadeIn 0.3s ease-out;
+  animation: fadeIn 0.15s ease-out;
 }
 
 .global-loading-content {
@@ -38,7 +38,7 @@
   border-top-color: var(--color-primario);
   border-right-color: var(--color-primario);
   border-radius: 50%;
-  animation: spin 0.9s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation: spin 0.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
   box-shadow: 0 0 20px rgba(255, 187, 0, 0.3);
 }
 

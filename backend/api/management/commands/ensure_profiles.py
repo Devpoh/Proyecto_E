@@ -1,6 +1,6 @@
 """
 ═══════════════════════════════════════════════════════════════════════════════
-🔧 MANAGEMENT COMMAND - Ensure User Profiles
+MANAGEMENT COMMAND - Ensure User Profiles
 ═══════════════════════════════════════════════════════════════════════════════
 
 Comando para asegurar que todos los usuarios tengan perfil
@@ -25,7 +25,7 @@ class Command(BaseCommand):
                 UserProfile.objects.create(user=user, rol=rol)
                 users_without_profile += 1
                 self.stdout.write(
-                    self.style.SUCCESS(f'✅ Perfil creado para {user.username} con rol: {rol}')
+                    self.style.SUCCESS(f'[OK] Perfil creado para {user.username} con rol: {rol}')
                 )
             else:
                 # Actualizar rol si es superuser/staff pero no es admin
@@ -34,12 +34,12 @@ class Command(BaseCommand):
                     user.profile.save()
                     users_updated += 1
                     self.stdout.write(
-                        self.style.SUCCESS(f'✅ Rol actualizado para {user.username} a: admin')
+                        self.style.SUCCESS(f'[OK] Rol actualizado para {user.username} a: admin')
                     )
         
         self.stdout.write(
             self.style.SUCCESS(
-                f'\n📊 Resumen:\n'
+                f'\n[RESUMEN]:\n'
                 f'   - Perfiles creados: {users_without_profile}\n'
                 f'   - Roles actualizados: {users_updated}\n'
                 f'   - Total usuarios: {User.objects.count()}'

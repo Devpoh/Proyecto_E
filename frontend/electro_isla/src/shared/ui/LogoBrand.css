@@ -158,20 +158,100 @@
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 768px) {
   .logo-brand-navbar .logo-brand-text {
+    display: flex;
+  }
+
+  .logo-brand-navbar .logo-brand-main {
+    font-size: 1.3rem;
+  }
+
+  .logo-brand-navbar .logo-brand-corp {
+    font-size: 0.85rem;
+  }
+
+  .logo-brand-navbar {
+    padding: 6px;
+    gap: 8px;
+  }
+
+  .logo-brand-navbar .logo-brand-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .logo-brand-navbar .logo-brand-palm {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-brand-navbar .logo-brand-main {
+    font-size: 1.15rem;
+  }
+
+  .logo-brand-navbar .logo-brand-corp {
+    font-size: 0.8rem;
+  }
+
+  .logo-brand-navbar {
+    gap: 6px;
+    padding: 4px;
+  }
+
+  .logo-brand-navbar .logo-brand-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-brand-navbar .logo-brand-palm {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 375px) {
+  .logo-brand-navbar .logo-brand-main {
+    font-size: 1.05rem;
+  }
+
+  .logo-brand-navbar .logo-brand-corp {
+    font-size: 0.75rem;
+  }
+
+  .logo-brand-navbar {
+    gap: 5px;
+    padding: 3px;
+  }
+
+  .logo-brand-navbar .logo-brand-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-brand-navbar .logo-brand-palm {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+@media (max-width: 358px) {
+  .logo-brand-navbar .logo-brand-text {
     display: none;
   }
 
   .logo-brand-navbar {
-    padding: 4px;
+    gap: 0;
+    padding: 0;
   }
 
-  .logo-brand-icon {
-    width: 32px;
-    height: 32px;
+  .logo-brand-navbar .logo-brand-icon {
+    width: 36px;
+    height: 36px;
   }
 
-  .logo-brand-palm {
-    width: 24px;
-    height: 24px;
+  .logo-brand-navbar .logo-brand-palm {
+    width: 28px;
+    height: 28px;
   }
 }

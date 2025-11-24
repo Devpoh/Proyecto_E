@@ -1,6 +1,6 @@
 """
 ═══════════════════════════════════════════════════════════════════════════════
-🛡️ MANAGEMENT COMMAND - Liberar Reservas Expiradas
+MANAGEMENT COMMAND - Liberar Reservas Expiradas
 ═══════════════════════════════════════════════════════════════════════════════
 
 Comando para liberar automáticamente las reservas de stock que han expirado.
@@ -43,7 +43,7 @@ class Command(BaseCommand):
         verbose = options.get('verbose', False)
         
         self.stdout.write(
-            self.style.SUCCESS('🔄 Iniciando liberación de reservas expiradas...')
+            self.style.SUCCESS('[INICIO] Iniciando liberación de reservas expiradas...')
         )
         
         try:
@@ -51,7 +51,7 @@ class Command(BaseCommand):
             count = StockReservation.liberar_reservas_expiradas()
             
             if count > 0:
-                mensaje = f'✅ {count} reservas expiradas liberadas exitosamente'
+                mensaje = f'[OK] {count} reservas expiradas liberadas exitosamente'
                 self.stdout.write(self.style.SUCCESS(mensaje))
                 logger.info(f'[STOCK] {mensaje}')
                 
@@ -67,12 +67,12 @@ class Command(BaseCommand):
                             f'{reserva.producto.nombre} x{reserva.cantidad}'
                         )
             else:
-                mensaje = 'ℹ️ No hay reservas expiradas para liberar'
+                mensaje = '[INFO] No hay reservas expiradas para liberar'
                 self.stdout.write(self.style.WARNING(mensaje))
                 logger.info(f'[STOCK] {mensaje}')
         
         except Exception as e:
-            mensaje_error = f'❌ Error al liberar reservas: {str(e)}'
+            mensaje_error = f'[ERROR] Error al liberar reservas: {str(e)}'
             self.stdout.write(self.style.ERROR(mensaje_error))
             logger.error(f'[STOCK] {mensaje_error}')
             raise

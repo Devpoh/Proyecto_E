@@ -542,3 +542,134 @@
 [INFO] 2025-11-20 11:17:37 auth 10136 18532 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 1
 [INFO] 2025-11-20 11:17:37 auth 10136 18532 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
 [INFO] 2025-11-20 11:17:37 auth 10136 18532 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-20 18:58:32 auth 9620 2228 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 10
+[INFO] 2025-11-20 18:58:32 auth 9620 2228 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-20 18:58:32 auth 9620 2228 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-20 19:05:48 auth 9620 16588 [LOGOUT_CART_CLEARED] Usuario: aleja | Items eliminados: 2
+[INFO] 2025-11-20 19:05:48 auth 9620 16588 [LOGOUT_SUCCESS] Usuario: aleja | IP: 127.0.0.1
+[INFO] 2025-11-20 19:05:48 auth 9620 16588 [REFRESH_TOKENS_REVOKED] Usuario: aleja | IP: 127.0.0.1
+[INFO] 2025-11-20 19:06:03 auth 9620 15652 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-20 19:11:28 auth 9620 22584 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-21 10:52:31 auth 8764 16444 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-21 11:58:24 auth 8764 19396 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-21 12:00:54 auth 8764 9492 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-21 12:10:07 auth 19688 5064 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-22 18:42:34 auth 28744 23672 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-22 19:06:42 auth 28744 23824 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-22 19:07:44 auth 28744 23824 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-22 19:08:01 auth 28744 23824 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 1
+[INFO] 2025-11-22 19:08:01 auth 28744 23824 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-22 19:08:01 auth 28744 23824 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-22 19:08:06 auth 28744 23824 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-22 19:12:39 auth 28744 23824 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 0
+[INFO] 2025-11-22 19:12:39 auth 28744 23824 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-22 19:12:39 auth 28744 23824 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-22 19:13:54 auth 28744 23824 [LOGOUT_CART_CLEARED] Usuario: aria | Items eliminados: 0
+[INFO] 2025-11-22 19:13:54 auth 28744 23824 [LOGOUT_SUCCESS] Usuario: aria | IP: 127.0.0.1
+[INFO] 2025-11-22 19:13:54 auth 28744 23824 [REFRESH_TOKENS_REVOKED] Usuario: aria | IP: 127.0.0.1
+[INFO] 2025-11-22 19:14:04 auth 28744 23824 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-22 19:14:40 auth 28744 23824 [LOGIN_SUCCESS] Usuario: aria | Email: ariaricuenta504@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-22 19:23:32 auth 28744 23824 [TOKEN_REFRESH] Usuario: aria | IP: 127.0.0.1
+[INFO] 2025-11-22 19:24:00 auth 28744 23824 [LOGIN_SUCCESS] Usuario: aria | Email: ariaricuenta504@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-22 19:26:18 auth 28744 23824 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-22 19:26:57 auth 28744 23824 [LOGIN_SUCCESS] Usuario: aria | Email: ariaricuenta504@gmail.com | IP: 127.0.0.1 | Rol: trabajador
+[INFO] 2025-11-22 19:28:40 auth 28744 1724 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-22 19:29:46 auth 28744 1724 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-22 19:30:30 auth 28744 1724 [LOGIN_SUCCESS] Usuario: aria | Email: ariaricuenta504@gmail.com | IP: 127.0.0.1 | Rol: mensajero
+[INFO] 2025-11-22 19:31:01 auth 28744 1724 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-22 19:31:44 auth 28744 1724 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-22 19:35:36 auth 28744 1724 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 2
+[INFO] 2025-11-22 19:35:36 auth 28744 1724 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-22 19:35:36 auth 28744 1724 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-22 19:35:43 auth 28744 1724 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-23 19:17:59 auth 28576 29048 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-23 19:29:27 auth 28576 27700 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 19:34:23 auth 28576 4956 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 19:34:45 auth 28576 2916 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 19:54:24 auth 28576 28024 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 19:57:37 auth 28576 18232 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:01:34 auth 28576 4940 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:05:22 auth 28576 10996 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:08:34 auth 28576 28196 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:17:29 auth 28576 20692 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:19:51 auth 28576 17712 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:23:53 auth 28576 19784 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:27:09 auth 28576 30348 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:27:58 auth 28576 18196 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:27:58 auth 28576 18196 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:30:07 auth 28576 29944 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:31:19 auth 28576 17008 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:32:43 auth 28576 22616 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:33:41 auth 28576 20916 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:37:03 auth 28576 28196 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:37:17 auth 28576 24016 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:37:47 auth 28576 25180 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:42:38 auth 28576 3176 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:46:32 auth 28576 30500 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:48:26 auth 28576 10496 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 20:49:06 auth 28576 23636 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:00:01 auth 28576 27716 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:08:18 auth 28576 15276 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:11:37 auth 28576 29104 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:12:34 auth 28576 24240 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:14:41 auth 28576 9112 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:18:50 auth 28576 26892 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:20:05 auth 28576 15448 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:40:12 auth 28576 5700 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:43:17 auth 28576 15372 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:47:42 auth 28576 12088 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:50:23 auth 28576 28472 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 21:52:50 auth 28576 21372 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:09:42 auth 28576 12512 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:12:17 auth 28576 27052 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:13:57 auth 28576 21412 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:25:06 auth 28576 21852 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:25:16 auth 28576 30620 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:26:57 auth 28576 5208 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:27:03 auth 28576 5208 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 0
+[INFO] 2025-11-23 22:27:03 auth 28576 5208 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:27:03 auth 28576 5208 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:34:40 auth 28576 7092 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-23 22:36:26 auth 28576 17928 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:37:38 auth 28576 17780 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:43:50 auth 28576 24472 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:46:48 auth 28576 17316 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 22:50:20 auth 28576 12520 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 23:14:21 auth 28576 17744 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 23:23:01 auth 28576 17792 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 23:29:31 auth 28576 14332 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 23:35:55 auth 28576 1844 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 23:39:28 auth 28576 25284 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-23 23:56:29 auth 28576 6936 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 00:23:48 auth 28576 15184 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 00:27:36 auth 28576 6476 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 00:46:22 auth 28576 2012 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 00:46:26 auth 28576 2012 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 00:52:34 auth 28576 22876 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 00:55:04 auth 28576 24388 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 00:56:36 auth 28576 27564 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:01:03 auth 28576 27456 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:09:06 auth 28576 20448 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:12:29 auth 28576 24748 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:15:38 auth 28576 1424 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:18:33 auth 28576 7628 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:18:51 auth 28576 22864 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:19:18 auth 28576 22776 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:28:52 auth 28576 19820 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:31:48 auth 28576 11724 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:35:20 auth 28576 11212 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:39:29 auth 28576 19092 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:51:14 auth 28576 18820 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:53:16 auth 28576 23568 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:53:27 auth 28576 28684 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 01:53:44 auth 28576 18872 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 02:09:44 auth 28576 26724 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 14:12:54 auth 21080 12560 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 14:25:43 auth 21080 23096 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 14:29:58 auth 21080 17960 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 14:30:09 auth 21080 2448 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 14:30:31 auth 13132 13792 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 14:35:27 auth 13132 28340 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 14:46:01 auth 13132 9772 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 14:58:35 auth 13132 22572 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:01:08 auth 13132 11384 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1

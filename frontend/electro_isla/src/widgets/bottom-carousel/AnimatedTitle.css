@@ -1,6 +1,6 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
- * 🎨 STYLES - AnimatedTitle
+ * 🎨 STYLES - AnimatedTitle (Optimizado para CLS)
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
@@ -10,6 +10,8 @@
   align-items: center;
   gap: 12px;
   margin-bottom: clamp(40px, 8vw, 80px);
+  /* ✅ Prevenir layout shift */
+  contain: layout style paint;
 }
 
 .titulo {
@@ -18,11 +20,15 @@
   color: var(--color-texto-principal);
   margin: 0;
   text-align: center;
+  /* ✅ Reservar espacio para prevenir CLS */
+  min-height: 1.2em;
 }
 
 .titulo-underline {
+  --underline-width: 200px;
   height: 3px;
-  width: 80px;
+  width: var(--underline-width);
+  max-width: 100%;
   background: var(--color-primario);
   border-radius: 2px;
   opacity: 0;
@@ -30,9 +36,13 @@
   transform-origin: center;
   transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   margin: 0 auto;
+  /* ✅ GPU acceleration para animaciones suaves sin layout shift */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0) scaleX(0);
 }
 
 .titulo-underline.active {
   opacity: 1;
-  transform: scaleX(1);
+  transform: translateZ(0) scaleX(1);
 }

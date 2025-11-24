@@ -39,30 +39,7 @@
   margin-bottom: 0;
 }
 
-.categories-header .titulo {
-  font-size: clamp(28px, 5vw, 48px);
-  font-weight: var(--peso-bold);
-  color: var(--color-texto-principal);
-  margin: 0;
-  text-align: center;
-}
-
-.categories-header .titulo-underline {
-  height: 3px;
-  width: 80px;
-  background: var(--color-primario);
-  border-radius: 2px;
-  opacity: 0;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  margin: 0 auto;
-}
-
-.categories-header .titulo-underline.active {
-  opacity: 1;
-  transform: scaleX(1);
-}
+/* ✅ Los estilos del título y la línea se heredan de AnimatedTitle.css */
 
 /* ═══════════════════════════════════════════════════════════════════════════════
    GRID DE CATEGORÍAS - 5 COLUMNAS, 1 FILA
@@ -71,7 +48,7 @@
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: var(--espaciado-lg);
+  gap: clamp(16px, 2vw, 24px);
   margin-bottom: var(--espaciado-xl);
 }
 
@@ -85,6 +62,7 @@
   flex-direction: column;
   justify-content: flex-end;
   min-height: 320px;
+  height: 320px;
   border-radius: var(--radio-borde-lg);
   text-decoration: none;
   overflow: hidden;
@@ -101,7 +79,9 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
+  /* ✅ Prevenir CLS */
+  contain: layout style paint;
 }
 
 .categoria-card:nth-child(1) { animation-delay: 0.1s; }
@@ -169,17 +149,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════════
    ANIMACIONES
    ═══════════════════════════════════════════════════════════════════════════════ */
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 @keyframes fadeInUp {
   from {

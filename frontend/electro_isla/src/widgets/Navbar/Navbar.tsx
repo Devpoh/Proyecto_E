@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { FiShoppingCart, FiUser } from 'react-icons/fi';
+import { FiShoppingCart, FiUser, FiMenu, FiX } from 'react-icons/fi';
 import { SearchBar } from '../../features/producto/product-search';
 import { useAuthStore } from '@/app/store/useAuthStore';
 import { UserMenu } from './UserMenu';
@@ -19,6 +19,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated } = useAuthStore();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Determinar si un enlace está activo
   const isActive = (path: string) => {
@@ -32,27 +33,35 @@ const Navbar: React.FC<NavbarProps> = ({
       <div className={styles.container}>
         <LogoBrand variant="navbar" className={styles.logo} />
         
-        <div className={styles.searchWrapper}>
+        <div className={`${styles.searchWrapper} ${isMobileMenuOpen ? styles.searchWrapperHidden : ''}`}>
           <SearchBar />
         </div>
         
         <div className={styles.rightSection}>
-          <div className={styles.navLinks}>
+          <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.navLinksOpen : ''}`}>
+            {/* Buscador dentro del menú en móviles */}
+            <div className={styles.mobileSearchWrapper}>
+              <SearchBar />
+            </div>
+            
             <Link 
               to="/" 
               className={`${styles.navLink} ${isActive('/') ? styles.navLinkActive : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Inicio
             </Link>
             <Link 
               to="/productos" 
               className={`${styles.navLink} ${isActive('/productos') ? styles.navLinkActive : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Productos
             </Link>
             <Link 
               to="/nosotros" 
               className={`${styles.navLink} ${isActive('/nosotros') ? styles.navLinkActive : ''}`}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Nosotros
             </Link>
@@ -84,6 +93,15 @@ const Navbar: React.FC<NavbarProps> = ({
               </>
             )}
           </div>
+          
+          {/* Botón hamburguesa - solo móvil */}
+          <button 
+            className={styles.hamburgerButton}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Menú de navegación"
+          >
+            {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </button>
         </div>
       </div>
     </nav>

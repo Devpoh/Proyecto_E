@@ -42,11 +42,21 @@ export const AnimatedTitle = ({ text }: AnimatedTitleProps) => {
     };
   }, []);
 
-  // Ajustar ancho de la línea al ancho del título
+  // ✅ Ajustar ancho de la línea al ancho del título (optimizado para CLS)
   useEffect(() => {
-    if (titleRef.current && underlineRef.current) {
-      const titleWidth = titleRef.current.offsetWidth;
-      underlineRef.current.style.width = `${titleWidth}px`;
+    const updateWidth = () => {
+      if (titleRef.current && underlineRef.current) {
+        const titleWidth = titleRef.current.offsetWidth;
+        underlineRef.current.style.setProperty('--underline-width', `${titleWidth}px`);
+      }
+    };
+
+    // Ejecutar inmediatamente
+    updateWidth();
+
+    // También ejecutar después de que las fuentes carguen
+    if (document.fonts) {
+      document.fonts.ready.then(updateWidth);
     }
   }, [text]);
 

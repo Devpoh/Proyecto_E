@@ -38,7 +38,7 @@
 }
 
 .loading-bar--active .loading-bar-progress {
-  animation: loadBarFill 1s ease-out forwards;
+  animation: loadBarFill 0.5s ease-out forwards;
 }
 
 .loading-bar-overlay {

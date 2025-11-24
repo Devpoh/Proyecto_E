@@ -151,8 +151,20 @@ const CarouselCardComponent = ({
   // ✅ CORRECCIÓN: Calcular precio con descuento correctamente
   const discountedPrice = descuento > 0 ? numPrice * (1 - descuento / 100) : numPrice;
 
+  const handleCardClick = (e: React.MouseEvent) => {
+    // No navegar si se hace clic en botones o favorito
+    const target = e.target as HTMLElement;
+    if (
+      target.closest('.tarjeta-botones') ||
+      target.closest('.tarjeta-favorito')
+    ) {
+      return;
+    }
+    handleViewDetails();
+  };
+
   return (
-    <div className="tarjeta efecto-brillo">
+    <div className="tarjeta efecto-brillo" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
       <div className="tarjeta-imagen">
         {imagen_url ? (
           <img src={imagen_url} alt={nombre} />
@@ -185,19 +197,20 @@ const CarouselCardComponent = ({
               )}
             </button>
           </div>
-          
-          {/* Precios con Descuento */}
-          <div className="tarjeta-precios">
-            <span className="tarjeta-precio-actual">
-              ${discountedPrice.toFixed(2)}
-            </span>
-            {descuento > 0 && (
-              <span className="tarjeta-precio-anterior">
-                ${numPrice.toFixed(2)}
-              </span>
-            )}
-          </div>
         </div>
+        
+        {/* Precios con Descuento - Movido fuera de tarjeta-info */}
+        <div className="tarjeta-precios">
+          <span className="tarjeta-precio-actual">
+            ${discountedPrice.toFixed(2)}
+          </span>
+          {descuento > 0 && (
+            <span className="tarjeta-precio-anterior">
+              ${numPrice.toFixed(2)}
+            </span>
+          )}
+        </div>
+        
         <div className="tarjeta-botones">
           <Button 
             variant="outline"

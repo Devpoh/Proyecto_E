@@ -22,10 +22,13 @@ interface BottomCarouselProps {
 
 export const BottomCarousel = ({ productos }: BottomCarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const autoPlayTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMouseOverButtonRef = useRef(false);
+  const touchStartXRef = useRef(0);
+  const touchEndXRef = useRef(0);
 
   // Duplicar productos para efecto infinito sin saltos
   const displayProducts = productos?.filter(p => p.en_carousel_card !== false) || [];
@@ -131,6 +134,31 @@ export const BottomCarousel = ({ productos }: BottomCarouselProps) => {
     }
   };
 
+  // Manejo de swipe en móviles
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndXRef.current = e.changedTouches[0].screenX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const swipeThreshold = 50; // Mínimo de píxeles para detectar swipe
+    const diff = touchStartXRef.current - touchEndXRef.current;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swipe izquierda = desplazar derecha
+        handleScroll('right');
+      } else {
+        // Swipe derecha = desplazar izquierda
+        handleScroll('left');
+      }
+    }
+  };
+
   // Limpiar timeout al desmontar
   useEffect(() => {
     return () => {
@@ -161,7 +189,12 @@ export const BottomCarousel = ({ productos }: BottomCarouselProps) => {
           <MdChevronLeft size={28} />
         </button>
 
-        <div className="carrusel-container">
+        <div 
+          className="carrusel-container"
+          ref={containerRef}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
           {/* Difuminado izquierdo */}
           <div className="carrusel-fade carrusel-fade-left" />
           

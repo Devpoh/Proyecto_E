@@ -23,6 +23,7 @@ interface AllProductsProps {
 }
 
 const PRODUCTS_PER_PAGE = 8; // 4 columnas × 2 filas
+const PRODUCTS_PER_PAGE_MOBILE = 5; // 1 columna × 5 filas en móviles
 
 export const AllProducts: React.FC<AllProductsProps> = ({
   products,
@@ -30,26 +31,40 @@ export const AllProducts: React.FC<AllProductsProps> = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [displayedProducts, setDisplayedProducts] = useState<ProductCard[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
   
   // Obtener todos los IDs de productos para verificar favoritos en batch
   const productIds = products.map(p => Number(p.id));
   const { favoritos } = useFavoritosBatch(productIds);
 
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     // Filtrar productos por en_all_products
     const filteredProducts = products.filter(p => p.en_all_products !== false);
-    // Mostrar inicialmente 8 productos, o todos si hay menos
-    const initialCount = Math.min(PRODUCTS_PER_PAGE, filteredProducts.length);
+    // Mostrar 5 productos en móvil, 8 en desktop
+    const productsToShow = isMobile ? PRODUCTS_PER_PAGE_MOBILE : PRODUCTS_PER_PAGE;
+    const initialCount = Math.min(productsToShow, filteredProducts.length);
     setDisplayedProducts(filteredProducts.slice(0, initialCount));
-  }, [products]);
+  }, [products, isMobile]);
 
   const handleToggleExpand = () => {
     if (isExpanded) {
-      // Contraer: mostrar solo 8 productos
+      // Contraer: mostrar 5 productos en móvil, 8 en desktop
       const filteredProducts = products.filter(p => p.en_all_products !== false);
+      const productsToShow = isMobile ? PRODUCTS_PER_PAGE_MOBILE : PRODUCTS_PER_PAGE;
       setIsExpanded(false);
       setTimeout(() => {
-        setDisplayedProducts(filteredProducts.slice(0, PRODUCTS_PER_PAGE));
+        setDisplayedProducts(filteredProducts.slice(0, productsToShow));
       }, 400);
     } else {
       // Expandir: mostrar todos los productos filtrados
@@ -75,7 +90,8 @@ export const AllProducts: React.FC<AllProductsProps> = ({
     return null;
   }
 
-  const hasMoreProducts = products.length > PRODUCTS_PER_PAGE; // Mostrar botón si hay más de 8
+  const productsToShow = isMobile ? PRODUCTS_PER_PAGE_MOBILE : PRODUCTS_PER_PAGE;
+  const hasMoreProducts = products.length > productsToShow; // Mostrar botón si hay más productos
 
   return (
     <section className="all-products-section">
@@ -88,11 +104,12 @@ export const AllProducts: React.FC<AllProductsProps> = ({
         {/* Grid de productos */}
         <div className={`all-products-grid ${isExpanded ? 'all-products-grid--expanded' : ''}`}>
           {displayedProducts.map((product, index) => {
-            const isNewProduct = index >= PRODUCTS_PER_PAGE;
+            const productsToShow = isMobile ? PRODUCTS_PER_PAGE_MOBILE : PRODUCTS_PER_PAGE;
+            const isNewProduct = index >= productsToShow;
             const animationStyle = isNewProduct
               ? isExpanded
-                ? `slideInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${(index - PRODUCTS_PER_PAGE) * 0.05}s both`
-                : `slideOutDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${(index - PRODUCTS_PER_PAGE) * 0.03}s both`
+                ? `slideInUp 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${(index - productsToShow) * 0.05}s both`
+                : `slideOutDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${(index - productsToShow) * 0.03}s both`
               : 'none';
             
             return (

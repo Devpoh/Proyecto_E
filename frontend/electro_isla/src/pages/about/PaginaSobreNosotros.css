@@ -158,14 +158,23 @@
 
 .proceso-pasos {
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 240px));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--espaciado-2xl);
   margin-bottom: var(--espaciado-md);
   position: relative;
   justify-content: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.paso-card {
+/* ═══ TARJETAS UNIFICADAS ═══ */
+.paso-card,
+.beneficio-card,
+.metodo-card,
+.seguridad-card,
+.garantia-card,
+.envio-card {
   position: relative;
   background: var(--color-blanco);
   border-radius: var(--radio-borde-lg);
@@ -180,13 +189,23 @@
   justify-content: center;
 }
 
-.paso-card:hover {
+.paso-card:hover,
+.beneficio-card:hover,
+.metodo-card:hover,
+.seguridad-card:hover,
+.garantia-card:hover,
+.envio-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 40px rgba(255, 187, 0, 0.2);
   border-color: var(--color-primario);
 }
 
-.paso-icono {
+.paso-icono,
+.beneficio-icono,
+.metodo-icono,
+.seguridad-icono,
+.garantia-icono,
+.envio-icono {
   margin: 0 auto var(--espaciado-sm);
   display: flex;
   align-items: center;
@@ -220,14 +239,24 @@
   }
 }
 
-.paso-titulo {
+.paso-titulo,
+.beneficio-titulo,
+.metodo-titulo,
+.seguridad-titulo,
+.garantia-titulo,
+.envio-titulo {
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-azul-marino);
   margin-bottom: var(--espaciado-xs);
 }
 
-.paso-descripcion {
+.paso-descripcion,
+.beneficio-descripcion,
+.metodo-descripcion,
+.seguridad-descripcion,
+.garantia-descripcion,
+.envio-descripcion {
   font-size: 0.85rem;
   line-height: 1.4;
   color: var(--color-texto-secundario);
@@ -239,52 +268,13 @@
 
 .beneficios-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 240px));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--espaciado-2xl);
   margin-top: 0;
   justify-content: center;
-}
-
-.beneficio-card {
-  background: var(--color-blanco);
-  border-radius: var(--radio-borde-lg);
-  padding: var(--espaciado-lg) var(--espaciado-md);
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: all var(--transicion-normal);
-  border: 2px solid transparent;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.beneficio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(255, 187, 0, 0.2);
-  border-color: var(--color-primario);
-}
-
-.beneficio-icono {
-  margin: 0 auto var(--espaciado-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-primario) !important;
-  font-size: 2rem;
-}
-
-.beneficio-titulo {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-azul-marino);
-  margin-bottom: var(--espaciado-xs);
-}
-
-.beneficio-descripcion {
-  font-size: 0.85rem;
-  line-height: 1.4;
-  color: var(--color-texto-secundario);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════════
@@ -306,6 +296,82 @@
    RESPONSIVE DESIGN
    ═══════════════════════════════════════════════════════════════════════════════ */
 
+@media (max-width: 1023px) {
+  .proceso-pasos,
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+    gap: var(--espaciado-md);
+  }
+
+  .metodos-grid,
+  .seguridad-grid,
+  .garantia-grid,
+  .envio-grid {
+    grid-template-columns: 1fr;
+    gap: var(--espaciado-md);
+  }
+
+  .seccion-layout,
+  .seccion-layout-invertida {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-lg);
+  }
+
+  .paso-card,
+  .beneficio-card,
+  .metodo-card,
+  .seguridad-card,
+  .garantia-card,
+  .envio-card {
+    padding: var(--espaciado-md);
+    min-height: auto;
+  }
+
+  /* Reorganizar secciones de abajo - Cambiar a columna */
+  .metodos-pago-section .seccion-layout,
+  .seguridad-section .seccion-layout,
+  .garantia-section .seccion-layout,
+  .envio-section .seccion-layout,
+  .metodos-pago-section .seccion-layout-invertida,
+  .seguridad-section .seccion-layout-invertida,
+  .garantia-section .seccion-layout-invertida,
+  .envio-section .seccion-layout-invertida {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: var(--espaciado-lg);
+  }
+
+  /* Imagen siempre debajo del contenido (que incluye el título) */
+  .metodos-pago-section .seccion-imagen,
+  .seguridad-section .seccion-imagen,
+  .garantia-section .seccion-imagen,
+  .envio-section .seccion-imagen {
+    order: 2;
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+  }
+
+  /* Contenido (título + descripción + tarjetas + destacado) arriba */
+  .metodos-pago-section .seccion-contenido,
+  .seguridad-section .seccion-contenido,
+  .garantia-section .seccion-contenido,
+  .envio-section .seccion-contenido {
+    order: 1;
+    width: 100%;
+  }
+
+  /* Grids de tarjetas - OCULTOS EN RESPONSIVE */
+  .metodos-pago-section .metodos-grid,
+  .seguridad-section .seguridad-grid,
+  .garantia-section .garantia-grid,
+  .envio-section .envio-grid {
+    display: none;
+  }
+
+}
+
 @media (max-width: 768px) {
   .hero-section {
     height: 100vh;
@@ -314,27 +380,21 @@
   }
 
   .hero-content {
-    padding: var(--espaciado-lg);
+    padding: var(--espaciado-md);
+  }
+
+  .hero-titulo {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .hero-descripcion {
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   }
 
   .como-trabajamos-section {
     padding: var(--espaciado-md);
   }
 
-  .proceso-pasos {
-    grid-template-columns: 1fr;
-    gap: var(--espaciado-md);
-  }
-
-  .beneficios-grid {
-    grid-template-columns: 1fr;
-    gap: var(--espaciado-md);
-  }
-
-  .paso-card,
-  .beneficio-card {
-    padding: var(--espaciado-md);
-  }
 }
 
 @media (max-width: 480px) {
@@ -343,16 +403,102 @@
     min-height: 100vh;
   }
 
+  .hero-titulo {
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  }
+
+  .hero-descripcion {
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+  }
+
   .section-header {
     margin-bottom: var(--espaciado-md);
   }
 
   .section-title {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
   }
 
   .section-description {
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  }
+
+  .paso-titulo,
+  .beneficio-titulo,
+  .metodo-titulo,
+  .seguridad-titulo,
+  .garantia-titulo,
+  .envio-titulo {
     font-size: 0.9rem;
+  }
+
+  .paso-descripcion,
+  .beneficio-descripcion,
+  .metodo-descripcion,
+  .seguridad-descripcion,
+  .garantia-descripcion,
+  .envio-descripcion {
+    font-size: 0.8rem;
+  }
+
+  .paso-icono,
+  .beneficio-icono,
+  .metodo-icono,
+  .seguridad-icono,
+  .garantia-icono,
+  .envio-icono {
+    font-size: 1.5rem;
+  }
+
+  .seccion-imagen {
+    height: clamp(200px, 60vw, 300px);
+  }
+}
+
+@media (max-width: 565px) {
+  .container {
+    padding: 0 var(--espaciado-sm);
+  }
+
+  .metodos-pago-section,
+  .seguridad-section,
+  .garantia-section,
+  .envio-section {
+    padding: var(--espaciado-md) var(--espaciado-sm);
+  }
+
+  .metodos-grid,
+  .seguridad-grid,
+  .garantia-grid,
+  .envio-grid {
+    gap: var(--espaciado-md);
+  }
+
+  .metodo-card,
+  .seguridad-card,
+  .garantia-card,
+  .envio-card {
+    padding: var(--espaciado-md) 0;
+  }
+
+  .metodos-destacado,
+  .seguridad-destacado,
+  .garantia-destacado,
+  .envio-destacado {
+    padding: var(--espaciado-md);
+    font-size: 0.8rem;
+  }
+
+  .seccion-imagen {
+    height: clamp(150px, 50vw, 250px);
+  }
+
+  .section-title {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+  }
+
+  .section-description {
+    font-size: clamp(0.8rem, 1.3vw, 0.9rem);
   }
 }
 
@@ -369,7 +515,7 @@
   min-height: auto;
   display: flex;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .metodos-pago-section {
@@ -385,72 +531,26 @@
 .garantia-grid,
 .envio-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(200px, 240px));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--espaciado-2xl);
   margin-bottom: var(--espaciado-lg);
   justify-content: center;
   justify-items: center;
   width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* Estilos específicos para tarjetas de métodos de pago */
 .metodo-card,
 .seguridad-card,
 .garantia-card,
 .envio-card {
-  background: var(--color-blanco);
-  border-radius: var(--radio-borde-lg);
-  padding: var(--espaciado-lg) var(--espaciado-md);
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  transition: all var(--transicion-normal);
-  border: 2px solid transparent;
   min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 240px;
-}
-
-.metodo-card:hover,
-.seguridad-card:hover,
-.garantia-card:hover,
-.envio-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(255, 187, 0, 0.2);
-  border-color: var(--color-primario);
-}
-
-.metodo-icono,
-.seguridad-icono,
-.garantia-icono,
-.envio-icono {
-  margin: 0 auto var(--espaciado-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-primario) !important;
-  font-size: 2rem;
-}
-
-.metodo-titulo,
-.seguridad-titulo,
-.garantia-titulo,
-.envio-titulo {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--color-azul-marino);
-  margin-bottom: var(--espaciado-xs);
-}
-
-.metodo-descripcion,
-.seguridad-descripcion,
-.garantia-descripcion,
-.envio-descripcion {
-  font-size: 0.85rem;
-  line-height: 1.4;
-  color: var(--color-texto-secundario);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .metodos-destacado,
@@ -497,19 +597,19 @@
   overflow: hidden;
   border-radius: var(--radio-borde-lg);
   width: 100%;
-  height: 480px !important;
-  max-height: 480px !important;
-  min-height: 480px !important;
+  height: auto;
+  max-height: 480px;
 }
 
 .seccion-imagen img {
   width: 100%;
-  height: 480px !important;
-  max-height: 480px !important;
+  height: auto;
+  max-height: 480px;
   object-fit: cover;
   border-radius: var(--radio-borde-lg);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
 }
 
 .seccion-imagen:hover img {
@@ -517,46 +617,33 @@
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive para grids adicionales */
-@media (max-width: 768px) {
-  .metodos-grid,
-  .seguridad-grid,
-  .garantia-grid,
-  .envio-grid {
-    grid-template-columns: 1fr;
-    gap: var(--espaciado-md);
+@media (max-width: 375px) {
+  .hero-content {
+    padding: var(--espaciado-sm);
   }
 
+  .container {
+    padding: 0 var(--espaciado-sm);
+  }
+
+  .como-trabajamos-section,
+  .metodos-pago-section,
+  .seguridad-section,
+  .garantia-section,
+  .envio-section {
+    padding: var(--espaciado-sm);
+  }
+
+  .paso-card,
+  .beneficio-card,
   .metodo-card,
   .seguridad-card,
   .garantia-card,
   .envio-card {
-    padding: var(--espaciado-md);
+    padding: var(--espaciado-sm);
   }
 
-  .seccion-layout,
-  .seccion-layout-invertida {
-    grid-template-columns: 1fr;
-    gap: var(--espaciado-lg);
-  }
-
-  .seguridad-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .garantia-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .envio-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 480px) {
-  .seguridad-grid,
-  .garantia-grid,
-  .envio-grid {
-    grid-template-columns: 1fr;
+  .section-title::after {
+    display: none;
   }
 }

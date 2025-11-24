@@ -89,6 +89,15 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
     }, 250);
   };
 
+  const handleCardClick = (e: React.MouseEvent, productId: string | number) => {
+    // No navegar si se hace clic en botones
+    const target = e.target as HTMLElement;
+    if (target.closest('.product-card-actions')) {
+      return;
+    }
+    navigate(`/producto/${productId}`);
+  };
+
   if (carouselProducts.length === 0) {
     return <div className="product-carousel-empty">No hay productos disponibles</div>;
   }
@@ -130,7 +139,11 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
             key={currentProduct.id}
             className="product-carousel-slide product-carousel-slide--active"
           >
-            <div className="product-card">
+            <div 
+              className="product-card" 
+              onClick={(e) => handleCardClick(e, currentProduct.id)}
+              style={{ cursor: 'pointer' }}
+            >
               {/* Imagen */}
               <div className="product-card-image">
                 {productImage ? (
@@ -173,6 +186,14 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
                 {/* Botones */}
                 <div className="product-card-actions">
                   <Button
+                    variant="outline"
+                    size="md"
+                    leftIcon={<MdArticle size={18} />}
+                    onClick={() => navigate(`/producto/${currentProduct.id}`)}
+                  >
+                    Ver detalles
+                  </Button>
+                  <Button
                     variant={addedProductId === currentProduct.id ? "success" : "primary"}
                     size="md"
                     leftIcon={
@@ -190,15 +211,7 @@ export const ProductCarousel: React.FC<ProductCarouselProps> = ({
                     disabled={currentProduct.stock === 0}
                     style={addedProductId === currentProduct.id ? { pointerEvents: 'none' } : undefined}
                   >
-                    {currentProduct.stock === 0 ? 'Agotado!' : (addedProductId === currentProduct.id ? '¡AGREGADO!' : 'Agregar al Carrito')}
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="md"
-                    leftIcon={<MdArticle size={18} />}
-                    onClick={() => navigate(`/producto/${currentProduct.id}`)}
-                  >
-                    Ver detalles
+                    {currentProduct.stock === 0 ? 'Agotado!' : (addedProductId === currentProduct.id ? '¡AGREGADO!' : 'Agregar')}
                   </Button>
                 </div>
               </div>
