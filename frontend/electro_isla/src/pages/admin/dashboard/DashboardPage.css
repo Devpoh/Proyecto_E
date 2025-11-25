@@ -216,22 +216,240 @@
   font-size: var(--texto-xl);
 }
 
-/* ═══ RESPONSIVE ═══ */
+/* ═══════════════════════════════════════════════════════════════════════════════
+   📱 RESPONSIVE - MOBILE FIRST APPROACH
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .dashboard-page {
+    padding: 0 var(--espaciado-md);
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espaciado-md);
+  }
+
+  .dashboard-card {
+    padding: var(--espaciado-lg);
+  }
+
+  .dashboard-card-value {
+    font-size: var(--texto-3xl);
+  }
+}
+
+/* Tablets pequeñas y móviles grandes (768px y menos) */
 @media (max-width: 768px) {
+  .dashboard-page {
+    padding: 0 var(--espaciado-sm);
+  }
+
   .dashboard-stats {
     grid-template-columns: 1fr;
+    gap: var(--espaciado-md);
   }
 
   .dashboard-quick-actions {
     grid-template-columns: 1fr;
+    gap: var(--espaciado-sm);
   }
 
   .dashboard-title {
     font-size: var(--texto-2xl);
   }
 
+  .dashboard-subtitle {
+    font-size: var(--texto-sm);
+  }
+
+  .dashboard-card {
+    padding: var(--espaciado-lg);
+  }
+
   .dashboard-card-value {
     font-size: var(--texto-3xl);
+  }
+
+  .dashboard-card-header {
+    gap: var(--espaciado-sm);
+  }
+
+  .dashboard-card-icon-wrapper {
+    width: 40px;
+    height: 40px;
+  }
+
+  .dashboard-quick-action {
+    padding: var(--espaciado-md);
+  }
+}
+
+/* Móviles (480px y menos) */
+@media (max-width: 480px) {
+  .dashboard-page {
+    padding: 0 var(--espaciado-xs);
+  }
+
+  .dashboard-header {
+    margin-bottom: var(--espaciado-xl);
+  }
+
+  .dashboard-title {
+    font-size: var(--texto-xl);
+  }
+
+  .dashboard-subtitle {
+    font-size: var(--texto-xs);
+  }
+
+  .dashboard-stats {
+    gap: var(--espaciado-sm);
+    margin-bottom: var(--espaciado-xl);
+  }
+
+  .dashboard-card {
+    padding: var(--espaciado-md);
+  }
+
+  .dashboard-card-value {
+    font-size: var(--texto-2xl);
+  }
+
+  .dashboard-card-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .dashboard-card-icon {
+    font-size: var(--texto-lg);
+  }
+
+  .dashboard-card-title {
+    font-size: var(--texto-xs);
+  }
+
+  .dashboard-card-subtitle {
+    font-size: var(--texto-xs);
+  }
+
+  .dashboard-quick-action {
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    font-size: var(--texto-sm);
+  }
+
+  .dashboard-quick-action svg {
+    font-size: var(--texto-lg);
+  }
+
+  .dashboard-section-title {
+    font-size: var(--texto-lg);
+  }
+}
+
+/* Móviles muy pequeños (360px y menos) */
+@media (max-width: 360px) {
+  .dashboard-page {
+    padding: 0 0.5rem;
+  }
+
+  .dashboard-stats {
+    gap: 0.75rem;
+  }
+
+  .dashboard-card {
+    padding: 0.875rem;
+  }
+
+  .dashboard-card-value {
+    font-size: var(--texto-xl);
+  }
+
+  .dashboard-card-header {
+    gap: 0.5rem;
+  }
+
+  .dashboard-card-icon-wrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dashboard-title {
+    font-size: var(--texto-lg);
+  }
+
+  .dashboard-quick-action {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Pantallas muy grandes (1440px+) */
+@media (min-width: 1440px) {
+  .dashboard-page {
+    max-width: 1600px;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--espaciado-xl);
+  }
+
+  .dashboard-card {
+    padding: var(--espaciado-2xl);
+  }
+
+  .dashboard-quick-actions {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/* Orientación landscape en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-page {
+    padding: 0 var(--espaciado-sm);
+  }
+}
+
+/* Asegurar que no haya scroll horizontal */
+.dashboard-page,
+.dashboard-stats,
+.dashboard-quick-actions {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Contención de elementos en grid */
+.dashboard-card,
+.dashboard-quick-action {
+  min-width: 0;
+}
+
+/* Textos responsive */
+.dashboard-card-title,
+.dashboard-card-subtitle,
+.dashboard-card-trend,
+.dashboard-quick-action {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-card,
+  .dashboard-quick-action {
+    transition: none;
+  }
+  
+  @keyframes shimmer {
+    0%, 100% {
+      background-position: 0 0;
+    }
   }
 }
 

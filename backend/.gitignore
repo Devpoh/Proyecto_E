@@ -1,0 +1,76 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🔒 GITIGNORE - Backend Django
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ═══ ARCHIVOS SENSIBLES ═══
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+
+# ═══ PYTHON ═══
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ═══ DJANGO ═══
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+/staticfiles/
+/media/
+
+# ═══ VIRTUAL ENVIRONMENT ═══
+venv/
+ENV/
+env/
+.venv
+
+# ═══ IDE ═══
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ═══ TESTING ═══
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# ═══ CELERY ═══
+celerybeat-schedule
+celerybeat.pid
+
+# ═══ LOGS ═══
+logs/
+*.log
+
+# ═══ OS ═══
+.DS_Store
+Thumbs.db

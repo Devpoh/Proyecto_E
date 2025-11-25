@@ -673,3 +673,65 @@
 [INFO] 2025-11-24 14:46:01 auth 13132 9772 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
 [INFO] 2025-11-24 14:58:35 auth 13132 22572 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
 [INFO] 2025-11-24 15:01:08 auth 13132 11384 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:22:31 auth 13132 8948 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:22:38 auth 13132 13700 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:23:27 auth 13132 13700 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:27:21 auth 13132 29100 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:31:33 auth 13132 23916 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:36:01 auth 13132 26404 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:40:51 auth 13132 19664 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:41:16 auth 13132 19208 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 2
+[INFO] 2025-11-24 15:41:16 auth 13132 19208 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 15:41:16 auth 13132 19208 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 16:02:58 auth 13132 18284 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 16:07:32 auth 13132 17536 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 16:24:15 auth 13132 22156 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 16:26:56 auth 13132 9848 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 16:38:02 auth 13132 9160 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 2
+[INFO] 2025-11-24 16:38:02 auth 13132 9160 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 16:38:02 auth 13132 9160 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 16:38:24 auth 13132 23904 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-24 16:40:09 auth 13132 30320 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 16:46:22 auth 13132 20120 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:05:58 auth 13132 15732 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:14:47 auth 13132 18240 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:29:34 auth 13132 5100 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 17:29:51 auth 13132 21328 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:32:57 auth 13132 12620 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:34:06 auth 13132 19668 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 2
+[INFO] 2025-11-24 17:34:06 auth 13132 19668 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:34:06 auth 13132 19668 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:34:10 auth 13132 19668 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 17:34:29 auth 13132 9100 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 1
+[INFO] 2025-11-24 17:34:29 auth 13132 9100 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:34:29 auth 13132 9100 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:34:36 auth 13132 29420 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-24 17:36:02 auth 13132 21720 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 17:37:35 auth 13132 26320 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 17:37:40 auth 13132 26320 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 17:38:30 auth 13132 27152 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 0
+[INFO] 2025-11-24 17:38:30 auth 13132 27152 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:38:30 auth 13132 27152 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 17:42:07 auth 13132 8864 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-24 17:48:09 auth 13132 18404 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 17:57:24 auth 13132 17728 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 17:57:38 auth 13132 30028 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-24 18:05:52 auth 13132 16808 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 18:05:55 auth 13132 16808 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-24 18:05:58 auth 13132 16808 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 0
+[INFO] 2025-11-24 18:05:58 auth 13132 16808 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 18:05:58 auth 13132 16808 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-24 18:06:08 auth 13132 16808 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-24 18:09:47 auth 13132 1000 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 18:13:31 auth 13132 22560 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 18:13:38 auth 13132 4800 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-24 18:19:29 auth 13132 18720 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 18:19:37 auth 13132 21764 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-24 19:19:18 auth 13132 8680 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 19:37:42 auth 13132 9352 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-24 19:38:00 auth 13132 22884 [TOKEN_REFRESH] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-25 09:44:45 auth 15276 23516 [LOGIN_SUCCESS] Usuario: hola | Email: e.s.pi.al.ei.la.n.i@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-25 09:45:28 auth 15276 16188 [TOKEN_REFRESH] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-25 09:46:13 auth 15276 11728 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 1
+[INFO] 2025-11-25 09:46:13 auth 15276 11728 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-25 09:46:13 auth 15276 11728 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1

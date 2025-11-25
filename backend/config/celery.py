@@ -48,6 +48,11 @@ app.conf.beat_schedule = {
         'task': 'api.tasks.limpiar_tokens_expirados',
         'schedule': crontab(minute=0),  # Cada hora
     },
+    # Limpiar códigos de verificación expirados cada 6 horas
+    'limpiar-codigos-verificacion': {
+        'task': 'api.tasks.limpiar_codigos_verificacion',
+        'schedule': crontab(hour='*/6'),  # Cada 6 horas
+    },
 }
 
 # ✅ Configuración para Windows - CRÍTICA

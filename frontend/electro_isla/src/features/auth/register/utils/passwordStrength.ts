@@ -23,134 +23,127 @@ const COMMON_PASSWORDS = [
 ];
 
 /**
- * Calcula la fortaleza de una contraseña
+ * Calcula la fortaleza de una contraseña con algoritmo balanceado
  */
 export const calculatePasswordStrength = (password: string): PasswordStrength => {
   if (!password) {
     return {
       score: 0,
       label: 'Muy débil',
-      color: 'var(--color-peligro)',
+      color: '#ef4444',
       percentage: 0,
-      suggestions: ['Ingresa una contraseña'],
+      suggestions: [],
     };
   }
 
-  let score = 0;
+  let points = 0;
   const suggestions: string[] = [];
+  const length = password.length;
 
-  // 1. Longitud (máximo 2 puntos)
-  if (password.length >= 12) {
-    score += 2;
-  } else if (password.length >= 8) {
-    score += 1;
-    suggestions.push('Usa al menos 12 caracteres para mayor seguridad');
+  // 1. LONGITUD - Progresivo (0-40 puntos)
+  if (length <= 4) {
+    points += length * 3; // 3, 6, 9, 12
+  } else if (length <= 7) {
+    points += 12 + (length - 4) * 4; // 16, 20, 24, 28
+  } else if (length <= 11) {
+    points += 28 + (length - 7) * 2; // 30, 32, 34, 36, 38
   } else {
-    suggestions.push('La contraseña debe tener al menos 8 caracteres');
+    points += 40; // 12+ caracteres
   }
 
-  // 2. Mayúsculas (1 punto)
+  // 2. MAYÚSCULAS (0-10 puntos)
   const hasUpperCase = /[A-Z]/.test(password);
   if (hasUpperCase) {
-    score += 1;
-  } else {
-    suggestions.push('Falta: letra mayúscula');
+    const upperCount = (password.match(/[A-Z]/g) || []).length;
+    points += Math.min(10, upperCount * 5);
   }
 
-  // 3. Minúsculas (1 punto)
+  // 3. MINÚSCULAS (0-10 puntos)
   const hasLowerCase = /[a-z]/.test(password);
   if (hasLowerCase) {
-    score += 1;
-  } else {
-    suggestions.push('Falta: letra minúscula');
+    const lowerCount = (password.match(/[a-z]/g) || []).length;
+    points += Math.min(10, lowerCount * 2);
   }
 
-  // 4. Números (1 punto)
+  // 4. NÚMEROS (0-15 puntos)
   const hasNumber = /\d/.test(password);
   if (hasNumber) {
-    score += 1;
-  } else {
-    suggestions.push('Falta: número');
+    const numberCount = (password.match(/\d/g) || []).length;
+    points += Math.min(15, numberCount * 5);
   }
 
-  // 5. Caracteres especiales (1 punto)
+  // 5. CARACTERES ESPECIALES (0-20 puntos)
   const hasSpecialChar = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
   if (hasSpecialChar) {
-    score += 1;
-  } else {
-    suggestions.push('Falta: carácter especial (!@#$%^&*)');
+    const specialCount = (password.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []).length;
+    points += Math.min(20, specialCount * 10);
   }
 
-  // 6. Variedad de caracteres (1 punto)
+  // 6. VARIEDAD (0-5 puntos bonus)
   const uniqueChars = new Set(password).size;
-  if (uniqueChars >= password.length * 0.6) {
-    score += 1;
+  const varietyRatio = uniqueChars / length;
+  if (varietyRatio >= 0.7) {
+    points += 5;
+  } else if (varietyRatio >= 0.5) {
+    points += 3;
   }
 
-  // Penalizaciones (solo mostrar si hay problemas)
+  // PENALIZACIONES
   const lowerPassword = password.toLowerCase();
 
-  // Contraseñas comunes (-3 puntos)
-  if (COMMON_PASSWORDS.some(common => lowerPassword.includes(common))) {
-    score = Math.max(0, score - 3);
-    suggestions.unshift('Evita contraseñas comunes');
+  // Contraseñas comunes (-40 puntos)
+  if (COMMON_PASSWORDS.some(common => lowerPassword === common || lowerPassword.includes(common))) {
+    points = Math.max(0, points - 40);
   }
 
-  // Secuencias repetitivas (-1 punto)
+  // Secuencias repetitivas (-20 puntos)
   if (/(.)\1{2,}/.test(password)) {
-    score = Math.max(0, score - 1);
+    points = Math.max(0, points - 20);
   }
 
-  // Secuencias numéricas (-1 punto)
+  // Secuencias numéricas (-15 puntos)
   if (/(?:012|123|234|345|456|567|678|789|890)/.test(password)) {
-    score = Math.max(0, score - 1);
+    points = Math.max(0, points - 15);
   }
 
-  // Secuencias de teclado (-1 punto)
+  // Secuencias de teclado (-15 puntos)
   if (/(?:qwerty|asdfgh|zxcvbn)/i.test(password)) {
-    score = Math.max(0, score - 1);
+    points = Math.max(0, points - 15);
   }
 
-  // Normalizar score a 0-4
-  score = Math.min(4, Math.max(0, score));
+  // Solo letras o solo números (-10 puntos)
+  if (/^[a-zA-Z]+$/.test(password) || /^\d+$/.test(password)) {
+    points = Math.max(0, points - 10);
+  }
 
-  // Determinar label, color y porcentaje
+  // Normalizar a 0-100
+  const percentage = Math.min(100, Math.max(0, points));
+
+  // Determinar label y color basado en porcentaje
   let label: string;
   let color: string;
-  let percentage: number;
+  let score: number;
 
-  switch (score) {
-    case 0:
-    case 1:
-      label = 'Muy débil';
-      color = 'var(--color-peligro)';
-      percentage = 20;
-      break;
-    case 2:
-      label = 'Débil';
-      color = 'var(--color-advertencia)';
-      percentage = 40;
-      break;
-    case 3:
-      label = 'Aceptable';
-      color = 'var(--color-info)';
-      percentage = 60;
-      break;
-    case 4:
-      label = 'Fuerte';
-      color = 'var(--color-exito)';
-      percentage = 80;
-      break;
-    default:
-      label = 'Muy fuerte';
-      color = 'var(--color-exito)';
-      percentage = 100;
-  }
-
-  // Si cumple todos los criterios, es muy fuerte
-  if (score >= 4 && password.length >= 12 && suggestions.length === 0) {
+  if (percentage >= 85) {
     label = 'Muy fuerte';
-    percentage = 100;
+    color = '#10b981'; // Verde brillante
+    score = 5;
+  } else if (percentage >= 65) {
+    label = 'Fuerte';
+    color = '#22c55e'; // Verde
+    score = 4;
+  } else if (percentage >= 45) {
+    label = 'Aceptable';
+    color = '#3b82f6'; // Azul
+    score = 3;
+  } else if (percentage >= 25) {
+    label = 'Débil';
+    color = '#f59e0b'; // Naranja
+    score = 2;
+  } else {
+    label = 'Muy débil';
+    color = '#ef4444'; // Rojo
+    score = 1;
   }
 
   return {
@@ -158,6 +151,6 @@ export const calculatePasswordStrength = (password: string): PasswordStrength =>
     label,
     color,
     percentage,
-    suggestions: suggestions.slice(0, 3), // Máximo 3 sugerencias
+    suggestions,
   };
 };

@@ -8,6 +8,8 @@ Tareas que se ejecutan en segundo plano sin bloquear el servidor.
 Tareas:
 1. liberar_reservas_expiradas() - Libera stock de reservas vencidas
 2. limpiar_tokens_expirados() - Limpia tokens JWT expirados
+3. enviar_email_verificacion() - Envía email de verificación con código
+4. limpiar_codigos_verificacion() - Limpia códigos de verificación expirados
 """
 
 from celery import shared_task
@@ -138,5 +140,137 @@ def limpiar_tokens_expirados(self):
     
     except Exception as exc:
         logger.error(f'[LIMPIAR_TOKENS_ERROR] {str(exc)}')
+        # Reintentar con backoff exponencial
+        raise self.retry(exc=exc, countdown=60)
+
+
+@shared_task(bind=True, max_retries=3)
+def enviar_email_verificacion(self, usuario_id, codigo):
+    """
+    📧 TAREA: Enviar email de verificación
+    
+    Envía un email con el código de verificación de 6 dígitos.
+    Usa plantilla HTML profesional para mejor presentación.
+    
+    Args:
+        usuario_id: ID del usuario
+        codigo: Código de verificación de 6 dígitos
+    
+    Flujo:
+    1. Obtiene el usuario de la base de datos
+    2. Renderiza plantilla HTML con contexto
+    3. Envía el email usando Gmail SMTP (HTML + texto plano)
+    4. Registra el resultado en logs
+    
+    Seguridad:
+    - Reintentos automáticos (max 3)
+    - Logging detallado
+    - Manejo de excepciones
+    """
+    from django.core.mail import EmailMultiAlternatives
+    from django.contrib.auth.models import User
+    from django.conf import settings
+    from django.template.loader import render_to_string
+    
+    try:
+        # Obtener usuario
+        usuario = User.objects.get(id=usuario_id)
+        
+        # Contexto para la plantilla
+        context = {
+            'nombre': usuario.first_name or usuario.username,
+            'codigo': codigo,
+            'username': usuario.username,
+        }
+        
+        # Renderizar plantilla HTML
+        html_content = render_to_string('emails/verificacion_email.html', context)
+        
+        # Mensaje de texto plano (fallback)
+        text_content = f'''
+Hola {usuario.first_name or usuario.username},
+
+Tu código de verificación es: {codigo}
+
+Este código expira en 15 minutos.
+
+Si no solicitaste este código, ignora este email.
+
+Saludos,
+Equipo Electro Isla
+        '''
+        
+        # Crear email con HTML y texto plano
+        subject = 'Verifica tu cuenta - Electro Isla'
+        email = EmailMultiAlternatives(
+            subject=subject,
+            body=text_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[usuario.email]
+        )
+        email.attach_alternative(html_content, "text/html")
+        
+        # Enviar email
+        email.send(fail_silently=False)
+        
+        logger.info(f'[EMAIL_VERIFICACION] Enviado a {usuario.email} (HTML)')
+        return {
+            'status': 'success',
+            'email': usuario.email,
+            'usuario_id': usuario_id,
+            'format': 'html'
+        }
+    
+    except User.DoesNotExist:
+        logger.error(f'[EMAIL_ERROR] Usuario {usuario_id} no encontrado')
+        return {
+            'status': 'error',
+            'message': 'Usuario no encontrado'
+        }
+    
+    except Exception as exc:
+        logger.error(f'[EMAIL_ERROR] {str(exc)}')
+        # Reintentar con backoff exponencial (60 segundos)
+        raise self.retry(exc=exc, countdown=60)
+
+
+@shared_task(bind=True, max_retries=3)
+def limpiar_codigos_verificacion(self):
+    """
+    🔄 TAREA: Limpiar códigos de verificación expirados
+    
+    Ejecuta cada 6 horas (configurado en celery.py)
+    
+    Flujo:
+    1. Busca todos los códigos con expires_at < ahora y verificado=False
+    2. Los elimina de la base de datos
+    3. Retorna cantidad de códigos eliminados
+    
+    Nota: Los códigos de verificación expiran en 15 minutos, pero mantener
+    la base de datos limpia evita que crezca indefinidamente.
+    """
+    from .models import EmailVerification
+    
+    try:
+        ahora = timezone.now()
+        
+        # Buscar códigos expirados y no verificados
+        codigos_expirados = EmailVerification.objects.filter(
+            expires_at__lt=ahora,
+            verificado=False
+        )
+        
+        count = codigos_expirados.count()
+        codigos_expirados.delete()
+        
+        logger.info(f'[CODIGOS_LIMPIOS] Total eliminados: {count}')
+        return {
+            'status': 'success',
+            'codigos_eliminados': count,
+            'timestamp': ahora.isoformat()
+        }
+    
+    except Exception as exc:
+        logger.error(f'[LIMPIAR_CODIGOS_ERROR] {str(exc)}')
         # Reintentar con backoff exponencial
         raise self.retry(exc=exc, countdown=60)

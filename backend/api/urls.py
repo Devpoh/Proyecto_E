@@ -59,6 +59,9 @@ urlpatterns = [
     path('auth/csrf-token/', get_csrf_token, name='csrf-token'),
     path('auth/check-email/', check_email, name='check-email'),
     
+    # Rutas de verificación de email
+    path('auth/', include('api.urls_verificacion')),
+    
     # Rutas de favoritos
     path('favoritos/agregar/<int:producto_id>/', agregar_favorito, name='agregar-favorito'),
     path('favoritos/remover/<int:producto_id>/', remover_favorito, name='remover-favorito'),

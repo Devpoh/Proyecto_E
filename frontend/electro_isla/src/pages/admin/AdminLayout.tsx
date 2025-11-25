@@ -5,7 +5,7 @@
  */
 
 import { useState, useRef, useEffect } from 'react';
-import { Outlet, NavLink, Navigate, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { 
   FiHome, 
   FiPackage, 
@@ -13,7 +13,6 @@ import {
   FiShoppingBag, 
   FiBarChart2,
   FiMenu,
-  FiX,
   FiLogOut,
   FiChevronUp,
   FiClock
@@ -25,12 +24,39 @@ import './AdminLayout.css';
 export const AdminLayout = () => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+  const location = useLocation();
   
   // Scroll al top cuando cambia la ruta
   useScrollToTop();
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // Cerrado por defecto en móvil
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Detectar cambio de tamaño de pantalla
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        setSidebarOpen(true); // Abierto en desktop
+      } else {
+        setSidebarOpen(false); // Cerrado en móvil
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Ejecutar al montar
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Cerrar sidebar automáticamente al navegar en móvil
+  useEffect(() => {
+    if (isMobile) {
+      setSidebarOpen(false);
+    }
+  }, [location.pathname, isMobile]);
 
   // Cerrar menú al hacer click fuera
   useEffect(() => {
@@ -85,19 +111,41 @@ export const AdminLayout = () => {
 
   return (
     <div className="admin-layout">
-      {/* Sidebar */}
-      <aside className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
-        <div className="admin-sidebar-header">
-          <div className="admin-sidebar-logo">
-            <span className="admin-sidebar-logo-icon">⚡</span>
-            {sidebarOpen && <span className="admin-sidebar-logo-text">Admin Panel</span>}
-          </div>
+      {/* Mobile Header */}
+      {isMobile && (
+        <header className="admin-mobile-header">
           <button
-            className="admin-sidebar-toggle"
+            className="admin-mobile-menu-btn"
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            aria-label="Toggle sidebar"
+            aria-label="Toggle menu"
           >
-            {sidebarOpen ? <FiX /> : <FiMenu />}
+            <FiMenu />
+          </button>
+          <div className="admin-mobile-logo">
+            <span className="admin-mobile-logo-icon">⚡</span>
+            <span className="admin-mobile-logo-text">Admin Panel</span>
+          </div>
+        </header>
+      )}
+
+      {/* Overlay para móvil */}
+      {isMobile && sidebarOpen && (
+        <div 
+          className="admin-sidebar-overlay"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''} ${isMobile ? 'mobile' : ''}`}>
+        <div className="admin-sidebar-header">
+          <button 
+            className="admin-sidebar-logo"
+            onClick={handleGoHome}
+            aria-label="Ir a inicio"
+          >
+            <span className="admin-sidebar-logo-icon">⚡</span>
+            <span className="admin-sidebar-logo-text">Admin Panel</span>
           </button>
         </div>
 
@@ -112,51 +160,49 @@ export const AdminLayout = () => {
               }
             >
               <item.icon className="admin-sidebar-link-icon" />
-              {sidebarOpen && <span>{item.label}</span>}
+              <span>{item.label}</span>
             </NavLink>
           ))}
         </nav>
 
-        {sidebarOpen && (
-          <div className="admin-sidebar-footer" ref={userMenuRef}>
-            <button
-              className="admin-sidebar-user"
-              onClick={() => setUserMenuOpen(!userMenuOpen)}
-            >
-              <div className="admin-sidebar-user-avatar">
-                {user?.nombre?.charAt(0).toUpperCase() || 'U'}
-              </div>
-              <div className="admin-sidebar-user-info">
-                <p className="admin-sidebar-user-name">{user?.nombre}</p>
-                <p className="admin-sidebar-user-role">
-                  {user?.rol === 'admin' && 'Administrador'}
-                  {user?.rol === 'trabajador' && 'Trabajador'}
-                  {user?.rol === 'mensajero' && 'Mensajero'}
-                </p>
-              </div>
-              <FiChevronUp className={`admin-sidebar-user-chevron ${userMenuOpen ? 'open' : ''}`} />
-            </button>
+        <div className="admin-sidebar-footer" ref={userMenuRef}>
+          <button
+            className="admin-sidebar-user"
+            onClick={() => setUserMenuOpen(!userMenuOpen)}
+          >
+            <div className="admin-sidebar-user-avatar">
+              {user?.nombre?.charAt(0).toUpperCase() || 'U'}
+            </div>
+            <div className="admin-sidebar-user-info">
+              <p className="admin-sidebar-user-name">{user?.nombre}</p>
+              <p className="admin-sidebar-user-role">
+                {user?.rol === 'admin' && 'Administrador'}
+                {user?.rol === 'trabajador' && 'Trabajador'}
+                {user?.rol === 'mensajero' && 'Mensajero'}
+              </p>
+            </div>
+            <FiChevronUp className={`admin-sidebar-user-chevron ${userMenuOpen ? 'open' : ''}`} />
+          </button>
 
-            {userMenuOpen && (
-              <div className="admin-sidebar-user-menu">
-                <button
-                  className="admin-sidebar-user-menu-item"
-                  onClick={handleGoHome}
-                >
-                  <FiHome />
-                  <span>Ir a Inicio</span>
-                </button>
-                <button
-                  className="admin-sidebar-user-menu-item admin-sidebar-user-menu-item-logout"
-                  onClick={handleLogout}
-                >
-                  <FiLogOut />
-                  <span>Cerrar Sesión</span>
-                </button>
-              </div>
-            )}
-          </div>
-        )}
+          {userMenuOpen && (
+            <div className="admin-sidebar-user-menu">
+              <button
+                className="admin-sidebar-user-menu-item"
+                onClick={handleGoHome}
+              >
+                <FiHome />
+                <span>Ir a Inicio</span>
+              </button>
+              <button
+                className="admin-sidebar-user-menu-item admin-sidebar-user-menu-item-logout"
+                onClick={handleLogout}
+              >
+                <FiLogOut />
+                <span>Cerrar Sesión</span>
+              </button>
+            </div>
+          )}
+        </div>
       </aside>
 
       {/* Main Content */}

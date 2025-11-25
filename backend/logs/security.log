@@ -14155,3 +14155,12 @@ RuntimeError: You called this URL via POST, but the URL doesn't end in a slash a
 [WARNING] 2025-11-24 00:45:36 django.request 28576 11960 Unauthorized: /api/carrito/agregar/
 [WARNING] 2025-11-24 13:58:49 security 21080 26980 [REFRESH_FAILED] Refresh token no encontrado en cookie
 [WARNING] 2025-11-24 13:58:49 django.request 21080 26980 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-24 16:02:45 security 13132 20672 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-24 16:02:45 django.request 13132 20672 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-24 19:37:39 django.request 13132 21660 Unauthorized: /api/favoritos/verificar-batch/
+[WARNING] 2025-11-24 19:37:39 django.request 13132 3540 Unauthorized: /api/favoritos/verificar-batch/
+[WARNING] 2025-11-24 19:37:39 django.request 13132 21660 Unauthorized: /api/favoritos/verificar-batch/
+[WARNING] 2025-11-24 19:37:39 django.request 13132 21660 Unauthorized: /api/favoritos/verificar-batch/
+[WARNING] 2025-11-24 19:37:39 django.request 13132 21660 Unauthorized: /api/carrito/
+[WARNING] 2025-11-25 09:42:59 security 15276 23340 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 09:42:59 django.request 15276 23340 Unauthorized: /api/auth/refresh/

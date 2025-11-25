@@ -13,6 +13,7 @@
 @media (max-width: 768px) {
   .estadisticas-page {
     padding: 0 var(--espaciado-sm);
+    padding-bottom: calc(var(--espaciado-sm) * 4);
   }
 }
 

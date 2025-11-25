@@ -39,17 +39,6 @@ export const PasswordStrengthMeter = ({ strength, show }: PasswordStrengthMeterP
           {strength.percentage}%
         </span>
       </div>
-
-      {/* Sugerencias */}
-      {strength.suggestions.length > 0 && (
-        <ul className="password-strength-suggestions">
-          {strength.suggestions.map((suggestion, index) => (
-            <li key={index} className="password-strength-suggestion">
-              {suggestion}
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 };

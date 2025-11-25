@@ -1054,3 +1054,155 @@ class Favorito(models.Model):
     
     def __str__(self):
         return f'{self.usuario.username} - {self.producto.nombre}'
+
+
+class EmailVerification(models.Model):
+    """
+    Modelo para verificación de email con código de 6 dígitos.
+    Incluye protección contra fuerza bruta y límite de reenvíos.
+    """
+    
+    usuario = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='email_verifications'
+    )
+    
+    # Código de verificación de 6 dígitos
+    codigo = models.CharField(max_length=6, db_index=True)
+    
+    # Control de tiempo
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    
+    # Estado de verificación
+    verificado = models.BooleanField(default=False)
+    verificado_at = models.DateTimeField(null=True, blank=True)
+    
+    # Protección contra fuerza bruta
+    intentos_fallidos = models.IntegerField(default=0)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    
+    # Control de reenvíos
+    ultimo_reenvio = models.DateTimeField(null=True, blank=True)
+    contador_reenvios = models.IntegerField(default=0)
+    
+    class Meta:
+        db_table = 'email_verifications'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['usuario', '-created_at']),
+            models.Index(fields=['codigo', 'expires_at']),
+        ]
+    
+    def __str__(self):
+        status = 'Verificado' if self.verificado else 'Pendiente'
+        return f'EmailVerification para {self.usuario.username} - {status}'
+    
+    @staticmethod
+    def generar_codigo():
+        """Genera un código de 6 dígitos aleatorio"""
+        return ''.join([str(secrets.randbelow(10)) for _ in range(6)])
+    
+    def is_valid(self):
+        """Verifica si el código es válido (no expirado y no verificado)"""
+        if self.verificado:
+            return False
+        if timezone.now() > self.expires_at:
+            return False
+        return True
+    
+    def marcar_verificado(self):
+        """Marca el código como verificado"""
+        self.verificado = True
+        self.verificado_at = timezone.now()
+        self.save()
+    
+    def incrementar_intentos(self):
+        """Incrementa el contador de intentos fallidos"""
+        self.intentos_fallidos += 1
+        self.save(update_fields=['intentos_fallidos'])
+    
+    def puede_reenviar(self, minutos_espera=2):
+        """
+        Verifica si se puede reenviar un nuevo código.
+        Por defecto requiere esperar 2 minutos entre reenvíos.
+        """
+        if self.ultimo_reenvio is None:
+            return True
+        
+        tiempo_transcurrido = timezone.now() - self.ultimo_reenvio
+        return tiempo_transcurrido.total_seconds() >= (minutos_espera * 60)
+    
+    def marcar_reenvio(self):
+        """Marca que se ha reenviado un código"""
+        self.ultimo_reenvio = timezone.now()
+        self.contador_reenvios += 1
+        self.save(update_fields=['ultimo_reenvio', 'contador_reenvios'])
+    
+    @classmethod
+    def crear_codigo(cls, usuario, duracion_minutos=15, ip_address=None):
+        """
+        Crea un nuevo código de verificación para un usuario.
+        Retorna el objeto EmailVerification creado.
+        
+        Args:
+            usuario: Usuario para el cual crear el código
+            duracion_minutos: Duración del código en minutos (por defecto 15)
+            ip_address: Dirección IP del usuario
+        """
+        codigo = cls.generar_codigo()
+        expires_at = timezone.now() + timedelta(minutes=duracion_minutos)
+        
+        verificacion = cls.objects.create(
+            usuario=usuario,
+            codigo=codigo,
+            expires_at=expires_at,
+            ip_address=ip_address
+        )
+        
+        return verificacion
+    
+    @classmethod
+    def verificar_codigo(cls, usuario, codigo):
+        """
+        Verifica un código de verificación.
+        Retorna el objeto EmailVerification si es válido, None si no.
+        """
+        try:
+            verificacion = cls.objects.filter(
+                usuario=usuario,
+                codigo=codigo,
+                verificado=False
+            ).order_by('-created_at').first()
+            
+            if verificacion is None:
+                return None
+            
+            if not verificacion.is_valid():
+                return None
+            
+            return verificacion
+        except cls.DoesNotExist:
+            return None
+    
+    @classmethod
+    def limpiar_codigos_expirados(cls):
+        """Elimina códigos expirados de la base de datos"""
+        codigos_expirados = cls.objects.filter(
+            expires_at__lt=timezone.now(),
+            verificado=False
+        )
+        count = codigos_expirados.count()
+        codigos_expirados.delete()
+        return count
+    
+    @classmethod
+    def invalidar_codigos_usuario(cls, usuario):
+        """Invalida todos los códigos pendientes de un usuario"""
+        codigos = cls.objects.filter(usuario=usuario, verificado=False)
+        count = codigos.update(
+            verificado=True,
+            verificado_at=timezone.now()
+        )
+        return count

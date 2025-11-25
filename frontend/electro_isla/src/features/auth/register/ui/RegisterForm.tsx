@@ -38,8 +38,6 @@ export const RegisterForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // Errores de validación
   const [errors, setErrors] = useState<ValidationErrors>({});
@@ -307,32 +305,21 @@ export const RegisterForm = () => {
             <label htmlFor="password" className="register-form-label">
               Contraseña <span className="register-form-required">*</span>
             </label>
-            <div className="register-form-password-wrapper">
-              <input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onBlur={() => handleBlur('password')}
-                onPaste={handlePasswordPaste}
-                onCopy={handlePasswordCopy}
-                className={`register-form-input ${
-                  errors.password && touched.password ? 'register-form-input-error' : ''
-                }`}
-                placeholder="••••••••"
-                disabled={isLoading}
-                autoComplete="new-password"
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="register-form-password-toggle"
-                aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
-                disabled={isLoading}
-              >
-                {showPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
-            </div>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onBlur={() => handleBlur('password')}
+              onPaste={handlePasswordPaste}
+              onCopy={handlePasswordCopy}
+              className={`register-form-input ${
+                errors.password && touched.password ? 'register-form-input-error' : ''
+              }`}
+              placeholder="Password"
+              disabled={isLoading}
+              autoComplete="new-password"
+            />
             {errors.password && touched.password && (
               <span className="register-form-field-error">{errors.password}</span>
             )}
@@ -349,36 +336,23 @@ export const RegisterForm = () => {
             <label htmlFor="confirmPassword" className="register-form-label">
               Confirmar Contraseña <span className="register-form-required">*</span>
             </label>
-            <div className="register-form-password-wrapper">
-              <input
-                id="confirmPassword"
-                type={showConfirmPassword ? 'text' : 'password'}
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                onBlur={() => handleBlur('confirmPassword')}
-                onPaste={handlePasswordPaste}
-                onCopy={handlePasswordCopy}
-                className={`register-form-input ${
-                  errors.confirmPassword && touched.confirmPassword
-                    ? 'register-form-input-error'
-                    : ''
-                }`}
-                placeholder="••••••••"
-                disabled={isLoading}
-                autoComplete="new-password"
-              />
-              <button
-                type="button"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="register-form-password-toggle"
-                aria-label={
-                  showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
-                }
-                disabled={isLoading}
-              >
-                {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
-              </button>
-            </div>
+            <input
+              id="confirmPassword"
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              onBlur={() => handleBlur('confirmPassword')}
+              onPaste={handlePasswordPaste}
+              onCopy={handlePasswordCopy}
+              className={`register-form-input ${
+                errors.confirmPassword && touched.confirmPassword
+                  ? 'register-form-input-error'
+                  : ''
+              }`}
+              placeholder="Confirm Password"
+              disabled={isLoading}
+              autoComplete="new-password"
+            />
             {errors.confirmPassword && touched.confirmPassword && (
               <span className="register-form-field-error">{errors.confirmPassword}</span>
             )}

@@ -13,6 +13,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MdShoppingCart } from 'react-icons/md';
+import { AiOutlineClockCircle } from 'react-icons/ai';
 import toast from 'react-hot-toast';
 import { useCartStore } from '@/app/store/useCartStore';
 import { useSyncCart } from '@/shared/hooks/useSyncCart';
@@ -307,12 +308,6 @@ const VistaCarrito: React.FC = () => {
                     </div>
                   </div>
 
-                  {Object.keys(pending).length > 0 && (
-                    <div className="alerta-cambios-pendientes">
-                      <span>⏳ Cambios pendientes de sincronizar...</span>
-                    </div>
-                  )}
-
                   <button 
                     className="boton-finalizar-compra"
                     onClick={async () => {
@@ -327,8 +322,17 @@ const VistaCarrito: React.FC = () => {
                     }}
                     disabled={Object.keys(pending).length > 0}
                   >
-                    Finalizar Compra
-                    <span className="precio-boton">{formatearPrecio(total)}</span>
+                    {Object.keys(pending).length > 0 ? (
+                      <>
+                        <AiOutlineClockCircle size={20} className="icono-cargando" />
+                        Cargando cambios...
+                      </>
+                    ) : (
+                      <>
+                        Finalizar Compra
+                        <span className="precio-boton">{formatearPrecio(total)}</span>
+                      </>
+                    )}
                   </button>
 
                   <button

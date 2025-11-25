@@ -16,7 +16,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiEye, FiEyeOff, FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft } from 'react-icons/fi';
 import { LogoBrand } from '@/shared/ui/LogoBrand';
 import { RateLimitAlert } from '@/shared/components';
 import { useLogin } from '../hooks/useLogin';
@@ -27,7 +27,6 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [validationErrors, setValidationErrors] = useState<{
     username?: string;
@@ -162,36 +161,25 @@ export const LoginForm = () => {
             <label htmlFor="password" className="login-form-label">
               Contraseña
             </label>
-            <div className="login-form-password-wrapper">
-              <input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  if (validationErrors.password) {
-                    setValidationErrors((prev) => ({ ...prev, password: undefined }));
-                  }
-                }}
-                className={`login-form-input ${
-                  validationErrors.password ? 'login-form-input-error' : ''
-                }`}
-                placeholder="••••••••"
-                disabled={isLoading}
-                autoComplete="current-password"
-                aria-invalid={!!validationErrors.password}
-                aria-describedby={validationErrors.password ? 'password-error' : undefined}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="login-form-password-toggle"
-                aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
-                disabled={isLoading}
-              >
-                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
-              </button>
-            </div>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                if (validationErrors.password) {
+                  setValidationErrors((prev) => ({ ...prev, password: undefined }));
+                }
+              }}
+              className={`login-form-input ${
+                validationErrors.password ? 'login-form-input-error' : ''
+              }`}
+              placeholder="Password"
+              disabled={isLoading}
+              autoComplete="current-password"
+              aria-invalid={!!validationErrors.password}
+              aria-describedby={validationErrors.password ? 'password-error' : undefined}
+            />
             {validationErrors.password && (
               <span id="password-error" className="login-form-field-error">
                 {validationErrors.password}
