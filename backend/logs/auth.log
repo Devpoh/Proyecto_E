@@ -735,3 +735,246 @@
 [INFO] 2025-11-25 09:46:13 auth 15276 11728 [LOGOUT_CART_CLEARED] Usuario: hola | Items eliminados: 1
 [INFO] 2025-11-25 09:46:13 auth 15276 11728 [LOGOUT_SUCCESS] Usuario: hola | IP: 127.0.0.1
 [INFO] 2025-11-25 09:46:13 auth 15276 11728 [REFRESH_TOKENS_REVOKED] Usuario: hola | IP: 127.0.0.1
+[INFO] 2025-11-25 12:50:07 auth 24384 6620 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[ERROR] 2025-11-25 12:50:07 auth 24384 6620 [REGISTRO_ERROR] name 'ValidationError' is not defined
+[INFO] 2025-11-25 12:50:07 auth 24384 6620 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[ERROR] 2025-11-25 12:50:08 auth 24384 6620 [VERIFICACION_ERROR] Cannot resolve keyword 'email' into field. Choices are: attempt_type, id, ip_address, success, timestamp, user_agent, username
+[ERROR] 2025-11-25 12:50:08 auth 24384 6620 [VERIFICACION_ERROR] Cannot resolve keyword 'email' into field. Choices are: attempt_type, id, ip_address, success, timestamp, user_agent, username
+[ERROR] 2025-11-25 12:50:14 auth 24384 6620 [VERIFICACION_ERROR] Cannot resolve keyword 'email' into field. Choices are: attempt_type, id, ip_address, success, timestamp, user_agent, username
+[INFO] 2025-11-25 12:52:52 auth 18552 26400 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[ERROR] 2025-11-25 12:52:52 auth 18552 26400 [REGISTRO_ERROR] name 'validate_password' is not defined
+[INFO] 2025-11-25 12:52:52 auth 18552 26400 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 12:52:53 auth 18552 26400 [EMAIL_VERIFICADO] Usuario testuser verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 12:52:59 auth 18552 26400 [CODIGO_BLOQUEADO] Código del usuario testuser bloqueado por intentos fallidos
+[INFO] 2025-11-25 12:54:30 auth 26424 27136 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 12:54:31 auth 26424 27136 [REGISTRO_VERIFICACION] Usuario newuser registrado. Email: newuser@example.com. Código enviado.
+[INFO] 2025-11-25 12:54:31 auth 26424 27136 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 12:54:32 auth 26424 27136 [EMAIL_VERIFICADO] Usuario testuser verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 12:54:38 auth 26424 27136 [CODIGO_BLOQUEADO] Código del usuario testuser bloqueado por intentos fallidos
+[INFO] 2025-11-25 12:55:46 auth 8196 8608 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 12:55:47 auth 8196 8608 [REGISTRO_VERIFICACION] Usuario newuser registrado. Email: newuser@example.com. Código enviado.
+[INFO] 2025-11-25 12:55:48 auth 8196 8608 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 12:55:50 auth 8196 8608 [EMAIL_VERIFICADO] Usuario testuser verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 12:56:04 auth 8196 8608 [CODIGO_BLOQUEADO] Código del usuario testuser bloqueado por intentos fallidos
+[INFO] 2025-11-25 12:57:04 auth 12360 5652 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 12:57:05 auth 12360 5652 [REGISTRO_VERIFICACION] Usuario newuser registrado. Email: newuser@example.com. Código enviado.
+[INFO] 2025-11-25 12:57:06 auth 12360 5652 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 12:57:08 auth 12360 5652 [EMAIL_VERIFICADO] Usuario testuser verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 12:57:21 auth 12360 5652 [CODIGO_BLOQUEADO] Código del usuario testuser bloqueado por intentos fallidos
+[INFO] 2025-11-25 12:59:50 auth 21868 19844 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 12:59:51 auth 21868 19844 [REGISTRO_VERIFICACION] Usuario newuser registrado. Email: newuser@example.com. Código enviado.
+[INFO] 2025-11-25 12:59:52 auth 21868 19844 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 12:59:54 auth 21868 19844 [EMAIL_VERIFICADO] Usuario testuser verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 13:00:07 auth 21868 19844 [CODIGO_BLOQUEADO] Código del usuario testuser bloqueado por intentos fallidos
+[INFO] 2025-11-25 13:07:48 auth 15780 19000 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 13:07:49 auth 15780 19000 [REGISTRO_VERIFICACION] Usuario newuser registrado. Email: newuser@example.com. Código enviado.
+[INFO] 2025-11-25 13:07:50 auth 15780 19000 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 13:07:52 auth 15780 19000 [EMAIL_VERIFICADO] Usuario testuser verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 13:08:06 auth 15780 19000 [CODIGO_BLOQUEADO] Código del usuario testuser bloqueado por intentos fallidos
+[INFO] 2025-11-25 13:13:11 auth 19452 20568 [TOKEN_REFRESH] Usuario: test1verificacion | IP: 127.0.0.1
+[INFO] 2025-11-25 13:13:20 auth 19452 21084 [LOGOUT_CART_CLEARED] Usuario: test1verificacion | Items eliminados: 0
+[INFO] 2025-11-25 13:13:20 auth 19452 21084 [LOGOUT_SUCCESS] Usuario: test1verificacion | IP: 127.0.0.1
+[INFO] 2025-11-25 13:13:20 auth 19452 21084 [REFRESH_TOKENS_REVOKED] Usuario: test1verificacion | IP: 127.0.0.1
+[INFO] 2025-11-25 13:14:38 auth 19452 10524 [REGISTRO_VERIFICACION] Usuario test1Verific registrado. Email: t.a.y.a.h.sch.w.arz2.57@gmail.com. Código enviado.
+[INFO] 2025-11-25 13:14:39 auth 19452 13964 [ESTADO_VERIFICACION] Email t.a.y.a.h.sch.w.arz2.57@gmail.com. Verificado: False
+[INFO] 2025-11-25 13:14:39 auth 19452 16576 [ESTADO_VERIFICACION] Email t.a.y.a.h.sch.w.arz2.57@gmail.com. Verificado: False
+[INFO] 2025-11-25 13:15:43 auth 19452 7176 [EMAIL_VERIFICADO] Usuario test1Verific verificado exitosamente. IP: 127.0.0.1
+[INFO] 2025-11-25 13:16:34 auth 19452 13828 [LOGIN_SUCCESS] Usuario: test1Verific | Email: t.a.y.a.h.sch.w.arz2.57@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-25 13:16:47 auth 19452 23100 [LOGOUT_CART_CLEARED] Usuario: test1Verific | Items eliminados: 0
+[INFO] 2025-11-25 13:16:47 auth 19452 23100 [LOGOUT_SUCCESS] Usuario: test1Verific | IP: 127.0.0.1
+[INFO] 2025-11-25 13:16:47 auth 19452 23100 [REFRESH_TOKENS_REVOKED] Usuario: test1Verific | IP: 127.0.0.1
+[INFO] 2025-11-25 13:18:25 auth 19452 28040 [REGISTRO_VERIFICACION] Usuario leo24 registrado. Email: leocamellon2003@gmail.com. Código enviado.
+[INFO] 2025-11-25 13:18:25 auth 19452 668 [ESTADO_VERIFICACION] Email leocamellon2003@gmail.com. Verificado: False
+[INFO] 2025-11-25 13:18:25 auth 19452 668 [ESTADO_VERIFICACION] Email leocamellon2003@gmail.com. Verificado: False
+[INFO] 2025-11-25 13:18:49 auth 19452 4136 [CODIGO_REENVIADO] Usuario leo24. Reenvío #1
+[INFO] 2025-11-25 13:18:50 auth 19452 4136 [ESTADO_VERIFICACION] Email leocamellon2003@gmail.com. Verificado: False
+[INFO] 2025-11-25 13:34:31 auth 29976 30376 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 13:34:32 auth 29976 30376 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:34:33 auth 29976 30376 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 13:35:50 auth 22644 23828 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 13:35:51 auth 22644 23828 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:35:52 auth 22644 23828 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 13:39:12 auth 29316 6396 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 13:39:13 auth 29316 6396 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:39:14 auth 29316 6396 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 13:39:16 auth 29316 6396 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[INFO] 2025-11-25 13:41:30 auth 26008 17560 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 13:41:31 auth 26008 17560 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:41:31 auth 26008 17560 [CODIGO_REENVIADO] Usuario testuser. Reenvío #1
+[INFO] 2025-11-25 13:41:33 auth 26008 17560 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 13:41:48 auth 26008 17560 [CODIGO_BLOQUEADO] Código para test@example.com bloqueado por intentos fallidos
+[INFO] 2025-11-25 13:44:42 auth 23748 1928 [REGISTRO_VERIFICACION] Registro iniciado. Email: leocamellon2000@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:46:01 auth 23748 14280 [REGISTRO_VERIFICACION] Registro iniciado. Email: leocamellon2000@gmail.com. Código enviado. Usuario será creado tras verificación.
+[ERROR] 2025-11-25 13:46:45 auth 23748 23464 [VERIFICACION_ERROR] get() returned more than one EmailVerification -- it returned 2!
+[ERROR] 2025-11-25 13:47:31 auth 23748 22148 [VERIFICACION_ERROR] get() returned more than one EmailVerification -- it returned 2!
+[INFO] 2025-11-25 13:53:39 auth 14848 4912 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:53:41 auth 14848 4912 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 13:53:56 auth 14848 4912 [CODIGO_BLOQUEADO] Código para test@example.com bloqueado por intentos fallidos
+[INFO] 2025-11-25 13:56:08 auth 6840 10784 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 13:56:09 auth 6840 10784 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:56:10 auth 6840 10784 [CODIGO_REENVIADO] Email test@example.com. Reenvío #1
+[INFO] 2025-11-25 13:56:12 auth 6840 10784 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 13:56:26 auth 6840 10784 [CODIGO_BLOQUEADO] Código para test@example.com bloqueado por intentos fallidos
+[INFO] 2025-11-25 13:59:02 auth 2648 22332 [REGISTRO_VERIFICACION] Registro iniciado. Email: de.b.at.efeat.g.dcdv.e@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 13:59:03 auth 2648 22332 [ESTADO_VERIFICACION] Email de.b.at.efeat.g.dcdv.e@gmail.com. Verificado: False
+[INFO] 2025-11-25 13:59:03 auth 2648 27704 [ESTADO_VERIFICACION] Email de.b.at.efeat.g.dcdv.e@gmail.com. Verificado: False
+[INFO] 2025-11-25 13:59:38 auth 2648 30332 [EMAIL_VERIFICADO] Usuario test0 creado y verificado exitosamente. IP: 127.0.0.1
+[INFO] 2025-11-25 14:06:52 auth 21596 28400 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 14:06:53 auth 21596 28400 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:06:54 auth 21596 28400 [CODIGO_REENVIADO] Email test@example.com. Reenvío #1
+[INFO] 2025-11-25 14:06:56 auth 21596 28400 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 14:07:10 auth 21596 28400 [CODIGO_BLOQUEADO] Código para test@example.com bloqueado por intentos fallidos
+[INFO] 2025-11-25 14:09:03 auth 17656 24216 [REGISTRO_VERIFICACION] Registro iniciado. Email: d.i.s.h.de.i.fybk.a.o.u.p@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:09:03 auth 17656 24216 [ESTADO_VERIFICACION] Email d.i.s.h.de.i.fybk.a.o.u.p@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:09:03 auth 17656 20636 [ESTADO_VERIFICACION] Email d.i.s.h.de.i.fybk.a.o.u.p@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:10:14 auth 17656 13872 [EMAIL_VERIFICADO] Usuario testing creado y verificado exitosamente. IP: 127.0.0.1
+[INFO] 2025-11-25 14:16:05 auth 4136 8488 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 14:16:06 auth 4136 8488 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:16:07 auth 4136 8488 [CODIGO_REENVIADO] Email test@example.com. Reenvío #1
+[INFO] 2025-11-25 14:16:09 auth 4136 8488 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 14:16:23 auth 4136 8488 [CODIGO_BLOQUEADO] Código para test@example.com bloqueado por intentos fallidos
+[INFO] 2025-11-25 14:17:35 auth 2108 16272 [TOKEN_REFRESH] Usuario: testing | IP: 127.0.0.1
+[INFO] 2025-11-25 14:17:41 auth 2108 3244 [LOGOUT_CART_CLEARED] Usuario: testing | Items eliminados: 0
+[INFO] 2025-11-25 14:17:41 auth 2108 3244 [LOGOUT_SUCCESS] Usuario: testing | IP: 127.0.0.1
+[INFO] 2025-11-25 14:17:41 auth 2108 3244 [REFRESH_TOKENS_REVOKED] Usuario: testing | IP: 127.0.0.1
+[INFO] 2025-11-25 14:18:17 auth 2108 5776 [REGISTRO_VERIFICACION] Registro iniciado. Email: washbromai191+tremblay@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:18:17 auth 2108 5776 [ESTADO_VERIFICACION] Email washbromai191+tremblay@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:18:17 auth 2108 21848 [ESTADO_VERIFICACION] Email washbromai191+tremblay@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:18:51 auth 2108 25324 [EMAIL_VERIFICADO] Usuario kok creado y verificado exitosamente. IP: 127.0.0.1
+[INFO] 2025-11-25 14:19:10 auth 2108 22048 [LOGIN_SUCCESS] Usuario: kok | Email: washbromai191+tremblay@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-25 14:19:15 auth 2108 21676 [LOGOUT_CART_CLEARED] Usuario: kok | Items eliminados: 0
+[INFO] 2025-11-25 14:19:15 auth 2108 21676 [LOGOUT_SUCCESS] Usuario: kok | IP: 127.0.0.1
+[INFO] 2025-11-25 14:19:15 auth 2108 21676 [REFRESH_TOKENS_REVOKED] Usuario: kok | IP: 127.0.0.1
+[INFO] 2025-11-25 14:32:37 auth 24284 24668 [REGISTRO_VERIFICACION] Registro iniciado. Email: f.red.ai.zs.8.8.9@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:32:38 auth 24284 24668 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:32:38 auth 24284 8556 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:43:08 auth 8028 8644 [REGISTRO_VERIFICACION] Registro iniciado. Email: f.red.ai.zs.8.8.9@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:43:08 auth 8028 8644 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:43:08 auth 8028 13228 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[ERROR] 2025-11-25 14:44:27 auth 8028 26764 [VERIFICACION_ERROR] get() returned more than one EmailVerification -- it returned 2!
+[INFO] 2025-11-25 14:44:27 auth 8028 26764 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:44:36 auth 8028 8316 [CODIGO_REENVIADO] Email f.red.ai.zs.8.8.9@gmail.com. Reenvío #1
+[INFO] 2025-11-25 14:44:37 auth 8028 8316 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[ERROR] 2025-11-25 14:45:12 auth 8028 19428 [VERIFICACION_ERROR] get() returned more than one EmailVerification -- it returned 3!
+[INFO] 2025-11-25 14:45:12 auth 8028 19428 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:48:37 auth 23320 10524 [REGISTRO_VERIFICACION] Registro iniciado. Email: f.red.ai.zs.8.8.9@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:48:37 auth 23320 10524 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:48:38 auth 23320 26072 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:49:42 auth 23320 17844 [CODIGO_REENVIADO] Email f.red.ai.zs.8.8.9@gmail.com. Reenvío #1
+[INFO] 2025-11-25 14:49:43 auth 23320 17844 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[ERROR] 2025-11-25 14:50:27 auth 23320 6524 [VERIFICACION_ERROR] get() returned more than one EmailVerification -- it returned 5!
+[INFO] 2025-11-25 14:50:27 auth 23320 6524 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:50:29 auth 23320 6524 [CODIGO_REENVIADO] Email f.red.ai.zs.8.8.9@gmail.com. Reenvío #1
+[INFO] 2025-11-25 14:50:30 auth 23320 6524 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[ERROR] 2025-11-25 14:51:02 auth 23320 84 [VERIFICACION_ERROR] get() returned more than one EmailVerification -- it returned 6!
+[INFO] 2025-11-25 14:51:02 auth 23320 84 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:52:21 auth 13388 28608 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 14:52:22 auth 13388 28608 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:52:23 auth 13388 28608 [CODIGO_REENVIADO] Email test@example.com. Reenvío #1
+[INFO] 2025-11-25 14:52:27 auth 13388 28608 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 14:52:45 auth 13388 28608 [CODIGO_BLOQUEADO] Código para test@example.com bloqueado por intentos fallidos
+[INFO] 2025-11-25 14:56:34 auth 7608 30428 [REGISTRO_VERIFICACION] Registro iniciado. Email: f.red.ai.zs.8.8.9@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 14:56:34 auth 7608 30428 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 14:56:34 auth 7608 29224 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[ERROR] 2025-11-25 14:57:29 auth 7608 22516 [VERIFICACION_ERROR] get() returned more than one EmailVerification -- it returned 7!
+Traceback (most recent call last):
+  File "C:\Users\Alejandro\Desktop\Electro-Isla\backend\api\views_verificacion.py", line 257, in verify_email
+    verificacion = EmailVerification.objects.get(
+        email_temporal=email,
+        verificado=False
+    )
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Alejandro\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 640, in get
+    raise self.model.MultipleObjectsReturned(
+    ...<5 lines>...
+    )
+api.models.EmailVerification.MultipleObjectsReturned: get() returned more than one EmailVerification -- it returned 7!
+
+[INFO] 2025-11-25 14:57:29 auth 7608 22516 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:01:48 auth 5384 27784 [REGISTRO_VERIFICACION] Registro iniciado. Email: f.red.ai.zs.8.8.9@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 15:01:48 auth 5384 27784 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:01:48 auth 5384 4892 [ESTADO_VERIFICACION] Email f.red.ai.zs.8.8.9@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:02:26 auth 5384 25392 [EMAIL_VERIFICADO] Usuario lokyio creado y verificado exitosamente. IP: 127.0.0.1
+[INFO] 2025-11-25 15:17:27 auth 5384 7556 [REGISTRO_VERIFICACION] Registro iniciado. Email: loko09od@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 15:17:27 auth 5384 7556 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:17:27 auth 5384 29876 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:21:25 auth 5384 5784 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:21:25 auth 5384 5784 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:25:35 auth 5384 30528 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:25:36 auth 5384 30528 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:29:11 auth 5384 29092 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:29:12 auth 5384 29092 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:29:53 auth 5384 29268 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:29:54 auth 5384 29268 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:29:55 auth 5384 29268 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:29:56 auth 5384 29268 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:29:56 auth 5384 29268 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:29:57 auth 5384 29268 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:29:57 auth 5384 29268 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:29:58 auth 5384 3328 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:31:30 auth 5384 8720 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:31:30 auth 5384 19596 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:31:33 auth 5384 19596 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:31:33 auth 5384 19596 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:31:34 auth 5384 19596 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:31:34 auth 5384 19596 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:31:36 auth 5384 19596 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:31:36 auth 5384 19596 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:31:37 auth 5384 19596 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:31:37 auth 5384 19596 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:31:38 auth 5384 10940 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:31:38 auth 5384 10940 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:34:55 auth 5384 21612 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:34:55 auth 5384 21612 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:34:59 auth 5384 6540 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:34:59 auth 5384 6540 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:01 auth 5384 6540 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:35:01 auth 5384 6540 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:02 auth 5384 6540 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:35:02 auth 5384 6540 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:03 auth 5384 6540 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:35:03 auth 5384 6540 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:03 auth 5384 6540 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:35:03 auth 5384 6540 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:03 auth 5384 6540 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:04 auth 5384 6540 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:08 auth 5384 26792 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:09 auth 5384 26792 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:10 auth 5384 26792 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:11 auth 5384 26792 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:12 auth 5384 26792 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:13 auth 5384 26792 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:35:38 auth 5384 16064 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:37 auth 5384 14180 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:37 auth 5384 3368 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:39 auth 5384 1744 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:36:39 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:41 auth 5384 1744 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:36:41 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:43 auth 5384 1744 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:36:43 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:44 auth 5384 1744 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:36:44 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:45 auth 5384 1744 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:36:45 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:46 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:46 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:36:47 auth 5384 1744 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:44:52 auth 29576 9424 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:44:52 auth 29576 9424 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:44:56 auth 29576 25140 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #1
+[INFO] 2025-11-25 15:44:56 auth 29576 25140 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:47:03 auth 29576 24780 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:47:03 auth 29576 24780 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:51:10 auth 29576 24960 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:51:10 auth 29576 5788 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:52:58 auth 29576 28204 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #2
+[INFO] 2025-11-25 15:52:58 auth 29576 28204 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:54:08 auth 29576 11496 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:54:08 auth 29576 11496 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:54:33 auth 29576 3792 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:54:33 auth 29576 15488 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 15:54:35 auth 29576 13964 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #3
+[INFO] 2025-11-25 15:54:35 auth 29576 13964 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False

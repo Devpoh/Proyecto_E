@@ -14164,3 +14164,160 @@ RuntimeError: You called this URL via POST, but the URL doesn't end in a slash a
 [WARNING] 2025-11-24 19:37:39 django.request 13132 21660 Unauthorized: /api/carrito/
 [WARNING] 2025-11-25 09:42:59 security 15276 23340 [REFRESH_FAILED] Refresh token no encontrado en cookie
 [WARNING] 2025-11-25 09:42:59 django.request 15276 23340 Unauthorized: /api/auth/refresh/
+[ERROR] 2025-11-25 12:50:07 django.request 24384 6620 Internal Server Error: /api/auth/register-with-verification/
+[ERROR] 2025-11-25 12:50:08 django.request 24384 6620 Internal Server Error: /api/auth/verify-email/
+[ERROR] 2025-11-25 12:50:08 django.request 24384 6620 Internal Server Error: /api/auth/verify-email/
+[ERROR] 2025-11-25 12:50:14 django.request 24384 6620 Internal Server Error: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:50:15 django.request 24384 6620 Too Many Requests: /api/auth/resend-verification/
+[ERROR] 2025-11-25 12:52:52 django.request 18552 26400 Internal Server Error: /api/auth/register-with-verification/
+[WARNING] 2025-11-25 12:52:53 django.request 18552 26400 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:52:59 django.request 18552 26400 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:52:59 django.request 18552 26400 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 12:54:32 django.request 26424 27136 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:54:38 django.request 26424 27136 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:54:38 django.request 26424 27136 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 12:55:49 django.request 8196 8608 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:56:04 django.request 8196 8608 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:56:04 django.request 8196 8608 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 12:57:07 django.request 12360 5652 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:57:21 django.request 12360 5652 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 12:57:22 django.request 12360 5652 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 12:59:53 django.request 21868 19844 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:00:07 django.request 21868 19844 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:00:08 django.request 21868 19844 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:02:58 security 26560 27676 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 13:02:58 django.request 26560 27676 Unauthorized: /api/auth/refresh/
+[INFO] 2025-11-25 13:04:18 security 26560 17360 [VALIDATION] Username validado: test1verificacion
+[INFO] 2025-11-25 13:04:18 security 26560 17360 [VALIDATION] Email validado: vs.i.g.siehvdido.d@gmail.com
+[INFO] 2025-11-25 13:04:18 security 26560 17360 [VALIDATION] Contraseña validada
+[INFO] 2025-11-25 13:04:19 security 26560 17360 [USER_CREATED] Usuario creado: test1verificacion | Email: vs.i.g.siehvdido.d@gmail.com
+[WARNING] 2025-11-25 13:07:51 django.request 15780 19000 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:08:06 django.request 15780 19000 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:08:07 django.request 15780 19000 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:19:58 security 19452 21324 [LOGIN_FAILED] Usuario: leo24 | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 13:19:58 django.request 19452 21324 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 13:20:45 security 19452 25604 [LOGIN_FAILED] Usuario: leocamellon2003@gmail.com | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 13:20:45 django.request 19452 25604 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 13:21:55 django.request 19452 1712 Bad Request: /api/auth/register-with-verification/
+[WARNING] 2025-11-25 13:22:07 django.request 19452 22232 Bad Request: /api/auth/register-with-verification/
+[WARNING] 2025-11-25 13:22:11 django.request 19452 22232 Bad Request: /api/auth/register-with-verification/
+[WARNING] 2025-11-25 13:34:34 django.request 29976 30376 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:34:35 django.request 29976 30376 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:34:49 django.request 29976 30376 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:34:50 django.request 29976 30376 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:35:53 django.request 22644 23828 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:35:54 django.request 22644 23828 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:36:07 django.request 22644 23828 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:36:08 django.request 22644 23828 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:39:15 django.request 29316 6396 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:39:32 django.request 29316 6396 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:39:33 django.request 29316 6396 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:41:32 django.request 26008 17560 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:41:48 django.request 26008 17560 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:41:48 django.request 26008 17560 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:42:55 security 20932 15712 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 13:42:55 django.request 20932 15712 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 13:43:35 security 23748 10128 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 13:43:35 django.request 23748 10128 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 13:44:42 django.request 23748 19560 Not Found: /api/auth/verification-status/
+[WARNING] 2025-11-25 13:44:42 django.request 23748 5920 Not Found: /api/auth/verification-status/
+[WARNING] 2025-11-25 13:45:34 security 23748 23184 [LOGIN_FAILED] Usuario: leocamellon2000@gmail.com | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 13:45:34 django.request 23748 23184 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 13:46:02 django.request 23748 24460 Not Found: /api/auth/verification-status/
+[WARNING] 2025-11-25 13:46:02 django.request 23748 24460 Not Found: /api/auth/verification-status/
+[ERROR] 2025-11-25 13:46:45 django.request 23748 23464 Internal Server Error: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:46:45 django.request 23748 23464 Not Found: /api/auth/verification-status/
+[WARNING] 2025-11-25 13:47:02 django.request 23748 16280 Not Found: /api/auth/resend-verification/
+[ERROR] 2025-11-25 13:47:31 django.request 23748 22148 Internal Server Error: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:47:31 django.request 23748 22148 Not Found: /api/auth/verification-status/
+[WARNING] 2025-11-25 13:53:38 django.request 14848 4912 Not Found: /api/auth/verification-status/
+[WARNING] 2025-11-25 13:53:40 django.request 14848 4912 Not Found: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:53:41 django.request 14848 4912 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:53:56 django.request 14848 4912 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:53:57 django.request 14848 4912 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:56:11 django.request 6840 10784 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:56:26 django.request 6840 10784 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 13:56:27 django.request 6840 10784 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 13:56:57 security 2648 26688 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 13:56:57 django.request 2648 26688 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 14:06:55 django.request 21596 28400 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:07:10 django.request 21596 28400 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:07:11 django.request 21596 28400 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 14:16:08 django.request 4136 8488 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:16:23 django.request 4136 8488 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:16:24 django.request 4136 8488 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 14:41:12 security 8028 25544 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 14:41:12 django.request 8028 25544 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 14:42:39 django.request 8028 30372 Bad Request: /api/auth/register-with-verification/
+[WARNING] 2025-11-25 14:42:48 django.request 8028 18464 Bad Request: /api/auth/register-with-verification/
+[ERROR] 2025-11-25 14:44:27 django.request 8028 26764 Internal Server Error: /api/auth/verify-email/
+[ERROR] 2025-11-25 14:45:12 django.request 8028 19428 Internal Server Error: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:47:23 security 23320 8924 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 14:47:23 django.request 23320 8924 Unauthorized: /api/auth/refresh/
+[ERROR] 2025-11-25 14:50:27 django.request 23320 6524 Internal Server Error: /api/auth/verify-email/
+[ERROR] 2025-11-25 14:51:02 django.request 23320 84 Internal Server Error: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:52:24 django.request 13388 28608 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:52:45 django.request 13388 28608 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 14:52:46 django.request 13388 28608 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 14:55:56 security 7608 4708 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 14:55:56 django.request 7608 4708 Unauthorized: /api/auth/refresh/
+[ERROR] 2025-11-25 14:57:29 django.request 7608 22516 Internal Server Error: /api/auth/verify-email/
+[WARNING] 2025-11-25 15:01:12 security 5384 3544 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:01:12 django.request 5384 3544 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:09:41 security 5384 14432 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:09:41 django.request 5384 14432 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:09:51 security 5384 28392 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:09:51 django.request 5384 28392 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:09:56 security 5384 9668 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:09:56 django.request 5384 9668 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:10:00 security 5384 9668 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:10:00 django.request 5384 9668 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:12:11 security 5384 18244 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:12:11 django.request 5384 18244 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:12:18 security 5384 23208 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:12:18 django.request 5384 23208 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:13:10 security 5384 21880 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:13:10 django.request 5384 21880 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:13:12 security 5384 21880 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:13:12 django.request 5384 21880 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:13:35 security 5384 25248 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:13:35 django.request 5384 25248 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:13:50 security 5384 11824 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:13:50 django.request 5384 11824 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:16:12 security 5384 21568 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:16:12 django.request 5384 21568 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:21:25 security 5384 29556 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:21:25 django.request 5384 29556 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:29:58 django.request 5384 3328 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:30:01 django.request 5384 3328 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:31:30 security 5384 19596 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:31:30 django.request 5384 19596 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:31:39 django.request 5384 10940 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:31:42 django.request 5384 10940 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:31:43 django.request 5384 10940 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:34:55 security 5384 16396 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:34:55 django.request 5384 16396 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:35:03 django.request 5384 6540 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:04 django.request 5384 6540 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:08 django.request 5384 26792 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:09 django.request 5384 26792 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:10 django.request 5384 26792 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:11 django.request 5384 26792 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:12 django.request 5384 26792 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:13 django.request 5384 26792 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:35:38 django.request 5384 16064 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:36:37 security 5384 3368 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:36:37 django.request 5384 3368 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:36:46 django.request 5384 1744 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:36:46 django.request 5384 1744 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:36:47 django.request 5384 1744 Too Many Requests: /api/auth/resend-verification/
+[WARNING] 2025-11-25 15:44:52 security 29576 25140 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:44:52 django.request 29576 25140 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:47:03 security 29576 22368 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:47:03 django.request 29576 22368 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:51:10 security 29576 5788 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:51:10 django.request 29576 5788 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:54:33 security 29576 15488 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:54:33 django.request 29576 15488 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 15:54:40 security 29576 13964 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 15:54:40 django.request 29576 13964 Unauthorized: /api/auth/refresh/

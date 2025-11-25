@@ -11,21 +11,22 @@ Endpoints:
 3. POST /api/auth/resend-verification/ - Reenviar código
 """
 
-from rest_framework.decorators import api_view, permission_classes, throttle_classes
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.decorators import api_view, throttle_classes, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-from django.utils import timezone
 from django.db import transaction
+from django.utils import timezone
+from datetime import timedelta
 import logging
 
-from .models import UserProfile, EmailVerification, LoginAttempt
+from .models import EmailVerification, LoginAttempt, RefreshToken
 from .tasks import enviar_email_verificacion
-from .throttles import AnonAuthThrottle
-from .authentication import crear_tokens_jwt
+from .throttles import AnonLoginRateThrottle
+from .utils.jwt_utils import generar_access_token, obtener_info_request
 
 logger = logging.getLogger('auth')
 
@@ -40,7 +41,7 @@ def get_client_ip(request):
     return ip
 
 
-def verificar_intentos_login(email, ip_address):
+def verificar_intentos_login(username, ip_address):
     """
     Verifica si hay demasiados intentos fallidos.
     Usa el patrón LoginAttempt existente.
@@ -54,17 +55,17 @@ def verificar_intentos_login(email, ip_address):
     hace_15_min = timezone.now() - timedelta(minutes=15)
     
     intentos = LoginAttempt.objects.filter(
-        email=email,
+        username=username,
         ip_address=ip_address,
         timestamp__gte=hace_15_min,
-        successful=False
+        success=False
     ).count()
     
     # Bloquear después de 5 intentos fallidos
     if intentos >= 5:
         # Calcular tiempo restante hasta que expire el bloqueo
         ultimo_intento = LoginAttempt.objects.filter(
-            email=email,
+            username=username,
             ip_address=ip_address
         ).order_by('-timestamp').first()
         
@@ -76,21 +77,22 @@ def verificar_intentos_login(email, ip_address):
     return False, 0
 
 
-def registrar_intento_verificacion(email, ip_address, exitoso):
+def registrar_intento_verificacion(username, ip_address, exitoso):
     """
     Registra un intento de verificación usando el modelo LoginAttempt.
     """
     LoginAttempt.objects.create(
-        email=email,
+        username=username,
         ip_address=ip_address,
-        successful=exitoso,
-        timestamp=timezone.now()
+        attempt_type='verification',
+        success=exitoso,
+        user_agent=''
     )
 
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@throttle_classes([AnonAuthThrottle])
+@throttle_classes([AnonLoginRateThrottle])
 def register_with_verification(request):
     """
     📧 ENDPOINT: Registro con verificación de email
@@ -136,7 +138,7 @@ def register_with_verification(request):
                 'error': 'Email inválido'
             }, status=status.HTTP_400_BAD_REQUEST)
         
-        # Verificar si el usuario ya existe
+        # Verificar si el usuario ya existe (solo en Users creados)
         if User.objects.filter(username=username).exists():
             return Response({
                 'error': 'El nombre de usuario ya está en uso'
@@ -156,51 +158,47 @@ def register_with_verification(request):
                 'detalles': list(e.messages)
             }, status=status.HTTP_400_BAD_REQUEST)
         
-        # Crear usuario con transacción atómica
+        # ✅ OPCIÓN 1: NO crear usuario aún, solo guardar datos temporales
         with transaction.atomic():
-            # Crear usuario inactivo
-            user = User.objects.create_user(
-                username=username,
-                email=email,
-                password=password,
-                first_name=first_name,
-                last_name=last_name,
-                is_active=False  # Usuario inactivo hasta verificar email
-            )
-            
-            # El perfil se crea automáticamente por la señal
-            # Asegurar que el rol sea 'cliente'
-            if hasattr(user, 'profile'):
-                user.profile.rol = 'cliente'
-                user.profile.save()
-            
             # Obtener IP del usuario
             ip_address = request.META.get('REMOTE_ADDR')
             
-            # Crear código de verificación
-            verificacion = EmailVerification.crear_codigo(
-                usuario=user,
-                duracion_minutos=15,
+            # Crear registro de verificación CON DATOS TEMPORALES (sin User)
+            # Esto permite que el usuario no sea creado hasta verificar
+            from django.contrib.auth.hashers import make_password
+            password_hash = make_password(password)
+            
+            verificacion = EmailVerification.objects.create(
+                usuario=None,  # ✅ No crear User aún
+                email_temporal=email,
+                username_temporal=username,
+                password_hash=password_hash,
+                first_name_temporal=first_name,
+                last_name_temporal=last_name,
+                codigo=EmailVerification.generar_codigo(),
+                expires_at=timezone.now() + timedelta(minutes=5),
                 ip_address=ip_address
             )
             
             # Enviar email de forma asíncrona
+            # Nota: Pasamos email_temporal en lugar de usuario_id
             enviar_email_verificacion.delay(
-                usuario_id=user.id,
-                codigo=verificacion.codigo
+                email=email,
+                codigo=verificacion.codigo,
+                nombre=first_name or username
             )
             
             logger.info(
-                f'[REGISTRO_VERIFICACION] Usuario {username} registrado. '
-                f'Email: {email}. Código enviado.'
+                f'[REGISTRO_VERIFICACION] Registro iniciado. '
+                f'Email: {email}. Código enviado. Usuario será creado tras verificación.'
             )
         
         return Response({
-            'message': 'Usuario registrado exitosamente',
-            'detail': 'Se ha enviado un código de verificación a tu email',
+            'message': 'Código de verificación enviado exitosamente',
+            'detail': 'Revisa tu email para obtener el código',
             'email': email,
             'username': username,
-            'expires_in_minutes': 15
+            'expires_in_minutes': 5
         }, status=status.HTTP_201_CREATED)
     
     except Exception as e:
@@ -213,7 +211,7 @@ def register_with_verification(request):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@throttle_classes([AnonAuthThrottle])
+@throttle_classes([AnonLoginRateThrottle])
 def verify_email(request):
     """
     ✅ ENDPOINT: Verificar código de email
@@ -254,128 +252,120 @@ def verify_email(request):
                 'error': 'El código debe ser de 6 dígitos'
             }, status=status.HTTP_400_BAD_REQUEST)
         
-        # 🛡️ PROTECCIÓN: Verificar intentos fallidos usando LoginAttempt
-        bloqueado, tiempo_restante = verificar_intentos_login(email, ip_address)
-        if bloqueado:
+        # ✅ OPCIÓN 1: Buscar registro de verificación por email (no User aún)
+        # Usar filter().first() en lugar de get() para evitar MultipleObjectsReturned
+        # Obtener el más reciente si hay múltiples
+        verificacion = EmailVerification.objects.filter(
+            email_temporal=email,
+            verificado=False
+        ).order_by('-created_at').first()
+        
+        if not verificacion:
+            return Response({
+                'error': 'No hay registro de verificación para este email'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Verificar si el código ha expirado
+        if not verificacion.is_valid():
+            return Response({
+                'error': 'El código ha expirado',
+                'detail': 'Solicita un nuevo código de verificación'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Verificar intentos fallidos en este código ANTES de validar el código
+        if verificacion.intentos_fallidos >= 5:
             logger.warning(
-                f'[VERIFICACION_BLOQUEADA] Email {email} bloqueado por intentos fallidos. '
-                f'IP: {ip_address}. Tiempo restante: {tiempo_restante}s'
+                f'[CODIGO_BLOQUEADO] Código para {email} bloqueado por intentos fallidos'
             )
             return Response({
-                'error': 'Demasiados intentos fallidos',
-                'detail': f'Intenta nuevamente en {tiempo_restante // 60} minutos',
-                'tiempo_restante_segundos': tiempo_restante
+                'error': 'Código bloqueado por intentos fallidos',
+                'detail': 'Solicita un nuevo código de verificación'
             }, status=status.HTTP_429_TOO_MANY_REQUESTS)
         
-        # Buscar usuario
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            # Registrar intento fallido
-            registrar_intento_verificacion(email, ip_address, False)
+        # Verificar si el código es correcto
+        if verificacion.codigo != codigo:
+            # Incrementar intentos fallidos
+            verificacion.incrementar_intentos()
+            
+            # Si ya llegó a 5 intentos, bloquear
+            if verificacion.intentos_fallidos >= 5:
+                logger.warning(
+                    f'[CODIGO_BLOQUEADO] Código para {email} bloqueado por intentos fallidos'
+                )
+                return Response({
+                    'error': 'Código bloqueado por intentos fallidos',
+                    'detail': 'Solicita un nuevo código de verificación'
+                }, status=status.HTTP_429_TOO_MANY_REQUESTS)
+            
             return Response({
-                'error': 'Usuario no encontrado'
-            }, status=status.HTTP_404_NOT_FOUND)
-        
-        # Verificar si ya está activo
-        if user.is_active:
-            return Response({
-                'error': 'El email ya está verificado'
+                'error': 'Código inválido',
+                'detail': f'Intentos restantes: {5 - verificacion.intentos_fallidos}'
             }, status=status.HTTP_400_BAD_REQUEST)
         
-        # Verificar código
-        verificacion = EmailVerification.verificar_codigo(
-            usuario=user,
-            codigo=codigo
-        )
-        
-        if verificacion is None:
-            # 🛡️ PROTECCIÓN: Registrar intento fallido en LoginAttempt
-            registrar_intento_verificacion(email, ip_address, False)
-            
-            # Incrementar intentos fallidos en EmailVerification
-            ultima_verificacion = EmailVerification.objects.filter(
-                usuario=user,
-                verificado=False
-            ).order_by('-created_at').first()
-            
-            if ultima_verificacion:
-                ultima_verificacion.incrementar_intentos()
-                
-                # Bloquear después de 5 intentos fallidos en el código específico
-                if ultima_verificacion.intentos_fallidos >= 5:
-                    logger.warning(
-                        f'[CODIGO_BLOQUEADO] Código del usuario {user.username} '
-                        f'bloqueado por intentos fallidos'
-                    )
-                    return Response({
-                        'error': 'Código bloqueado por intentos fallidos',
-                        'detail': 'Solicita un nuevo código de verificación'
-                    }, status=status.HTTP_429_TOO_MANY_REQUESTS)
-            
-            return Response({
-                'error': 'Código inválido o expirado'
-            }, status=status.HTTP_400_BAD_REQUEST)
-        
-        # Activar usuario y marcar verificación como completada
+        # ✅ CREAR USUARIO AHORA (después de verificar el código)
         with transaction.atomic():
-            # Activar usuario
-            user.is_active = True
+            # Crear usuario con los datos temporales
+            user = User.objects.create_user(
+                username=verificacion.username_temporal,
+                email=verificacion.email_temporal,
+                password='temp_password_will_be_replaced',  # Temporal, será reemplazado
+                first_name=verificacion.first_name_temporal or '',
+                last_name=verificacion.last_name_temporal or '',
+                is_active=True  # ✅ Usuario activo desde el inicio
+            )
+            
+            # Reemplazar la contraseña con la hasheada guardada
+            user.password = verificacion.password_hash
             user.save()
             
+            # Crear perfil (se crea automáticamente por señal)
+            if hasattr(user, 'profile'):
+                user.profile.rol = 'cliente'
+                user.profile.save()
+            
             # Marcar verificación como completada
+            verificacion.usuario = user  # Asociar el usuario creado
             verificacion.marcar_verificado()
             
-            # Invalidar otros códigos pendientes
-            EmailVerification.invalidar_codigos_usuario(user)
-            
-            # 🛡️ PROTECCIÓN: Registrar intento exitoso en LoginAttempt
-            registrar_intento_verificacion(email, ip_address, True)
+            # Registrar intento exitoso
+            registrar_intento_verificacion(user.username, ip_address, True)
             
             logger.info(
-                f'[EMAIL_VERIFICADO] Usuario {user.username} verificado exitosamente. IP: {ip_address}'
+                f'[EMAIL_VERIFICADO] Usuario {user.username} creado y verificado exitosamente. IP: {ip_address}'
             )
         
-        # Generar tokens JWT
-        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        # ✅ NO generar tokens aquí - el usuario debe hacer login manualmente
+        # Esto asegura que el usuario verifique su email y luego inicie sesión
         
-        access_token, refresh_token_obj = crear_tokens_jwt(
-            user,
-            user_agent=user_agent,
-            ip_address=ip_address
-        )
-        
-        # Preparar respuesta
         return Response({
             'message': 'Email verificado exitosamente',
-            'access_token': access_token,
-            'refresh_token': refresh_token_obj['token'],
-            'user': {
-                'id': user.id,
-                'username': user.username,
-                'email': user.email,
-                'nombre': user.first_name,
-                'apellido': user.last_name,
-                'rol': user.profile.rol if hasattr(user, 'profile') else 'cliente'
-            }
+            'detail': 'Tu cuenta ha sido activada. Por favor inicia sesión.',
+            'email': user.email,
+            'username': user.username
         }, status=status.HTTP_200_OK)
     
     except Exception as e:
-        logger.error(f'[VERIFICACION_ERROR] {str(e)}')
+        import traceback
+        error_trace = traceback.format_exc()
+        logger.error(f'[VERIFICACION_ERROR] {str(e)}\n{error_trace}')
+        print(f'[VERIFICACION_ERROR] {str(e)}\n{error_trace}')  # También en consola
         return Response({
             'error': 'Error al verificar email',
-            'detail': str(e)
+            'detail': str(e),
+            'trace': error_trace if True else None  # Para debugging
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@throttle_classes([AnonAuthThrottle])
+@throttle_classes([AnonLoginRateThrottle])
 def resend_verification(request):
     """
     🔄 ENDPOINT: Reenviar código de verificación
     
     Genera un nuevo código y lo envía por email.
+    
+    ✅ OPCIÓN 1: Busca datos temporales en EmailVerification
     
     Límites:
     - Máximo 3 reenvíos por usuario
@@ -391,11 +381,10 @@ def resend_verification(request):
     
     Flujo:
     1. Validar email
-    2. Buscar usuario
+    2. Buscar registro de verificación con datos temporales
     3. Verificar límites de reenvío (tiempo y cantidad)
-    4. Invalidar códigos anteriores
-    5. Generar nuevo código
-    6. Enviar email
+    4. Generar nuevo código
+    5. Enviar email
     """
     try:
         # Obtener email
@@ -406,80 +395,70 @@ def resend_verification(request):
                 'error': 'Email es requerido'
             }, status=status.HTTP_400_BAD_REQUEST)
         
-        # Buscar usuario
+        # ✅ OPCIÓN 1: Buscar registro de verificación con datos temporales
         try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
+            ultima_verificacion = EmailVerification.objects.filter(
+                email_temporal=email,
+                verificado=False
+            ).order_by('-created_at').first()
+            
+            if not ultima_verificacion:
+                return Response({
+                    'error': 'No hay registro de verificación para este email'
+                }, status=status.HTTP_404_NOT_FOUND)
+        except EmailVerification.DoesNotExist:
             return Response({
-                'error': 'Usuario no encontrado'
+                'error': 'No hay registro de verificación para este email'
             }, status=status.HTTP_404_NOT_FOUND)
         
-        # Verificar si ya está activo
-        if user.is_active:
-            return Response({
-                'error': 'El email ya está verificado'
-            }, status=status.HTTP_400_BAD_REQUEST)
-        
         # 🛡️ PROTECCIÓN: Verificar límite de reenvíos
-        ultima_verificacion = EmailVerification.objects.filter(
-            usuario=user
-        ).order_by('-created_at').first()
+        # 🛡️ LÍMITE DE TIEMPO: 1 minuto entre reenvíos
+        if not ultima_verificacion.puede_reenviar(minutos_espera=1):
+            tiempo_restante = 1 - (
+                (timezone.now() - ultima_verificacion.ultimo_reenvio).total_seconds() / 60
+            )
+            logger.warning(
+                f'[REENVIO_BLOQUEADO] Email {email} intentó reenviar '
+                f'antes del tiempo de espera. Tiempo restante: {int(tiempo_restante * 60)}s'
+            )
+            return Response({
+                'error': 'Debes esperar antes de reenviar',
+                'detail': f'Espera {int(tiempo_restante * 60)} segundos',
+                'tiempo_restante_segundos': int(tiempo_restante * 60)
+            }, status=status.HTTP_429_TOO_MANY_REQUESTS)
         
-        if ultima_verificacion:
-            # 🛡️ LÍMITE DE TIEMPO: 1 minuto entre reenvíos (patrón RefreshToken)
-            if not ultima_verificacion.puede_reenviar(minutos_espera=1):
-                tiempo_restante = 1 - (
-                    (timezone.now() - ultima_verificacion.ultimo_reenvio).total_seconds() / 60
-                )
-                logger.warning(
-                    f'[REENVIO_BLOQUEADO] Usuario {user.username} intentó reenviar '
-                    f'antes del tiempo de espera. Tiempo restante: {int(tiempo_restante * 60)}s'
-                )
-                return Response({
-                    'error': 'Debes esperar antes de reenviar',
-                    'detail': f'Espera {int(tiempo_restante * 60)} segundos',
-                    'tiempo_restante_segundos': int(tiempo_restante * 60)
-                }, status=status.HTTP_429_TOO_MANY_REQUESTS)
-            
-            # 🛡️ LÍMITE DE CANTIDAD: Máximo 3 reenvíos por usuario
-            if ultima_verificacion.contador_reenvios >= 3:
-                logger.warning(
-                    f'[REENVIO_LIMITE] Usuario {user.username} alcanzó el límite de reenvíos'
-                )
-                return Response({
-                    'error': 'Límite de reenvíos alcanzado',
-                    'detail': 'Máximo 3 reenvíos permitidos. Contacta con soporte si necesitas ayuda.'
-                }, status=status.HTTP_429_TOO_MANY_REQUESTS)
-            
-            # Marcar reenvío
-            ultima_verificacion.marcar_reenvio()
+        # 🛡️ LÍMITE DE CANTIDAD: Máximo 3 reenvíos por usuario
+        if ultima_verificacion.contador_reenvios >= 3:
+            logger.warning(
+                f'[REENVIO_LIMITE] Email {email} alcanzó el límite de reenvíos'
+            )
+            return Response({
+                'error': 'Límite de reenvíos alcanzado',
+                'detail': 'Máximo 3 reenvíos permitidos. Contacta con soporte si necesitas ayuda.'
+            }, status=status.HTTP_429_TOO_MANY_REQUESTS)
         
-        # Invalidar códigos anteriores
-        EmailVerification.invalidar_codigos_usuario(user)
+        # ✅ Actualizar el registro existente en lugar de crear uno nuevo
+        ultima_verificacion.marcar_reenvio()
+        ultima_verificacion.codigo = EmailVerification.generar_codigo()
+        ultima_verificacion.expires_at = timezone.now() + timedelta(minutes=5)
+        ultima_verificacion.save()
         
-        # Crear nuevo código
-        ip_address = request.META.get('REMOTE_ADDR')
-        verificacion = EmailVerification.crear_codigo(
-            usuario=user,
-            duracion_minutos=15,
-            ip_address=ip_address
-        )
-        
-        # Enviar email de forma asíncrona
+        # Enviar email de forma asíncrona con el nuevo código
         enviar_email_verificacion.delay(
-            usuario_id=user.id,
-            codigo=verificacion.codigo
+            email=email,
+            codigo=ultima_verificacion.codigo,
+            nombre=ultima_verificacion.first_name_temporal or ultima_verificacion.username_temporal
         )
         
         logger.info(
-            f'[CODIGO_REENVIADO] Usuario {user.username}. '
-            f'Reenvío #{ultima_verificacion.contador_reenvios if ultima_verificacion else 1}'
+            f'[CODIGO_REENVIADO] Email {email}. '
+            f'Reenvío #{ultima_verificacion.contador_reenvios}'
         )
         
         return Response({
             'message': 'Código de verificación reenviado',
             'email': email,
-            'expires_in_minutes': 15
+            'expires_in_minutes': 5
         }, status=status.HTTP_200_OK)
     
     except Exception as e:
@@ -495,6 +474,8 @@ def resend_verification(request):
 def check_verification_status(request):
     """
     📊 ENDPOINT: Estado de verificación de email
+    
+    ✅ OPCIÓN 1: Verifica estado de verificación usando datos temporales
     
     Verifica si un email está verificado.
     Útil para la página de verificación.
@@ -528,50 +509,43 @@ def check_verification_status(request):
                 'error': 'Email es requerido'
             }, status=status.HTTP_400_BAD_REQUEST)
         
-        # Buscar usuario
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return Response({
-                'error': 'Usuario no encontrado'
-            }, status=status.HTTP_404_NOT_FOUND)
-        
-        # Verificar si ya está verificado
-        is_verified = user.is_active
-        
-        # Buscar verificación pendiente
+        # ✅ OPCIÓN 1: Buscar en EmailVerification con datos temporales
         verificacion_pendiente = EmailVerification.objects.filter(
-            usuario=user,
+            email_temporal=email,
             verificado=False
         ).order_by('-created_at').first()
+        
+        if not verificacion_pendiente:
+            return Response({
+                'error': 'No hay registro de verificación para este email'
+            }, status=status.HTTP_404_NOT_FOUND)
         
         # Preparar respuesta
         response_data = {
             'email': email,
-            'is_verified': is_verified,
-            'username': user.username,
-            'has_pending_verification': verificacion_pendiente is not None
+            'is_verified': False,  # Aún no verificado
+            'username': verificacion_pendiente.username_temporal,
+            'has_pending_verification': True
         }
         
-        # Si hay verificación pendiente, agregar detalles
-        if verificacion_pendiente:
-            response_data.update({
-                'verification_expires_at': verificacion_pendiente.expires_at.isoformat(),
-                'is_expired': not verificacion_pendiente.is_valid(),
-                'can_resend': verificacion_pendiente.puede_reenviar(minutos_espera=1),
-                'resend_count': verificacion_pendiente.contador_reenvios,
-                'max_resends': 3,
-                'failed_attempts': verificacion_pendiente.intentos_fallidos,
-                'max_attempts': 5
-            })
-            
-            # Calcular tiempo restante para reenviar
-            if verificacion_pendiente.ultimo_reenvio:
-                tiempo_transcurrido = (timezone.now() - verificacion_pendiente.ultimo_reenvio).total_seconds()
-                tiempo_restante = max(0, 60 - tiempo_transcurrido)  # 1 minuto = 60 segundos
-                response_data['resend_available_in_seconds'] = int(tiempo_restante)
+        # Agregar detalles de verificación
+        response_data.update({
+            'verification_expires_at': verificacion_pendiente.expires_at.isoformat(),
+            'is_expired': not verificacion_pendiente.is_valid(),
+            'can_resend': verificacion_pendiente.puede_reenviar(minutos_espera=1),
+            'resend_count': verificacion_pendiente.contador_reenvios,
+            'max_resends': 3,
+            'failed_attempts': verificacion_pendiente.intentos_fallidos,
+            'max_attempts': 5
+        })
         
-        logger.info(f'[ESTADO_VERIFICACION] Email {email}. Verificado: {is_verified}')
+        # Calcular tiempo restante para reenviar
+        if verificacion_pendiente.ultimo_reenvio:
+            tiempo_transcurrido = (timezone.now() - verificacion_pendiente.ultimo_reenvio).total_seconds()
+            tiempo_restante = max(0, 60 - tiempo_transcurrido)  # 1 minuto = 60 segundos
+            response_data['resend_available_in_seconds'] = int(tiempo_restante)
+        
+        logger.info(f'[ESTADO_VERIFICACION] Email {email}. Verificado: False')
         
         return Response(response_data, status=status.HTTP_200_OK)
     

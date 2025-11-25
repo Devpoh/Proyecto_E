@@ -7,7 +7,7 @@
  * 
  * Características:
  * - Input para código de 6 dígitos
- * - Temporizador de cuenta regresiva (15 minutos)
+ * - Temporizador de cuenta regresiva (5 minutos)
  * - Botón "Reenviar Código" con cooldown (60 segundos)
  * - Contador de reenvíos restantes (máximo 3)
  * - Mensajes de error para códigos inválidos/expirados
@@ -16,7 +16,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FiMail, FiRefreshCw, FiCheckCircle, FiAlertCircle, FiClock } from 'react-icons/fi';
+import { FiMail, FiRefreshCw, FiCheckCircle, FiAlertCircle, FiClock, FiX, FiArrowLeft } from 'react-icons/fi';
+import { verifyEmail, getVerificationStatus, resendVerificationCode } from '../api/verifyEmailApi';
 import './VerifyEmailPage.css';
 
 interface VerificationStatus {
@@ -37,7 +38,11 @@ interface VerificationStatus {
 const VerifyEmailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const email = location.state?.email || '';
+  
+  // Obtener email de URL params o state
+  const searchParams = new URLSearchParams(location.search);
+  const emailFromUrl = searchParams.get('email');
+  const email = emailFromUrl || location.state?.email || '';
 
   // Estados
   const [code, setCode] = useState(['', '', '', '', '', '']);
@@ -45,7 +50,7 @@ const VerifyEmailPage = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [status, setStatus] = useState<VerificationStatus | null>(null);
-  const [timeLeft, setTimeLeft] = useState(900); // 15 minutos en segundos
+  const [timeLeft, setTimeLeft] = useState(300); // 5 minutos en segundos
   const [resendCooldown, setResendCooldown] = useState(0);
 
   // Referencias para los inputs
@@ -54,6 +59,24 @@ const VerifyEmailPage = () => {
   // Cargar estado de verificación
   useEffect(() => {
     if (email) {
+      // Verificar si ya se alcanzó el límite de reenvíos
+      const limitReached = localStorage.getItem(`resend_limit_reached_${email}`);
+      if (limitReached === 'true') {
+        setError('Has alcanzado el límite de reenvíos. Por favor, registrate de nuevo.');
+        setTimeout(() => setError(''), 15000);
+        return;
+      }
+      
+      // Intentar cargar estado desde localStorage primero
+      const savedStatus = localStorage.getItem(`verification_status_${email}`);
+      if (savedStatus) {
+        try {
+          setStatus(JSON.parse(savedStatus));
+        } catch (e) {
+          console.error('Error al parsear estado guardado:', e);
+        }
+      }
+      
       fetchVerificationStatus();
     } else {
       navigate('/auth/register');
@@ -105,17 +128,23 @@ const VerifyEmailPage = () => {
   // Obtener estado de verificación
   const fetchVerificationStatus = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:8000/api/auth/verification-status/?email=${encodeURIComponent(email)}`
-      );
+      const data = await getVerificationStatus(email);
+      setStatus(data);
+      
+      // Guardar estado en localStorage
+      if (email) {
+        localStorage.setItem(`verification_status_${email}`, JSON.stringify(data));
+      }
 
-      if (response.ok) {
-        const data = await response.json();
-        setStatus(data);
-
-        if (data.is_verified) {
-          setSuccess('Email ya verificado. Redirigiendo...');
-          setTimeout(() => navigate('/auth/login'), 2000);
+      if (data.is_verified) {
+        setSuccess('Email ya verificado. Redirigiendo...');
+        setTimeout(() => navigate('/auth/login'), 2000);
+      }
+      
+      // Si se alcanzó el límite de reenvíos, bloquear permanentemente
+      if (data.resend_count && data.resend_count >= 3) {
+        if (email) {
+          localStorage.setItem(`resend_limit_reached_${email}`, 'true');
         }
       }
     } catch (err) {
@@ -177,6 +206,8 @@ const VerifyEmailPage = () => {
 
     if (verificationCode.length !== 6) {
       setError('Por favor ingresa los 6 dígitos del código');
+      // Auto-limpiar error después de 15 segundos
+      setTimeout(() => setError(''), 15000);
       return;
     }
 
@@ -185,37 +216,25 @@ const VerifyEmailPage = () => {
     setSuccess('');
 
     try {
-      const response = await fetch('http://localhost:8000/api/auth/verify-email/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          codigo: verificationCode,
-        }),
+      await verifyEmail({
+        email,
+        codigo: verificationCode,
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Guardar tokens
-        localStorage.setItem('access_token', data.access_token);
-        localStorage.setItem('refresh_token', data.refresh_token);
-        localStorage.setItem('user', JSON.stringify(data.user));
-
-        setSuccess('¡Email verificado exitosamente! Redirigiendo...');
-        setTimeout(() => navigate('/auth/login'), 2000);
-      } else {
-        setError(data.error || 'Código inválido o expirado');
-        setCode(['', '', '', '', '', '']);
-        inputRefs.current[0]?.focus();
-        
-        // Actualizar estado
-        fetchVerificationStatus();
-      }
-    } catch (err) {
-      setError('Error al verificar el código. Intenta nuevamente.');
+      // ✅ NO guardar tokens aquí - el usuario debe hacer login manualmente
+      setSuccess('¡Email verificado exitosamente! Redirigiendo a login...');
+      setTimeout(() => navigate('/auth/login'), 2000);
+    } catch (err: any) {
+      const errorMessage = err.response?.data?.error || 'Código inválido o expirado';
+      setError(errorMessage);
+      setCode(['', '', '', '', '', '']);
+      inputRefs.current[0]?.focus();
+      
+      // Auto-limpiar error después de 15 segundos
+      setTimeout(() => setError(''), 15000);
+      
+      // Actualizar estado
+      fetchVerificationStatus();
     } finally {
       setLoading(false);
     }
@@ -226,6 +245,8 @@ const VerifyEmailPage = () => {
     if (resendCooldown > 0) return;
     if (status && status.resend_count && status.resend_count >= 3) {
       setError('Has alcanzado el límite de reenvíos. Contacta con soporte.');
+      // Auto-limpiar error después de 15 segundos
+      setTimeout(() => setError(''), 15000);
       return;
     }
 
@@ -234,28 +255,35 @@ const VerifyEmailPage = () => {
     setSuccess('');
 
     try {
-      const response = await fetch('http://localhost:8000/api/auth/resend-verification/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
+      await resendVerificationCode(email);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccess('Código reenviado exitosamente. Revisa tu email.');
-        setCode(['', '', '', '', '', '']);
-        inputRefs.current[0]?.focus();
-        
-        // Actualizar estado
-        setTimeout(() => fetchVerificationStatus(), 1000);
+      setSuccess('Código reenviado exitosamente. Revisa tu email.');
+      setCode(['', '', '', '', '', '']);
+      inputRefs.current[0]?.focus();
+      
+      // Auto-limpiar success después de 15 segundos
+      setTimeout(() => setSuccess(''), 15000);
+      
+      // Actualizar estado inmediatamente
+      await fetchVerificationStatus();
+    } catch (err: any) {
+      let errorMessage = 'Error al reenviar el código';
+      
+      // Manejar errores específicos
+      if (err.response?.status === 429) {
+        errorMessage = 'Demasiados intentos. Por favor, espera antes de intentar de nuevo.';
+      } else if (err.response?.status === 401) {
+        errorMessage = 'No autorizado. Por favor, registrate de nuevo.';
       } else {
-        setError(data.error || 'Error al reenviar el código');
+        errorMessage = err.response?.data?.error || errorMessage;
       }
-    } catch (err) {
-      setError('Error al reenviar el código. Intenta nuevamente.');
+      
+      setError(errorMessage);
+      // Auto-limpiar error después de 15 segundos
+      setTimeout(() => setError(''), 15000);
+      
+      // Actualizar estado para reflejar cambios en el backend
+      await fetchVerificationStatus();
     } finally {
       setLoading(false);
     }
@@ -270,6 +298,16 @@ const VerifyEmailPage = () => {
 
   return (
     <div className="verify-email-page">
+      {/* Flecha de regreso */}
+      <button
+        type="button"
+        onClick={() => navigate('/auth/register')}
+        className="verify-email-back-button"
+        aria-label="Volver al registro"
+      >
+        <FiArrowLeft size={20} />
+      </button>
+
       <div className="verify-email-container">
         {/* Header */}
         <div className="verify-email-header">
@@ -290,7 +328,9 @@ const VerifyEmailPage = () => {
             {code.map((digit, index) => (
               <input
                 key={index}
-                ref={(el) => (inputRefs.current[index] = el)}
+                ref={(el) => {
+                  if (el) inputRefs.current[index] = el;
+                }}
                 type="text"
                 inputMode="numeric"
                 maxLength={1}
@@ -318,6 +358,13 @@ const VerifyEmailPage = () => {
           <div className="verify-email-error">
             <FiAlertCircle />
             <span>{error}</span>
+            <button 
+              className="verify-email-close-btn"
+              onClick={() => setError('')}
+              aria-label="Cerrar mensaje"
+            >
+              <FiX />
+            </button>
           </div>
         )}
 
@@ -325,6 +372,13 @@ const VerifyEmailPage = () => {
           <div className="verify-email-success">
             <FiCheckCircle />
             <span>{success}</span>
+            <button 
+              className="verify-email-close-btn"
+              onClick={() => setSuccess('')}
+              aria-label="Cerrar mensaje"
+            >
+              <FiX />
+            </button>
           </div>
         )}
 
@@ -340,16 +394,27 @@ const VerifyEmailPage = () => {
         {/* Reenviar Código */}
         <div className="verify-email-resend">
           <p>¿No recibiste el código?</p>
-          <button
-            onClick={handleResend}
-            disabled={loading || resendCooldown > 0 || (status?.resend_count ?? 0) >= 3}
-            className="verify-email-resend-button"
-          >
-            <FiRefreshCw className={loading ? 'spinning' : ''} />
-            {resendCooldown > 0
-              ? `Reenviar en ${resendCooldown}s`
-              : 'Reenviar Código'}
-          </button>
+          {localStorage.getItem(`resend_limit_reached_${email}`) === 'true' ? (
+            <button
+              disabled={true}
+              className="verify-email-resend-button"
+              title="Límite de reenvíos alcanzado. Debes registrarte de nuevo."
+            >
+              <FiRefreshCw />
+              Límite alcanzado
+            </button>
+          ) : (
+            <button
+              onClick={handleResend}
+              disabled={loading || resendCooldown > 0 || (status?.resend_count ?? 0) >= 3}
+              className="verify-email-resend-button"
+            >
+              <FiRefreshCw className={loading ? 'spinning' : ''} />
+              {resendCooldown > 0
+                ? `Reenviar en ${resendCooldown}s`
+                : 'Reenviar Código'}
+            </button>
+          )}
           
           {/* Contador de reenvíos */}
           {status && status.resend_count !== undefined && (
@@ -368,14 +433,6 @@ const VerifyEmailPage = () => {
             </span>
           </div>
         )}
-
-        {/* Volver */}
-        <button
-          onClick={() => navigate('/auth/register')}
-          className="verify-email-back"
-        >
-          Volver al registro
-        </button>
       </div>
     </div>
   );

@@ -16,7 +16,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { useAuthStore } from '@/app/store/useAuthStore';
 import { registerUser } from '../api/registerApi';
 
 interface RateLimitError {
@@ -29,7 +28,6 @@ const STORAGE_KEY = 'rate_limit_block_register';
 
 export const useRegister = () => {
   const navigate = useNavigate();
-  const { login: setAuthState } = useAuthStore();
   
   // Verificar si hay un bloqueo activo en localStorage al inicializar
   const [rateLimitInfo, setRateLimitInfo] = useState<RateLimitError | null>(() => {
@@ -63,23 +61,10 @@ export const useRegister = () => {
       setRateLimitInfo(null);
       localStorage.removeItem(STORAGE_KEY);
       
-      // ✅ Limpiar localStorage (datos legados inseguros)
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('user');
-      localStorage.removeItem('auth-storage');
-      localStorage.removeItem('cart-storage');
-      
-      // ✅ Limpiar sessionStorage (datos legados)
-      sessionStorage.removeItem('accessToken');
-      sessionStorage.removeItem('user');
+      console.info('[useRegister] Registro exitoso. Redirigiendo a verificación de email.');
 
-      // ✅ Actualizar estado global con token (solo en memoria)
-      setAuthState(data.user, data.accessToken);
-
-      console.info('[useRegister] Registro exitoso. Usuario creado y autenticado.');
-
-      // Redirigir a home (usuarios nuevos siempre son clientes)
-      navigate('/');
+      // Redirigir a página de verificación con el email como parámetro
+      navigate(`/auth/verify-email?email=${encodeURIComponent(data.email)}`);
     },
     onError: (error: any) => {
       // Verificar si es error de rate limiting (429)

@@ -7,7 +7,7 @@
  * Implementa code splitting para optimizar el rendimiento inicial.
  */
 
-import { useEffect, useState, Suspense, lazy, useMemo } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { ProductCarousel, type ProductCard } from '../../widgets/product-carousel';
 import { AllProducts } from '../../widgets/all-products';
 import { CategoriesSection } from '../../widgets/categories-section';
@@ -41,17 +41,14 @@ export const HomePage = () => {
   const { productos: productosCatalogo, loading: loadingCatalogo } = useProductosCatalogoCompleto();
   const [displayProducts, setDisplayProducts] = useState<ProductCard[]>([]);
   
-  // Combinar productos: carrusel + catálogo (memoizado para evitar re-renders)
-  const todosLosProductos = useMemo(() => [
-    ...(productosCarrusel || []),
-    ...(productosCatalogo || [])
-  ], [productosCarrusel, productosCatalogo]);
-  const loading = loadingCarrusel || loadingCatalogo;
+  // ✅ OPTIMIZACIÓN: Mostrar carrusel apenas esté listo (no esperar catálogo)
+  const productosParaMostrar = productosCarrusel.length > 0 ? productosCarrusel : productosCatalogo;
+  const loadingCarrusel_optimizado = loadingCarrusel && productosCarrusel.length === 0;
 
   useEffect(() => {
-    // Mostrar todos los productos (carrusel + catálogo)
-    if (todosLosProductos && todosLosProductos.length > 0) {
-      const mappedProducts = todosLosProductos.map((p) => ({
+    // Mostrar productos del carrusel apenas estén listos
+    if (productosParaMostrar && productosParaMostrar.length > 0) {
+      const mappedProducts = productosParaMostrar.map((p) => ({
         id: p.id,
         nombre: p.nombre,
         descripcion: p.descripcion,
@@ -65,10 +62,9 @@ export const HomePage = () => {
       }));
       setDisplayProducts(mappedProducts as ProductCard[]);
     } else {
-      // Si no hay productos del backend, mostrar array vacío
       setDisplayProducts([]);
     }
-  }, [todosLosProductos]);
+  }, [productosParaMostrar]);
 
   return (
     <>
@@ -77,7 +73,7 @@ export const HomePage = () => {
       <section className="home-hero-section">
         <div className="home-container">
           {/* Carrusel de Productos Destacados */}
-          {!loading && displayProducts.length > 0 ? (
+          {!loadingCarrusel_optimizado && displayProducts.length > 0 ? (
             <ProductCarousel
               products={displayProducts}
               title=""
@@ -101,8 +97,8 @@ export const HomePage = () => {
       </Suspense>
 
       {/* Sección de Todos los Productos */}
-      {!loading && displayProducts.length > 0 && (
-        <AllProducts products={displayProducts} loading={loading} />
+      {!loadingCarrusel_optimizado && displayProducts.length > 0 && (
+        <AllProducts products={displayProducts} loading={loadingCatalogo} />
       )}
 
       {/* Sección de Nuestras Categorías */}

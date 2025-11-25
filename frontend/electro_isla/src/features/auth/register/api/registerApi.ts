@@ -16,7 +16,7 @@ interface RegisterPayload {
 }
 
 /**
- * Registrar nuevo usuario
+ * Registrar nuevo usuario con verificación de email
  */
 export const registerUser = async (data: {
   firstName: string;
@@ -34,7 +34,7 @@ export const registerUser = async (data: {
       last_name: data.lastName,
     };
 
-    const response = await api.post<RegisterResponse>('/auth/register/', payload);
+    const response = await api.post<RegisterResponse>('/auth/register-with-verification/', payload);
     return response.data;
   } catch (error: any) {
     // Propagar el error completo de Axios para que el hook pueda acceder a response.data

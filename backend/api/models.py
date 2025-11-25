@@ -1060,13 +1060,27 @@ class EmailVerification(models.Model):
     """
     Modelo para verificación de email con código de 6 dígitos.
     Incluye protección contra fuerza bruta y límite de reenvíos.
+    
+    FLUJO OPCIÓN 1:
+    1. Usuario se registra → Se crea EmailVerification (sin User aún)
+    2. Usuario verifica código → Se crea User
+    3. Usuario inicia sesión → Acceso completo
     """
     
     usuario = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='email_verifications'
+        related_name='email_verifications',
+        null=True,
+        blank=True
     )
+    
+    # Datos temporales (antes de crear el usuario)
+    email_temporal = models.EmailField(db_index=True, null=True, blank=True)
+    username_temporal = models.CharField(max_length=150, null=True, blank=True)
+    password_hash = models.CharField(max_length=255, null=True, blank=True)
+    first_name_temporal = models.CharField(max_length=150, null=True, blank=True)
+    last_name_temporal = models.CharField(max_length=150, null=True, blank=True)
     
     # Código de verificación de 6 dígitos
     codigo = models.CharField(max_length=6, db_index=True)

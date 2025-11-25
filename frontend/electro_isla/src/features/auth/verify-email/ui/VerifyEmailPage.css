@@ -1,32 +1,57 @@
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
- * 🎨 ESTILOS - Verificación de Email
+ * 🎨 ESTILOS - Verificación de Email (Mismo estilo que Login)
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
+/* ═══ CONTENEDOR PRINCIPAL ═══ */
 .verify-email-page {
+  position: relative;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
-  padding: var(--espaciado-lg);
-}
-
-.verify-email-container {
-  background: var(--color-fondo-blanco);
-  border-radius: var(--radio-borde-xl);
-  padding: var(--espaciado-2xl);
-  max-width: 500px;
+  padding: clamp(8px, 3vw, 24px);
+  padding-left: clamp(60px, 8vw, 80px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: var(--gradiente-fondo);
+  box-sizing: border-box;
   width: 100%;
-  box-shadow: var(--sombra-elevada);
-  animation: slideUp 0.4s ease-out;
 }
 
-@keyframes slideUp {
+/* ═══ CONTENEDOR WRAPPER ═══ */
+.verify-email-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: clamp(280px, 90vw, 420px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: clamp(8px, 2vw, 12px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12), 
+              0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: clamp(8px, 2vw, 12px) clamp(12px, 4vw, 20px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.3s ease;
+}
+
+.verify-email-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 
+              0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -37,21 +62,23 @@
 /* ═══ HEADER ═══ */
 .verify-email-header {
   text-align: center;
-  margin-bottom: var(--espaciado-2xl);
+  margin-bottom: 4px;
 }
 
 .verify-email-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto var(--espaciado-lg);
-  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-  border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-fondo-blanco);
-  font-size: 2.5rem;
-  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border-radius: 0;
+  margin-bottom: 0;
+  box-shadow: none;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  color: #ffb800;
 }
 
 .verify-email-title {
@@ -62,9 +89,10 @@
 }
 
 .verify-email-subtitle {
-  font-size: var(--texto-md);
+  font-size: var(--texto-sm);
   color: var(--color-texto-secundario);
-  margin-bottom: var(--espaciado-xs);
+  margin: 4px 0 0 0;
+  font-weight: var(--peso-normal);
 }
 
 .verify-email-email {
@@ -75,7 +103,7 @@
 
 /* ═══ CÓDIGO INPUT ═══ */
 .verify-email-code {
-  margin-bottom: var(--espaciado-xl);
+  margin-bottom: var(--espaciado-md);
 }
 
 .verify-email-label {
@@ -94,23 +122,31 @@
 }
 
 .verify-email-input {
-  width: 60px;
-  height: 70px;
-  font-size: var(--texto-2xl);
+  width: 50px;
+  height: 60px;
+  font-size: var(--texto-xl);
   font-weight: var(--peso-bold);
   text-align: center;
-  border: 2px solid var(--color-borde);
-  border-radius: var(--radio-borde-lg);
-  background: var(--color-fondo-blanco);
+  border: 2px solid #e0e0e0;
+  border-radius: clamp(6px, 1.5vw, 8px);
+  background: #ffffff;
   color: var(--color-texto-principal);
-  transition: all var(--transicion-rapida);
+  transition: all var(--transicion-normal);
+  box-sizing: border-box;
+}
+
+.verify-email-input:hover:not(:disabled) {
+  background: #ffffff;
+  border-color: #ffb800;
+  transform: none;
 }
 
 .verify-email-input:focus {
   outline: none;
-  border-color: var(--color-primario);
-  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
-  transform: scale(1.05);
+  background: #ffffff;
+  border-color: #ffb800;
+  box-shadow: none;
+  transform: none;
 }
 
 .verify-email-input:disabled {
@@ -125,18 +161,31 @@
   align-items: center;
   justify-content: center;
   gap: var(--espaciado-sm);
-  padding: var(--espaciado-md);
-  background: linear-gradient(135deg, #fff3cd, #ffe69c);
-  border: 1px solid #ffc107;
+  padding: var(--espaciado-sm);
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.08), rgba(0, 123, 255, 0.05));
+  border: 1px solid rgba(0, 123, 255, 0.2);
   border-radius: var(--radio-borde-lg);
-  color: #856404;
+  color: var(--color-primario);
   font-size: var(--texto-sm);
   font-weight: var(--peso-semibold);
-  margin-bottom: var(--espaciado-lg);
+  margin-bottom: var(--espaciado-md);
 }
 
 .verify-email-timer svg {
   font-size: 1.2rem;
+  animation: clockTick 0.6s ease-in-out infinite;
+}
+
+@keyframes clockTick {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
 }
 
 /* ═══ MENSAJES ═══ */
@@ -177,33 +226,75 @@
   flex-shrink: 0;
 }
 
+.verify-email-close-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.verify-email-close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.verify-email-close-btn:active {
+  transform: scale(0.95);
+}
+
 /* ═══ BOTÓN VERIFICAR ═══ */
 .verify-email-button {
   width: 100%;
-  padding: var(--espaciado-lg);
-  background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-  color: var(--color-fondo-blanco);
-  border: none;
-  border-radius: var(--radio-borde-lg);
-  font-size: var(--texto-lg);
+  padding: clamp(8px, 2vw, 10px) clamp(14px, 3vw, 20px);
+  font-size: clamp(12px, 2.5vw, 14px);
   font-weight: var(--peso-bold);
+  color: var(--color-texto-blanco);
+  background: linear-gradient(90deg, #ffb800 0%, #ffc933 50%, #ffb800 100%);
+  background-size: 200% 100%;
+  border: none;
+  border-radius: clamp(6px, 1.5vw, 8px);
   cursor: pointer;
-  transition: all var(--transicion-rapida);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-  margin-bottom: var(--espaciado-xl);
+  transition: all var(--transicion-normal);
+  box-shadow: 0 8px 20px rgba(255, 184, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaciado-sm);
+  margin-top: clamp(2px, 1vw, 4px);
+  animation: shimmer 3s ease-in-out infinite;
+  height: clamp(36px, 10vw, 44px);
+  box-sizing: border-box;
+  margin-bottom: var(--espaciado-md);
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
 }
 
 .verify-email-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 12px 30px rgba(255, 184, 0, 0.4);
+  transform: scale(1.02);
 }
 
 .verify-email-button:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(-1px) scale(0.98);
 }
 
 .verify-email-button:disabled {
-  opacity: 0.6;
+  opacity: 0.7;
   cursor: not-allowed;
   transform: none;
 }
@@ -211,10 +302,11 @@
 /* ═══ REENVIAR ═══ */
 .verify-email-resend {
   text-align: center;
-  padding: var(--espaciado-lg);
-  background: var(--color-fondo-gris);
+  padding: var(--espaciado-sm);
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.04), rgba(0, 123, 255, 0.02));
+  border: 1px solid rgba(0, 123, 255, 0.1);
   border-radius: var(--radio-borde-lg);
-  margin-bottom: var(--espaciado-lg);
+  margin-bottom: var(--espaciado-sm);
 }
 
 .verify-email-resend p {
@@ -229,8 +321,8 @@
   gap: var(--espaciado-sm);
   padding: var(--espaciado-md) var(--espaciado-xl);
   background: var(--color-fondo-blanco);
-  color: var(--color-primario);
-  border: 2px solid var(--color-primario);
+  color: #ffb800;
+  border: 2px solid #ffb800;
   border-radius: var(--radio-borde-lg);
   font-size: var(--texto-md);
   font-weight: var(--peso-semibold);
@@ -239,10 +331,10 @@
 }
 
 .verify-email-resend-button:hover:not(:disabled) {
-  background: var(--color-primario);
+  background: #ffb800;
   color: var(--color-fondo-blanco);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(255, 184, 0, 0.3);
 }
 
 .verify-email-resend-button:disabled {
@@ -274,10 +366,10 @@
   justify-content: center;
   gap: var(--espaciado-sm);
   padding: var(--espaciado-md);
-  background: linear-gradient(135deg, #fff3cd, #ffe69c);
-  border: 1px solid #ffc107;
+  background: linear-gradient(135deg, rgba(220, 53, 69, 0.08), rgba(220, 53, 69, 0.05));
+  border: 1px solid rgba(220, 53, 69, 0.2);
   border-radius: var(--radio-borde-lg);
-  color: #856404;
+  color: #dc3545;
   font-size: var(--texto-sm);
   font-weight: var(--peso-semibold);
   margin-bottom: var(--espaciado-lg);
@@ -287,24 +379,35 @@
   font-size: 1.2rem;
 }
 
-/* ═══ BOTÓN VOLVER ═══ */
-.verify-email-back {
-  width: 100%;
-  padding: var(--espaciado-md);
+/* ═══ BOTÓN VOLVER (FLECHA) ═══ */
+.verify-email-back-button {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
-  color: var(--color-texto-secundario);
-  border: 2px solid var(--color-borde);
-  border-radius: var(--radio-borde-lg);
-  font-size: var(--texto-md);
-  font-weight: var(--peso-semibold);
+  border: none;
+  color: #999;
   cursor: pointer;
-  transition: all var(--transicion-rapida);
+  transition: color 0.3s ease;
+  border-radius: 0;
+  z-index: 10;
+  padding: 0;
+  box-shadow: none;
 }
 
-.verify-email-back:hover {
-  background: var(--color-fondo-gris);
-  border-color: var(--color-texto-secundario);
-  color: var(--color-texto-principal);
+.verify-email-back-button:hover {
+  color: #ffb800;
+  background: transparent;
+  box-shadow: none;
+}
+
+.verify-email-back-button:active {
+  transform: scale(0.95);
 }
 
 /* ═══ RESPONSIVE ═══ */

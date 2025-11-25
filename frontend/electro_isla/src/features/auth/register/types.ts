@@ -14,14 +14,11 @@ export interface RegisterFormData {
 }
 
 export interface RegisterResponse {
-  accessToken: string;
-  user: {
-    id: number;
-    email: string;
-    nombre: string;
-    rol: 'admin' | 'cliente';
-  };
   message: string;
+  detail: string;
+  email: string;
+  username: string;
+  expires_in_minutes: number;
 }
 
 export interface PasswordStrength {

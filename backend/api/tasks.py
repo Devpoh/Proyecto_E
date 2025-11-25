@@ -145,19 +145,25 @@ def limpiar_tokens_expirados(self):
 
 
 @shared_task(bind=True, max_retries=3)
-def enviar_email_verificacion(self, usuario_id, codigo):
+def enviar_email_verificacion(self, email=None, codigo=None, nombre=None, usuario_id=None):
     """
     📧 TAREA: Enviar email de verificación
     
     Envía un email con el código de verificación de 6 dígitos.
     Usa plantilla HTML profesional para mejor presentación.
     
+    ✅ OPCIÓN 1: Soporta dos modos:
+    - Modo nuevo: email, codigo, nombre (sin usuario creado aún)
+    - Modo antiguo: usuario_id, codigo (usuario ya existe)
+    
     Args:
-        usuario_id: ID del usuario
+        email: Email del usuario (OPCIÓN 1)
         codigo: Código de verificación de 6 dígitos
+        nombre: Nombre del usuario (OPCIÓN 1)
+        usuario_id: ID del usuario (modo antiguo)
     
     Flujo:
-    1. Obtiene el usuario de la base de datos
+    1. Obtiene datos del usuario (temporal o existente)
     2. Renderiza plantilla HTML con contexto
     3. Envía el email usando Gmail SMTP (HTML + texto plano)
     4. Registra el resultado en logs
@@ -173,14 +179,29 @@ def enviar_email_verificacion(self, usuario_id, codigo):
     from django.template.loader import render_to_string
     
     try:
-        # Obtener usuario
-        usuario = User.objects.get(id=usuario_id)
+        # Modo OPCIÓN 1: Datos temporales (sin usuario aún)
+        if email and codigo and nombre:
+            email_destino = email
+            nombre_usuario = nombre
+            
+            logger.info(f'[EMAIL_VERIFICACION] Enviando a {email_destino} (modo temporal)')
+        
+        # Modo antiguo: Usuario ya existe
+        elif usuario_id and codigo:
+            usuario = User.objects.get(id=usuario_id)
+            email_destino = usuario.email
+            nombre_usuario = usuario.first_name or usuario.username
+            
+            logger.info(f'[EMAIL_VERIFICACION] Enviando a {email_destino} (modo usuario existente)')
+        
+        else:
+            raise ValueError('Parámetros inválidos: proporciona (email, codigo, nombre) o (usuario_id, codigo)')
         
         # Contexto para la plantilla
         context = {
-            'nombre': usuario.first_name or usuario.username,
+            'nombre': nombre_usuario,
             'codigo': codigo,
-            'username': usuario.username,
+            'username': nombre_usuario,
         }
         
         # Renderizar plantilla HTML
@@ -188,35 +209,35 @@ def enviar_email_verificacion(self, usuario_id, codigo):
         
         # Mensaje de texto plano (fallback)
         text_content = f'''
-Hola {usuario.first_name or usuario.username},
+Hola {nombre_usuario},
 
 Tu código de verificación es: {codigo}
 
-Este código expira en 15 minutos.
+Este código expira en 5 minutos.
 
 Si no solicitaste este código, ignora este email.
 
 Saludos,
-Equipo Electro Isla
+Equipo Electronica Isla
         '''
         
         # Crear email con HTML y texto plano
-        subject = 'Verifica tu cuenta - Electro Isla'
-        email = EmailMultiAlternatives(
+        subject = 'Verifica tu cuenta - Electronica Isla'
+        email_msg = EmailMultiAlternatives(
             subject=subject,
             body=text_content,
             from_email=settings.DEFAULT_FROM_EMAIL,
-            to=[usuario.email]
+            to=[email_destino]
         )
-        email.attach_alternative(html_content, "text/html")
+        email_msg.attach_alternative(html_content, "text/html")
         
         # Enviar email
-        email.send(fail_silently=False)
+        email_msg.send(fail_silently=False)
         
-        logger.info(f'[EMAIL_VERIFICACION] Enviado a {usuario.email} (HTML)')
+        logger.info(f'[EMAIL_VERIFICACION] Enviado a {email_destino} (HTML)')
         return {
             'status': 'success',
-            'email': usuario.email,
+            'email': email_destino,
             'usuario_id': usuario_id,
             'format': 'html'
         }
