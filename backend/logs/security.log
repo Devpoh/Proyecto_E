@@ -14321,3 +14321,510 @@ RuntimeError: You called this URL via POST, but the URL doesn't end in a slash a
 [WARNING] 2025-11-25 15:54:33 django.request 29576 15488 Unauthorized: /api/auth/refresh/
 [WARNING] 2025-11-25 15:54:40 security 29576 13964 [REFRESH_FAILED] Refresh token inválido o expirado
 [WARNING] 2025-11-25 15:54:40 django.request 29576 13964 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 16:43:46 security 10380 26688 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 16:43:46 django.request 10380 26688 Unauthorized: /api/auth/refresh/
+[ERROR] 2025-11-25 16:54:57 security 10380 25156 [FORGOT_PASSWORD_ERROR] no existe la relación «password_reset_tokens»
+LINE 1: DELETE FROM "password_reset_tokens" WHERE (NOT "password_res...
+                    ^
+
+[WARNING] 2025-11-25 17:06:59 security 19736 14228 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 17:06:59 django.request 19736 14228 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 17:07:03 security 19736 6972 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 17:07:03 django.request 19736 6972 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 17:19:02 security 20360 17480 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 17:19:02 django.request 20360 17480 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 17:26:02 security 20360 27824 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 17:26:02 django.request 20360 27824 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 17:36:35 security 20360 18232 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 17:36:35 django.request 20360 18232 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 17:38:12 security 20360 26100 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: alejandro
+[WARNING] 2025-11-25 17:38:12 django.request 20360 26100 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 17:57:16 security 21608 2756 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-25 17:57:16 django.request 21608 2756 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 17:58:49 security 21608 8036 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 17:58:49 django.request 21608 8036 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 18:02:01 security 21608 6856 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 18:02:01 django.request 21608 6856 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 18:22:06 security 21608 2648 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 18:22:06 django.request 21608 2648 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 18:24:19 security 21608 19928 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 18:24:19 django.request 21608 19928 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 18:33:32 security 21608 10232 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 18:33:32 django.request 21608 10232 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 19:42:48 security 30024 21328 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 19:42:48 django.request 30024 21328 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 19:43:49 security 30024 10108 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: alejandro
+[WARNING] 2025-11-25 19:43:49 django.request 30024 10108 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 19:44:21 security 30024 10108 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: alejandro
+[WARNING] 2025-11-25 19:44:21 django.request 30024 10108 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 19:47:54 security 30024 29560 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 19:47:54 django.request 30024 29560 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 19:48:01 security 30024 29560 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 19:48:01 django.request 30024 29560 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 19:48:08 security 30024 10728 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 19:48:08 django.request 30024 10728 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 19:49:20 security 30024 16364 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 19:49:20 django.request 30024 16364 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 19:49:38 security 30024 15856 [LOGIN_FAILED] Usuario: 524268 | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 19:49:38 django.request 30024 15856 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:08:16 security 13804 27400 [LOGIN_FAILED] Usuario: alejandro | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:08:16 django.request 13804 27400 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:16:41 security 13804 23640 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:16:41 django.request 13804 23640 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:16:45 security 13804 23640 [LOGIN_FAILED] Usuario: 288370 | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:16:45 django.request 13804 23640 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:20:17 security 22248 4364 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:20:17 django.request 22248 4364 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:21:57 security 22248 18044 [LOGIN_FAILED] Usuario: ale | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:21:58 django.request 22248 18044 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:34:32 security 22248 5812 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: alejandro
+[WARNING] 2025-11-25 20:34:32 django.request 22248 5812 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 20:34:44 security 22248 1224 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: alejandro
+[WARNING] 2025-11-25 20:34:44 django.request 22248 1224 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 20:40:50 security 22248 20204 [LOGIN_FAILED] Usuario: alejandro | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:40:50 django.request 22248 20204 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:44:25 security 22248 14424 [LOGIN_FAILED] Usuario: alejandro | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:44:25 django.request 22248 14424 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:45:02 security 22248 18860 [LOGIN_FAILED] Usuario: alejandro | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-25 20:45:02 django.request 22248 18860 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-25 20:59:30 django.request 29828 9448 Bad Request: /api/auth/verify-email/
+[WARNING] 2025-11-25 20:59:37 django.request 29828 9448 Too Many Requests: /api/auth/verify-email/
+[WARNING] 2025-11-25 20:59:37 django.request 29828 9448 Too Many Requests: /api/auth/resend-verification/
+[INFO] 2025-11-25 20:59:38 security 29828 9448 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: noexiste@example.com | IP: 127.0.0.1
+[WARNING] 2025-11-25 20:59:39 security 29828 9448 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 20:59:39 django.request 29828 9448 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 20:59:39 security 29828 9448 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 20:59:39 django.request 29828 9448 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 20:59:39 security 29828 9448 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 20:59:39 django.request 29828 9448 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 20:59:40 security 29828 9448 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 20:59:40 django.request 29828 9448 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 20:59:40 security 29828 9448 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 20:59:40 django.request 29828 9448 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 20:59:41 security 29828 9448 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 20:59:41 django.request 29828 9448 Bad Request: /api/auth/reset-password/
+[INFO] 2025-11-25 20:59:41 security 29828 9448 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test0@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 20:59:41 security 29828 9448 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test1@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 20:59:41 security 29828 9448 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test2@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 20:59:41 security 29828 9448 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test3@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 20:59:41 security 29828 9448 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test4@example.com | IP: 127.0.0.1
+[WARNING] 2025-11-25 20:59:41 security 29828 9448 [FORGOT_PASSWORD_BLOQUEADO] IP: 127.0.0.1 | Tiempo restante: 899s
+[INFO] 2025-11-25 21:02:43 security 22712 2112 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: noexiste@example.com | IP: 127.0.0.1
+[WARNING] 2025-11-25 21:02:44 security 22712 2112 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:02:44 django.request 22712 2112 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:02:45 security 22712 2112 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:02:45 django.request 22712 2112 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:02:45 security 22712 2112 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:02:45 django.request 22712 2112 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:02:46 security 22712 2112 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:02:46 django.request 22712 2112 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:02:46 security 22712 2112 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:02:46 django.request 22712 2112 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:02:46 security 22712 2112 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:02:46 django.request 22712 2112 Bad Request: /api/auth/reset-password/
+[INFO] 2025-11-25 21:02:47 security 22712 2112 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test0@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 21:02:47 security 22712 2112 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test1@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 21:02:47 security 22712 2112 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test2@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 21:02:47 security 22712 2112 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test3@example.com | IP: 127.0.0.1
+[INFO] 2025-11-25 21:02:47 security 22712 2112 [FORGOT_PASSWORD_EMAIL_NO_EXISTE] Email: test4@example.com | IP: 127.0.0.1
+[WARNING] 2025-11-25 21:02:47 security 22712 2112 [FORGOT_PASSWORD_BLOQUEADO] IP: 127.0.0.1 | Tiempo restante: 899s
+[WARNING] 2025-11-25 21:07:18 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:07:19 django.request 16508 2464 Not Found: /api/auth/reset-password-confirm/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:20 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:20 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:09:21 security 13304 28300 [RESET_PASSWORD_SIN_CODIGO]
+[WARNING] 2025-11-25 21:09:21 django.request 13304 28300 Bad Request: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:42 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:42 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:10:43 security 12376 3028 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:10:43 django.request 12376 3028 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:12:11 security 25232 20660 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:12:11 django.request 25232 20660 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:13:43 security 8776 28360 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:13:43 django.request 8776 28360 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:11 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:11 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:16:12 security 25140 4736 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:16:12 django.request 25140 4736 Internal Server Error: /api/auth/reset-password/
+[ERROR] 2025-11-25 21:17:41 security 9628 12376 [RESET_PASSWORD_ERROR] Error al cambiar contraseña
+[ERROR] 2025-11-25 21:17:41 security 9628 12376 [RESET_PASSWORD_ERROR_DETAIL] LoginAttempt.registrar_intento() got an unexpected keyword argument 'exitoso'
+[ERROR] 2025-11-25 21:17:41 security 9628 12376 [RESET_PASSWORD_ERROR_TRACEBACK] Traceback (most recent call last):
+  File "C:\Users\Alejandro\Desktop\Electro-Isla\backend\api\views_recuperacion.py", line 233, in reset_password_confirm
+    LoginAttempt.registrar_intento(ip_address, attempt_type='reset_password', exitoso=False)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: LoginAttempt.registrar_intento() got an unexpected keyword argument 'exitoso'
+
+[ERROR] 2025-11-25 21:17:41 django.request 9628 12376 Internal Server Error: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:54 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:54 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_BLOQUEADO_IP] IP: 192.168.1.1 | Tiempo restante: 899s
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Too Many Requests: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:20:55 security 21844 14840 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:20:55 django.request 21844 14840 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:23 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:23 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:23 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:23 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:23 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:23 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:23 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:23 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:23 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:23 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:23 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:23 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:23 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:24 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:24 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:24 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:24 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:24 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:25 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:25 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_BLOQUEADO_IP] IP: 192.168.1.1 | Tiempo restante: 899s
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Too Many Requests: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:26 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:26 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:27 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:27 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:25:27 security 23136 28908 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:25:27 django.request 23136 28908 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:27:58 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:27:58 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:00 security 21716 17788 [RESET_PASSWORD_BLOQUEADO_IP] IP: 192.168.1.1 | Tiempo restante: 899s
+[WARNING] 2025-11-25 21:28:00 django.request 21716 17788 Too Many Requests: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 21:28:01 security 21716 17788 [RESET_PASSWORD_CODIGO_INVALIDO] Usuario: testuser
+[WARNING] 2025-11-25 21:28:01 django.request 21716 17788 Unauthorized: /api/auth/reset-password/
+[WARNING] 2025-11-25 22:27:30 security 10852 17872 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 22:27:30 django.request 10852 17872 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-25 22:28:26 security 10852 18908 [REFRESH_FAILED] Refresh token inválido o expirado
+[WARNING] 2025-11-25 22:28:26 django.request 10852 18908 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-26 08:32:34 security 6544 23728 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-26 08:32:34 django.request 6544 23728 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-26 08:33:44 security 6544 17968 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-26 08:33:44 django.request 6544 17968 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-26 08:39:26 security 6544 1456 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-26 08:39:26 django.request 6544 1456 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-26 14:58:08 security 20928 6452 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-26 14:58:08 django.request 20928 6452 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-26 15:07:49 security 20928 15004 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-26 15:07:49 django.request 20928 15004 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-26 15:10:53 security 20928 29652 [LOGIN_FAILED] Usuario: alejandro | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-26 15:10:53 django.request 20928 29652 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-26 15:49:24 django.request 20928 8304 Unauthorized: /api/favoritos/verificar-batch/
+[WARNING] 2025-11-26 15:49:24 django.request 20928 8304 Unauthorized: /api/favoritos/verificar-batch/
+[WARNING] 2025-11-26 15:49:24 django.request 20928 8304 Unauthorized: /api/favoritos/verificar-batch/
+[WARNING] 2025-11-26 15:49:24 django.request 20928 8304 Unauthorized: /api/carrito/
+[WARNING] 2025-11-26 15:55:01 django.request 20928 13904 Unauthorized: /api/admin/dashboard/stats/
+[WARNING] 2025-11-26 15:55:03 security 20928 13904 [LOGIN_FAILED] Usuario: alejandro | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-26 15:55:03 django.request 20928 13904 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-26 19:39:20 security 20928 16288 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-26 19:39:20 django.request 20928 16288 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-27 09:07:42 security 20928 12160 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-27 09:07:42 django.request 20928 12160 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-27 09:57:46 security 22576 30080 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-27 09:57:46 django.request 22576 30080 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-27 10:25:56 security 22576 8856 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-27 10:25:56 django.request 22576 8856 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-27 10:27:26 security 22576 10940 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-27 10:27:26 django.request 22576 10940 Unauthorized: /api/auth/refresh/
+[WARNING] 2025-11-27 10:27:51 security 22576 21128 [LOGIN_FAILED] Usuario: alejandro | IP: 127.0.0.1 | Razón: Credenciales inválidas
+[WARNING] 2025-11-27 10:27:51 django.request 22576 21128 Unauthorized: /api/auth/login/
+[WARNING] 2025-11-27 12:57:21 security 22576 15316 [REFRESH_FAILED] Refresh token no encontrado en cookie
+[WARNING] 2025-11-27 12:57:21 django.request 22576 15316 Unauthorized: /api/auth/refresh/

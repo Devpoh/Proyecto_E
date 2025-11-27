@@ -20,6 +20,8 @@ import { GlobalLoading } from '@/shared/ui/GlobalLoading';
 const LoginPage = lazy(() => import('@/pages/auth/login').then(m => ({ default: m.LoginPage })));
 const RegisterPage = lazy(() => import('@/pages/auth/register').then(m => ({ default: m.RegisterPage })));
 const VerifyEmailPage = lazy(() => import('@/features/auth/verify-email').then(m => ({ default: m.VerifyEmailPage })));
+const ForgotPasswordPage = lazy(() => import('@/pages/auth/forgot-password/ForgotPasswordPage'));
+const ResetPasswordPage = lazy(() => import('@/pages/auth/reset-password/ResetPasswordPage'));
 const HomePage = lazy(() => import('@/pages/home').then(m => ({ default: m.HomePage })));
 const PaginaSobreNosotros = lazy(() => import('@/pages/about').then(m => ({ default: m.PaginaSobreNosotros })));
 const PaginaProductos = lazy(() => import('@/pages/products').then(m => ({ default: m.PaginaProductos })));
@@ -56,6 +58,8 @@ export const AppRoutes = () => {
         <Route path="/login" element={<Suspense fallback={<RouteLoadingFallback />}><LoginPage /></Suspense>} />
         <Route path="/register" element={<Suspense fallback={<RouteLoadingFallback />}><RegisterPage /></Suspense>} />
         <Route path="/auth/verify-email" element={<Suspense fallback={<RouteLoadingFallback />}><VerifyEmailPage /></Suspense>} />
+        <Route path="/auth/forgot-password" element={<Suspense fallback={<RouteLoadingFallback />}><ForgotPasswordPage /></Suspense>} />
+        <Route path="/auth/reset-password" element={<Suspense fallback={<RouteLoadingFallback />}><ResetPasswordPage /></Suspense>} />
         
         {/* Rutas de admin - Protegidas por rol */}
         <Route 

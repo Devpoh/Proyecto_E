@@ -86,12 +86,15 @@ export const AllProducts: React.FC<AllProductsProps> = ({
     );
   }
 
-  if (products.length === 0) {
+  // Filtrar productos para contar correctamente
+  const filteredProducts = products.filter(p => p.en_all_products !== false);
+  
+  if (filteredProducts.length === 0) {
     return null;
   }
 
   const productsToShow = isMobile ? PRODUCTS_PER_PAGE_MOBILE : PRODUCTS_PER_PAGE;
-  const hasMoreProducts = products.length > productsToShow; // Mostrar botón si hay más productos
+  const hasMoreProducts = filteredProducts.length > productsToShow; // ✅ CORREGIDO: Usar filteredProducts en lugar de products
 
   return (
     <section className="all-products-section">

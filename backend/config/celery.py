@@ -77,6 +77,30 @@ app.conf.update(
     # Timeout para tareas
     task_soft_time_limit=300,  # 5 minutos
     task_time_limit=600,  # 10 minutos (hard limit)
+    
+    # ✅ MEJORADO: Reconexión automática a Redis
+    broker_connection_retry_on_startup=True,  # Reintentar conexión al iniciar
+    broker_connection_retry=True,  # Reintentar conexión si se pierde
+    broker_connection_max_retries=10,  # Máximo 10 reintentos
+    
+    # ✅ MEJORADO: Heartbeat para mantener conexión viva
+    broker_heartbeat=30,  # Enviar heartbeat cada 30 segundos
+    broker_pool_limit=None,  # Sin límite de conexiones
+    
+    # ✅ MEJORADO: Configuración de resultado backend
+    result_backend_transport_options={
+        'master_name': 'mymaster',
+        'retry_on_timeout': True,
+        'socket_keepalive': True,
+        'socket_keepalive_options': {
+            1: 1,  # TCP_KEEPIDLE
+            2: 3,  # TCP_KEEPINTVL
+            3: 5,  # TCP_KEEPCNT
+        }
+    },
+    
+    # ✅ MEJORADO: Cancelar tareas largas en caso de desconexión
+    worker_cancel_long_running_tasks_on_connection_loss=True,
 )
 
 @app.task(bind=True)

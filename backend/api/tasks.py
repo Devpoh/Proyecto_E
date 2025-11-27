@@ -10,11 +10,13 @@ Tareas:
 2. limpiar_tokens_expirados() - Limpia tokens JWT expirados
 3. enviar_email_verificacion() - Envía email de verificación con código
 4. limpiar_codigos_verificacion() - Limpia códigos de verificación expirados
+5. enviar_email_recuperacion() - Envía email de recuperación de contraseña
 """
 
 from celery import shared_task
 from django.utils import timezone
 from django.db import transaction
+from .validators import hash_email_para_logs
 import logging
 
 logger = logging.getLogger(__name__)
@@ -294,4 +296,92 @@ def limpiar_codigos_verificacion(self):
     except Exception as exc:
         logger.error(f'[LIMPIAR_CODIGOS_ERROR] {str(exc)}')
         # Reintentar con backoff exponencial
+        raise self.retry(exc=exc, countdown=60)
+
+
+@shared_task(bind=True, max_retries=3)
+def enviar_email_recuperacion(self, email=None, nombre=None, codigo=None, usuario_id=None):
+    """
+    📧 TAREA: Enviar email de recuperación de contraseña con código
+    
+    Envía un email con el código de 6 dígitos para recuperar la contraseña.
+    Usa plantilla HTML profesional para mejor presentación.
+    
+    Args:
+        email: Email del usuario
+        nombre: Nombre del usuario
+        codigo: Código de 6 dígitos
+        usuario_id: ID del usuario (para auditoría)
+    
+    Flujo:
+    1. Obtiene datos del usuario
+    2. Renderiza plantilla HTML con contexto
+    3. Envía el email usando Gmail SMTP (HTML + texto plano)
+    4. Registra el resultado en logs
+    
+    Seguridad:
+    - Reintentos automáticos (max 3)
+    - Logging detallado
+    - Manejo de excepciones
+    """
+    from django.core.mail import EmailMultiAlternatives
+    from django.conf import settings
+    from django.template.loader import render_to_string
+    
+    try:
+        if not email or not codigo or not nombre:
+            raise ValueError('Parámetros inválidos: email, codigo y nombre son requeridos')
+        
+        # Contexto para la plantilla
+        context = {
+            'nombre': nombre,
+            'codigo': codigo,
+            'expiracion_minutos': 15,
+        }
+        
+        # Renderizar plantilla HTML
+        html_content = render_to_string('emails/recuperacion_contraseña.html', context)
+        
+        # Mensaje de texto plano (fallback)
+        text_content = f'''
+Hola {nombre},
+
+Tu código de recuperación de contraseña es: {codigo}
+
+Ingresa este código en la aplicación para establecer una nueva contraseña.
+
+Este código expira en 15 minutos.
+
+Si no solicitaste esto, ignora este email.
+
+Saludos,
+Equipo Electronica Isla
+        '''
+        
+        # Crear email con HTML y texto plano
+        subject = 'Código de recuperación de contraseña - Electronica Isla'
+        email_msg = EmailMultiAlternatives(
+            subject=subject,
+            body=text_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[email]
+        )
+        email_msg.attach_alternative(html_content, "text/html")
+        
+        # Enviar email
+        email_msg.send(fail_silently=False)
+        
+        # ✅ MEJORADO: NO loguear email completo, usar hash
+        email_hash = hash_email_para_logs(email)
+        logger.info(f'[EMAIL_RECUPERACION] Enviado a {email_hash} (usuario_id: {usuario_id})')
+        return {
+            'status': 'success',
+            'email_hash': email_hash,
+            'usuario_id': usuario_id,
+            'format': 'html'
+        }
+    
+    except Exception as exc:
+        logger.error(f'[EMAIL_RECUPERACION_ERROR] Error enviando email (usuario_id: {usuario_id})')
+        # Reintentar con backoff exponencial (60 segundos)
         raise self.retry(exc=exc, countdown=60)

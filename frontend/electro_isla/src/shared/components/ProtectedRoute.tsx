@@ -46,7 +46,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   requiredRoles = [],
   fallbackPath = '/login',
 }) => {
-  const { isAuthenticated, user, logout } = useAuthStore();
+  const { isAuthenticated, user, logout, isInitializing } = useAuthStore();
 
   // Verificar si el token está expirado
   useEffect(() => {
@@ -60,6 +60,13 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
       }
     }
   }, [isAuthenticated, logout]);
+
+  // ✅ IMPORTANTE: Esperar a que se complete la inicialización
+  // Si aún se está inicializando, no redirigir (puede estar restaurando sesión)
+  if (isInitializing) {
+    console.debug('[ProtectedRoute] Esperando inicialización de autenticación...');
+    return null; // O mostrar un loading si prefieres
+  }
 
   // Verificar si está autenticado
   if (!isAuthenticated || !user) {

@@ -2,9 +2,9 @@
  * ═══════════════════════════════════════════════════════════════════════════════
  * 🎨 UI COMPONENT - LoginForm
  * ═══════════════════════════════════════════════════════════════════════════════
- * 
+ *
  * Formulario de inicio de sesión con validación y diseño premium
- * 
+ *
  * CARACTERÍSTICAS:
  * - Validación en tiempo real
  * - Feedback visual de errores
@@ -13,10 +13,10 @@
  * - Accesibilidad WCAG AA
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft, FiCheckCircle } from 'react-icons/fi';
 import { LogoBrand } from '@/shared/ui/LogoBrand';
 import { RateLimitAlert } from '@/shared/components';
 import { useLogin } from '../hooks/useLogin';
@@ -25,22 +25,33 @@ import './LoginForm.css';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [validationErrors, setValidationErrors] = useState<{
-    username?: string;
+    usernameOrEmail?: string;
     password?: string;
   }>({});
+  const [showPasswordResetSuccess, setShowPasswordResetSuccess] = useState(false);
 
   const { login, isLoading, error, rateLimitInfo, clearRateLimit } = useLogin();
 
+  // Mostrar notificación de éxito si viene del reset de contraseña
+  useEffect(() => {
+    const resetSuccess = sessionStorage.getItem('passwordResetSuccess');
+    if (resetSuccess) {
+      setShowPasswordResetSuccess(true);
+      sessionStorage.removeItem('passwordResetSuccess');
+      setTimeout(() => setShowPasswordResetSuccess(false), 5000);
+    }
+  }, []);
+
   // Validación del formulario
   const validateForm = (): boolean => {
-    const errors: { username?: string; password?: string } = {};
+    const errors: { usernameOrEmail?: string; password?: string } = {};
 
-    if (!username.trim()) {
-      errors.username = 'El usuario es requerido';
+    if (!usernameOrEmail.trim()) {
+      errors.usernameOrEmail = 'El usuario o email es requerido';
     }
 
     if (!password) {
@@ -61,7 +72,7 @@ export const LoginForm = () => {
       return;
     }
 
-    login({ username, password });
+    login({ username: usernameOrEmail, password });
   };
 
   // Si hay rate limit, mostrar componente de bloqueo
@@ -117,6 +128,14 @@ export const LoginForm = () => {
             />
           )}
 
+          {/* Notificación de Éxito - Contraseña Cambiada */}
+          {showPasswordResetSuccess && (
+            <div className="login-form-success-banner" role="status">
+              <span className="login-form-success-icon"><FiCheckCircle /></span>
+              <span>¡Contraseña cambiada con éxito! Inicia sesión con tu nueva contraseña.</span>
+            </div>
+          )}
+
           {/* Error general del servidor */}
           {error && (
             <div className="login-form-error-banner" role="alert">
@@ -127,31 +146,31 @@ export const LoginForm = () => {
 
           {/* Campo de usuario o email */}
           <div className="login-form-field">
-            <label htmlFor="username" className="login-form-label">
+            <label htmlFor="usernameOrEmail" className="login-form-label">
               Email o Usuario
             </label>
             <input
-              id="username"
+              id="usernameOrEmail"
               type="text"
-              value={username}
+              value={usernameOrEmail}
               onChange={(e) => {
-                setUsername(e.target.value);
-                if (validationErrors.username) {
-                  setValidationErrors((prev) => ({ ...prev, username: undefined }));
+                setUsernameOrEmail(e.target.value);
+                if (validationErrors.usernameOrEmail) {
+                  setValidationErrors((prev) => ({ ...prev, usernameOrEmail: undefined }));
                 }
               }}
               className={`login-form-input ${
-                validationErrors.username ? 'login-form-input-error' : ''
+                validationErrors.usernameOrEmail ? 'login-form-input-error' : ''
               }`}
               placeholder="ejemplo@gmail.com o Usuario"
               disabled={isLoading}
               autoComplete="username"
-              aria-invalid={!!validationErrors.username}
-              aria-describedby={validationErrors.username ? 'username-error' : undefined}
+              aria-invalid={!!validationErrors.usernameOrEmail}
+              aria-describedby={validationErrors.usernameOrEmail ? 'usernameOrEmail-error' : undefined}
             />
-            {validationErrors.username && (
-              <span id="username-error" className="login-form-field-error">
-                {validationErrors.username}
+            {validationErrors.usernameOrEmail && (
+              <span id="usernameOrEmail-error" className="login-form-field-error">
+                {validationErrors.usernameOrEmail}
               </span>
             )}
           </div>
@@ -198,7 +217,7 @@ export const LoginForm = () => {
               />
               <span>Recordarme</span>
             </label>
-            <Link to="/forgot-password" className="login-form-forgot-password">
+            <Link to="/auth/forgot-password" className="login-form-forgot-password">
               ¿Olvidaste tu contraseña?
             </Link>
           </div>

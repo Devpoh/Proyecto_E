@@ -42,6 +42,12 @@ def estadisticas_ventas(request):
     
     def fetch_estadisticas_ventas():
         """Función que obtiene datos de la fuente original"""
+        # ✅ OPTIMIZADO: Usar una sola query para todos los pedidos confirmados
+        estados_confirmados = ['confirmado', 'en_preparacion', 'en_camino', 'entregado']
+        pedidos_confirmados = Pedido.objects.filter(
+            estado__in=estados_confirmados
+        ).only('id', 'total', 'metodo_pago', 'created_at')
+        
         # Ventas por mes (últimos 12 meses)
         ventas_por_mes = []
         for i in range(12):
@@ -49,10 +55,9 @@ def estadisticas_ventas(request):
                          - timedelta(days=30 * i))
             mes_fin = mes_inicio + timedelta(days=30)
             
-            ventas = Pedido.objects.filter(
+            ventas = pedidos_confirmados.filter(
                 created_at__gte=mes_inicio,
-                created_at__lt=mes_fin,
-                estado__in=['confirmado', 'en_preparacion', 'en_camino', 'entregado']
+                created_at__lt=mes_fin
             ).aggregate(
                 total=Sum('total'),
                 count=Count('id')
@@ -64,10 +69,10 @@ def estadisticas_ventas(request):
                 'pedidos': ventas['count']
             })
         
-        # Productos más vendidos
+        # ✅ OPTIMIZADO: Productos más vendidos con select_related
         productos_vendidos = DetallePedido.objects.filter(
-            pedido__estado__in=['confirmado', 'en_preparacion', 'en_camino', 'entregado']
-        ).values(
+            pedido__estado__in=estados_confirmados
+        ).select_related('producto').values(
             'producto__nombre',
             'producto__categoria'
         ).annotate(
@@ -75,18 +80,14 @@ def estadisticas_ventas(request):
             ingresos=Sum('subtotal')
         ).order_by('-cantidad_vendida')[:10]
         
-        # Métodos de pago (limitado a 10 métodos)
-        metodos_pago = Pedido.objects.filter(
-            estado__in=['confirmado', 'en_preparacion', 'en_camino', 'entregado']
-        ).values('metodo_pago').annotate(
+        # ✅ OPTIMIZADO: Métodos de pago desde pedidos ya filtrados
+        metodos_pago = pedidos_confirmados.values('metodo_pago').annotate(
             count=Count('id'),
             total=Sum('total')
-        )[:10]
+        ).order_by('-count')[:10]
         
-        # Ticket promedio
-        ticket_promedio = Pedido.objects.filter(
-            estado__in=['confirmado', 'en_preparacion', 'en_camino', 'entregado']
-        ).aggregate(promedio=Avg('total'))['promedio'] or 0
+        # ✅ OPTIMIZADO: Ticket promedio desde pedidos ya filtrados
+        ticket_promedio = pedidos_confirmados.aggregate(promedio=Avg('total'))['promedio'] or 0
         
         return {
             'ventas_por_mes': ventas_por_mes,
@@ -95,12 +96,8 @@ def estadisticas_ventas(request):
             'ticket_promedio': float(ticket_promedio),
         }
     
-    # Usar CacheManager con invalidación automática
-    data = CacheManager.get(
-        cache_key='estadisticas_ventas',
-        fetch_func=fetch_estadisticas_ventas,
-        ttl=300  # 5 minutos
-    )
+    # ✅ SIMPLIFICADO: Ejecutar directamente sin cache para evitar ralentización
+    data = fetch_estadisticas_ventas()
     
     return Response(data)
 
@@ -172,12 +169,8 @@ def estadisticas_usuarios(request):
             'usuarios_recurrentes': usuarios_recurrentes,
         }
     
-    # Usar CacheManager con invalidación automática
-    data = CacheManager.get(
-        cache_key='estadisticas_usuarios',
-        fetch_func=fetch_estadisticas_usuarios,
-        ttl=600  # 10 minutos
-    )
+    # ✅ SIMPLIFICADO: Ejecutar directamente sin cache para evitar ralentización
+    data = fetch_estadisticas_usuarios()
     
     return Response(data)
 

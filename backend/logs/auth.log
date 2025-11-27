@@ -978,3 +978,109 @@ api.models.EmailVerification.MultipleObjectsReturned: get() returned more than o
 [INFO] 2025-11-25 15:54:33 auth 29576 15488 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
 [INFO] 2025-11-25 15:54:35 auth 29576 13964 [CODIGO_REENVIADO] Email loko09od@gmail.com. Reenvío #3
 [INFO] 2025-11-25 15:54:35 auth 29576 13964 [ESTADO_VERIFICACION] Email loko09od@gmail.com. Verificado: False
+[INFO] 2025-11-25 17:07:14 auth 19736 2404 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 17:19:35 auth 20360 27952 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 17:36:39 auth 20360 26100 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 17:37:28 auth 20360 26100 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 17:57:27 auth 21608 29316 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 17:58:30 auth 21608 16784 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 17:58:54 auth 21608 13720 [LOGIN_SUCCESS] Usuario: ale | Email: ernestoalejandroramodiaz@gmai.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 18:00:27 auth 21608 25672 [LOGOUT_CART_CLEARED] Usuario: ale | Items eliminados: 1
+[INFO] 2025-11-25 18:00:27 auth 21608 25672 [LOGOUT_SUCCESS] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-25 18:00:27 auth 21608 25672 [REFRESH_TOKENS_REVOKED] Usuario: ale | IP: 127.0.0.1
+[INFO] 2025-11-25 18:02:58 auth 21608 3528 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 18:10:37 auth 21608 18484 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 18:11:46 auth 21608 14088 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 18:22:11 auth 21608 16924 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 18:26:07 auth 21608 20500 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 18:34:16 auth 21608 2468 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com
+[INFO] 2025-11-25 18:34:25 auth 21608 9324 [FORGOT_PASSWORD_SOLICITADO] Usuario: leo24 | Email: leocamellon2003@gmail.com
+[INFO] 2025-11-25 18:36:49 auth 21608 1704 [FORGOT_PASSWORD_SOLICITADO] Usuario: leo24 | Email: leocamellon2003@gmail.com
+[INFO] 2025-11-25 19:42:59 auth 30024 24664 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 19:44:26 auth 30024 10108 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 19:45:01 auth 30024 28884 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 19:46:46 auth 30024 10848 [LOGOUT_CART_CLEARED] Usuario: alejandro | Items eliminados: 0
+[INFO] 2025-11-25 19:46:46 auth 30024 10848 [LOGOUT_SUCCESS] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 19:46:56 auth 30024 29716 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 19:47:29 auth 30024 17992 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 19:47:41 auth 30024 9656 [LOGOUT_CART_CLEARED] Usuario: alejandro | Items eliminados: 0
+[INFO] 2025-11-25 19:47:41 auth 30024 9656 [LOGOUT_SUCCESS] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 19:48:17 auth 30024 23900 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 19:48:56 auth 30024 2056 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 19:49:09 auth 30024 25580 [LOGOUT_CART_CLEARED] Usuario: alejandro | Items eliminados: 0
+[INFO] 2025-11-25 19:49:09 auth 30024 25580 [LOGOUT_SUCCESS] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 19:50:40 auth 30024 15624 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:02:58 auth 13804 19440 [LOGIN_SUCCESS] Usuario: test1Verific | Email: t.a.y.a.h.sch.w.arz2.57@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-25 20:03:07 auth 13804 9932 [LOGOUT_CART_CLEARED] Usuario: test1Verific | Items eliminados: 0
+[INFO] 2025-11-25 20:03:07 auth 13804 9932 [LOGOUT_SUCCESS] Usuario: test1Verific | IP: 127.0.0.1
+[INFO] 2025-11-25 20:03:07 auth 13804 9932 [REFRESH_TOKENS_REVOKED] Usuario: test1Verific | IP: 127.0.0.1
+[INFO] 2025-11-25 20:15:28 auth 13804 26704 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:16:18 auth 13804 12048 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:16:29 auth 13804 26776 [LOGOUT_CART_CLEARED] Usuario: alejandro | Items eliminados: 0
+[INFO] 2025-11-25 20:16:29 auth 13804 26776 [LOGOUT_SUCCESS] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 20:16:58 auth 13804 1436 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:19:15 auth 22248 28636 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 20:19:44 auth 22248 7504 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:20:22 auth 22248 4364 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:20:40 auth 22248 9292 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:21:26 auth 22248 3008 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:21:35 auth 22248 28524 [LOGOUT_CART_CLEARED] Usuario: alejandro | Items eliminados: 0
+[INFO] 2025-11-25 20:21:35 auth 22248 28524 [LOGOUT_SUCCESS] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 20:21:44 auth 22248 14736 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:22:08 auth 22248 21836 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:23:51 auth 22248 13380 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:33:38 auth 22248 22428 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:34:52 auth 22248 1224 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:35:23 auth 22248 1224 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:35:39 auth 22248 20144 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:36:58 auth 22248 6792 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:37:35 auth 22248 1572 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:38:30 auth 22248 16552 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:38:42 auth 22248 16544 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 20:38:47 auth 22248 8380 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:39:12 auth 22248 22572 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:39:44 auth 22248 15820 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 20:40:57 auth 22248 20204 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:44:30 auth 22248 15528 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:44:52 auth 22248 18860 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 20:45:14 auth 22248 18860 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 20:45:24 auth 22248 18860 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 20:59:29 auth 29828 9448 [ESTADO_VERIFICACION] Email test@example.com. Verificado: False
+[INFO] 2025-11-25 20:59:29 auth 29828 9448 [REGISTRO_VERIFICACION] Registro iniciado. Email: newuser@example.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 20:59:29 auth 29828 9448 [CODIGO_REENVIADO] Email test@example.com. Reenvío #1
+[INFO] 2025-11-25 20:59:31 auth 29828 9448 [EMAIL_VERIFICADO] Usuario testuser creado y verificado exitosamente. IP: 127.0.0.1
+[WARNING] 2025-11-25 20:59:37 auth 29828 9448 [CODIGO_BLOQUEADO] Código para test@example.com bloqueado por intentos fallidos
+[INFO] 2025-11-25 20:59:38 auth 29828 9448 [FORGOT_PASSWORD_SOLICITADO] Usuario: testuser | Email_Hash: 973dfe46
+[INFO] 2025-11-25 21:02:44 auth 22712 2112 [FORGOT_PASSWORD_SOLICITADO] Usuario: testuser | Email_Hash: 973dfe46
+[INFO] 2025-11-25 21:08:17 auth 18140 11876 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:18:09 auth 12632 15564 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:18:37 auth 4740 7504 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:18:38 auth 4740 7504 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:20:54 auth 21844 14840 [RESET_PASSWORD_EXITOSO] Usuario: testuser | Email_Hash: 973dfe46
+[INFO] 2025-11-25 21:25:24 auth 23136 28908 [RESET_PASSWORD_EXITOSO] Usuario: testuser | Email_Hash: 973dfe46
+[INFO] 2025-11-25 21:27:59 auth 21716 17788 [RESET_PASSWORD_EXITOSO] Usuario: testuser | Email_Hash: 973dfe46
+[INFO] 2025-11-25 21:30:47 auth 28796 21904 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:36:04 auth 22140 24832 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:36:06 auth 22140 15744 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:36:08 auth 22140 15744 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 21:40:03 auth 11496 9912 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:41:58 auth 11496 4400 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:53:39 auth 1204 21448 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 21:57:51 auth 10852 8108 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 22:08:40 auth 10852 28880 [LOGOUT_CART_CLEARED] Usuario: alejandro | Items eliminados: 0
+[INFO] 2025-11-25 22:08:40 auth 10852 28880 [LOGOUT_SUCCESS] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 22:08:40 auth 10852 28880 [REFRESH_TOKENS_REVOKED] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-25 22:30:14 auth 10852 27168 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 22:31:01 auth 10852 27168 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-25 22:31:13 auth 10852 4560 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-25 22:32:11 auth 10852 4560 [REGISTRO_VERIFICACION] Registro iniciado. Email: whitefinn90@gmail.com. Código enviado. Usuario será creado tras verificación.
+[INFO] 2025-11-25 22:32:11 auth 10852 4560 [ESTADO_VERIFICACION] Email whitefinn90@gmail.com. Verificado: False
+[INFO] 2025-11-25 22:32:11 auth 10852 4560 [ESTADO_VERIFICACION] Email whitefinn90@gmail.com. Verificado: False
+[INFO] 2025-11-25 22:32:32 auth 10852 4560 [EMAIL_VERIFICADO] Usuario whit creado y verificado exitosamente. IP: 127.0.0.1
+[INFO] 2025-11-25 22:32:48 auth 10852 4560 [LOGIN_SUCCESS] Usuario: whit | Email: whitefinn90@gmail.com | IP: 127.0.0.1 | Rol: cliente
+[INFO] 2025-11-26 15:11:05 auth 20928 4612 [FORGOT_PASSWORD_SOLICITADO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-26 15:13:21 auth 20928 2120 [RESET_PASSWORD_EXITOSO] Usuario: alejandro | Email_Hash: 5fc103e8
+[INFO] 2025-11-26 15:13:32 auth 20928 13400 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-26 15:55:01 auth 20928 13904 [TOKEN_REFRESH] Usuario: alejandro | IP: 127.0.0.1
+[INFO] 2025-11-26 15:55:09 auth 20928 13904 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin
+[INFO] 2025-11-27 10:27:56 auth 22576 20544 [LOGIN_SUCCESS] Usuario: alejandro | Email: ernestoalejandroramosdiaz@gmail.com | IP: 127.0.0.1 | Rol: admin

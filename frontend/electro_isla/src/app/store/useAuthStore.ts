@@ -42,6 +42,7 @@ interface AuthState {
   isAuthenticated: boolean;
   user: User | null;
   accessToken: string | null;
+  isInitializing: boolean; // Flag para saber si se está inicializando
   _isInitializing?: boolean; // Flag interno para evitar múltiples inicializaciones
   login: (user: User, token: string) => void;
   logout: () => void;
@@ -54,6 +55,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   isAuthenticated: false,
   user: null,
   accessToken: null,
+  isInitializing: true, // Comienza como true para esperar a que se inicialice
 
   // Iniciar sesión
   login: (user: User, token: string) => {
@@ -125,7 +127,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     }
     
     // Marcar como inicializando
-    set({ _isInitializing: true });
+    set({ _isInitializing: true, isInitializing: true });
     
     // ✅ Intentar refrescar usando el refresh token en HTTP-Only Cookie
     // ✅ Si falla, sesión se pierde (seguro)
@@ -154,7 +156,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
               isAuthenticated: true, 
               user: data.user,
               accessToken: data.accessToken,
-              _isInitializing: false
+              _isInitializing: false,
+              isInitializing: false
             });
             console.debug('[useAuthStore] ✅ Sesión restaurada desde refresh token');
             return true;
@@ -165,7 +168,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
               status: response.status,
               error: errorData.error
             });
-            set({ isAuthenticated: false, user: null, accessToken: null, _isInitializing: false });
+            set({ isAuthenticated: false, user: null, accessToken: null, _isInitializing: false, isInitializing: false });
             return false;
           } else {
             // Otro error - reintentar
@@ -186,7 +189,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       
       // Si llegamos aquí, todos los intentos fallaron
       console.error('[useAuthStore] ❌ Todos los intentos de refresh fallaron');
-      set({ isAuthenticated: false, user: null, accessToken: null, _isInitializing: false });
+      set({ isAuthenticated: false, user: null, accessToken: null, _isInitializing: false, isInitializing: false });
       return false;
     };
     

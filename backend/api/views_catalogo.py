@@ -26,7 +26,7 @@ def productos_catalogo_completo(request):
     📦 ENDPOINT - Catálogo Completo de Productos
     ═══════════════════════════════════════════════════════════════════════════════
     
-    Obtiene TODOS los productos marcados para mostrar en el catálogo completo, EXCLUYENDO el carrusel principal.
+    Obtiene TODOS los productos marcados para mostrar en el catálogo completo, INCLUYENDO el carrusel principal.
     SIN LÍMITE de productos.
     
     GET /api/catalogo/productos/
@@ -40,10 +40,9 @@ def productos_catalogo_completo(request):
     - data: array - Lista de productos con información completa
     """
     try:
-        # Obtener TODOS los productos con en_all_products=true y en_carrusel=false
+        # ✅ CORREGIDO: Obtener TODOS los productos con en_all_products=true (incluyendo carrusel)
         queryset = Producto.objects.filter(
             en_all_products=True,
-            en_carrusel=False,
             activo=True
         ).select_related(
             'creado_por'

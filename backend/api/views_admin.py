@@ -87,6 +87,7 @@ class UserManagementViewSet(viewsets.ModelViewSet):
         """Listar usuarios con validaciones y sanitización"""
         search = request.query_params.get('search', '').strip()
         activo = request.query_params.get('activo')
+        rol = request.query_params.get('rol', '').strip()  # ✅ AGREGADO: Validar rol
         
         # Sanitizar búsqueda
         if search:
@@ -112,20 +113,33 @@ class UserManagementViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
         
+        # ✅ AGREGADO: Validar rol
+        ROLES_VALIDOS = ['cliente', 'mensajero', 'trabajador', 'admin']
+        if rol and rol not in ROLES_VALIDOS:
+            return Response(
+                {'error': f'Rol inválido. Roles válidos: {ROLES_VALIDOS}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
         return super().list(request, *args, **kwargs)
     
     def get_queryset(self):
         """
         Filtrar usuarios según el rol del usuario autenticado
         """
-        queryset = User.objects.all().order_by('-date_joined')
+        queryset = User.objects.all().select_related('profile').order_by('-date_joined')
         
         # Obtener parámetros
         search = self.request.query_params.get('search', '').strip()
         activo = self.request.query_params.get('activo')
+        rol = self.request.query_params.get('rol', '').strip()  # ✅ AGREGADO: Filtro por rol
         
         if activo is not None:
             queryset = queryset.filter(is_active=activo.lower() == 'true')
+        
+        # ✅ AGREGADO: Filtrar por rol si se proporciona
+        if rol:
+            queryset = queryset.filter(profile__rol=rol)
         
         if search:
             queryset = queryset.filter(

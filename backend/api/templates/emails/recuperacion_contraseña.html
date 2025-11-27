@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recupera tu contraseña - Electronica Isla</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ffb800 0%, #ff9500 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .header-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 16px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 14px;
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .reset-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffb800 0%, #ffc933 100%);
+            color: #ffffff;
+            padding: 14px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255, 184, 0, 0.3);
+        }
+        
+        .reset-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 184, 0, 0.4);
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #856404;
+        }
+        
+        .token-info {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #666666;
+            word-break: break-all;
+        }
+        
+        .footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+        
+        .footer-brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333333;
+            margin-bottom: 4px;
+        }
+        
+        .footer-brand-corp {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffb800;
+        }
+        
+        .footer-text {
+            font-size: 12px;
+            color: #999999;
+            margin-top: 16px;
+        }
+        
+        .footer-links {
+            font-size: 12px;
+            color: #666666;
+            margin-top: 12px;
+        }
+        
+        .footer-links a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #dee2e6;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .content {
+                padding: 20px 16px;
+            }
+            
+            .header {
+                padding: 30px 16px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .reset-button {
+                padding: 12px 32px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">🔐</div>
+            <h1>Recupera tu Contraseña</h1>
+            <p>Restablece el acceso a tu cuenta Electronica Isla</p>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <p class="greeting">¡Hola {{ nombre }}!</p>
+            
+            <p class="message">
+                Recibimos una solicitud para recuperar tu contraseña en Electronica Isla.
+                Si no fuiste tú, puedes ignorar este email de forma segura.
+            </p>
+            
+            <p class="message">
+                Tu código de recuperación de contraseña es:
+            </p>
+            
+            <!-- Recovery Code -->
+            <div class="button-container">
+                <div style="background: linear-gradient(135deg, #ffb800 0%, #ff9500 100%); color: #ffffff; padding: 20px; border-radius: 8px; font-size: 32px; font-weight: 700; letter-spacing: 8px; font-family: 'Courier New', monospace;">
+                    {{ codigo }}
+                </div>
+            </div>
+            
+            <!-- Warning -->
+            <div class="warning">
+                ⏰ <strong>Este código expira en {{ expiracion_minutos }} minutos.</strong>
+                Si no lo usas en ese tiempo, deberás solicitar otro código de recuperación.
+            </div>
+            
+            <!-- Instructions -->
+            <p class="message">
+                <strong>Instrucciones:</strong><br>
+                1. Abre la aplicación Electronica Isla<br>
+                2. Ve a "Recuperar Contraseña"<br>
+                3. Ingresa tu email<br>
+                4. Ingresa este código: <strong>{{ codigo }}</strong><br>
+                5. Establece tu nueva contraseña<br>
+                6. ¡Listo! Ya puedes acceder con tu nueva contraseña
+            </p>
+            
+            <!-- Security Info -->
+            <p class="message" style="font-size: 12px; color: #999999; margin-top: 30px;">
+                <strong>Información de seguridad:</strong><br>
+                • Este código es único y solo funciona una vez<br>
+                • No compartas este email con nadie<br>
+                • Electronica Isla nunca te pedirá tu contraseña por email<br>
+                • Si no solicitaste esto, ignora este email de forma segura
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-logo">🌴</div>
+            <div class="footer-brand">
+                Electronica Isla
+            </div>
+            <div class="footer-brand-corp">
+                Tu tienda de confianza
+            </div>
+            
+            <div class="divider"></div>
+            
+            <p class="footer-text">
+                © 2025 Electronica Isla. Todos los derechos reservados.
+            </p>
+            
+            <div class="footer-links">
+                <a href="#">Términos de Servicio</a> | 
+                <a href="#">Política de Privacidad</a> | 
+                <a href="#">Contacto</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

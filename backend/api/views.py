@@ -223,16 +223,17 @@ def login(request):
             status=status.HTTP_400_BAD_REQUEST
         )
     
-    # Intentar autenticar por username primero
-    user = authenticate(username=username_or_email, password=password)
+    # Intentar autenticar por email primero (más común después del reset)
+    user = None
+    try:
+        user_obj = User.objects.get(email=username_or_email)
+        user = authenticate(username=user_obj.username, password=password)
+    except User.DoesNotExist:
+        pass
     
-    # Si falla, intentar por email
+    # Si falla, intentar por username
     if not user:
-        try:
-            user_obj = User.objects.get(email=username_or_email)
-            user = authenticate(username=user_obj.username, password=password)
-        except User.DoesNotExist:
-            pass
+        user = authenticate(username=username_or_email, password=password)
     
     if user:
         # Registrar intento exitoso

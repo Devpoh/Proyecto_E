@@ -39,16 +39,17 @@ const BottomCarouselLazy = lazy(() =>
 export const HomePage = () => {
   const { productos: productosCarrusel, loading: loadingCarrusel } = useProductosCarrusel();
   const { productos: productosCatalogo, loading: loadingCatalogo } = useProductosCatalogoCompleto();
-  const [displayProducts, setDisplayProducts] = useState<ProductCard[]>([]);
+  const [displayProductsCarrusel, setDisplayProductsCarrusel] = useState<ProductCard[]>([]);
+  const [displayProductsCatalogo, setDisplayProductsCatalogo] = useState<ProductCard[]>([]);
   
   // ✅ OPTIMIZACIÓN: Mostrar carrusel apenas esté listo (no esperar catálogo)
-  const productosParaMostrar = productosCarrusel.length > 0 ? productosCarrusel : productosCatalogo;
+  const productosParaCarrusel = productosCarrusel.length > 0 ? productosCarrusel : productosCatalogo;
   const loadingCarrusel_optimizado = loadingCarrusel && productosCarrusel.length === 0;
 
   useEffect(() => {
-    // Mostrar productos del carrusel apenas estén listos
-    if (productosParaMostrar && productosParaMostrar.length > 0) {
-      const mappedProducts = productosParaMostrar.map((p) => ({
+    // ✅ CORREGIDO: Mostrar productos del carrusel apenas estén listos
+    if (productosParaCarrusel && productosParaCarrusel.length > 0) {
+      const mappedProducts = productosParaCarrusel.map((p) => ({
         id: p.id,
         nombre: p.nombre,
         descripcion: p.descripcion,
@@ -60,11 +61,32 @@ export const HomePage = () => {
         en_all_products: p.en_all_products,
         en_carousel_card: p.en_carousel_card,
       }));
-      setDisplayProducts(mappedProducts as ProductCard[]);
+      setDisplayProductsCarrusel(mappedProducts as ProductCard[]);
     } else {
-      setDisplayProducts([]);
+      setDisplayProductsCarrusel([]);
     }
-  }, [productosParaMostrar]);
+  }, [productosParaCarrusel]);
+
+  useEffect(() => {
+    // ✅ CORREGIDO: Mostrar TODOS los productos del catálogo en AllProducts
+    if (productosCatalogo && productosCatalogo.length > 0) {
+      const mappedProducts = productosCatalogo.map((p) => ({
+        id: p.id,
+        nombre: p.nombre,
+        descripcion: p.descripcion,
+        precio: parseFloat(p.precio),
+        descuento: p.descuento,
+        imagen_url: p.imagen_url,
+        categoria: p.categoria,
+        stock: p.stock,
+        en_all_products: p.en_all_products,
+        en_carousel_card: p.en_carousel_card,
+      }));
+      setDisplayProductsCatalogo(mappedProducts as ProductCard[]);
+    } else {
+      setDisplayProductsCatalogo([]);
+    }
+  }, [productosCatalogo]);
 
   return (
     <>
@@ -73,9 +95,9 @@ export const HomePage = () => {
       <section className="home-hero-section">
         <div className="home-container">
           {/* Carrusel de Productos Destacados */}
-          {!loadingCarrusel_optimizado && displayProducts.length > 0 ? (
+          {!loadingCarrusel_optimizado && displayProductsCarrusel.length > 0 ? (
             <ProductCarousel
-              products={displayProducts}
+              products={displayProductsCarrusel}
               title=""
             />
           ) : (
@@ -96,9 +118,9 @@ export const HomePage = () => {
         <BottomCarouselLazy productos={productosCatalogo} />
       </Suspense>
 
-      {/* Sección de Todos los Productos */}
-      {!loadingCarrusel_optimizado && displayProducts.length > 0 && (
-        <AllProducts products={displayProducts} loading={loadingCatalogo} />
+      {/* Sección de Todos los Productos - ✅ CORREGIDO: Usar displayProductsCatalogo */}
+      {!loadingCarrusel_optimizado && displayProductsCatalogo.length > 0 && (
+        <AllProducts products={displayProductsCatalogo} loading={loadingCatalogo} />
       )}
 
       {/* Sección de Nuestras Categorías */}

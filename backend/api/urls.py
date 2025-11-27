@@ -30,6 +30,10 @@ from .views_estadisticas import (
     estadisticas_productos,
     reporte_completo
 )
+from .views_recuperacion import (
+    forgot_password_request,
+    reset_password_confirm
+)
 from . import urls_catalogo  # Corregir import de urls_catalogo
 
 # Router principal
@@ -61,6 +65,10 @@ urlpatterns = [
     
     # Rutas de verificación de email
     path('auth/', include('api.urls_verificacion')),
+    
+    # Rutas de recuperación de contraseña
+    path('auth/forgot-password/', forgot_password_request, name='forgot-password'),
+    path('auth/reset-password/', reset_password_confirm, name='reset-password'),
     
     # Rutas de favoritos
     path('favoritos/agregar/<int:producto_id>/', agregar_favorito, name='agregar-favorito'),

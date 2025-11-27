@@ -436,6 +436,8 @@ class LoginAttempt(models.Model):
         choices=[
             ('login', 'Login'),
             ('register', 'Register'),
+            ('reset_password', 'Reset Password'),
+            ('forgot_password', 'Forgot Password'),
         ],
         default='login'
     )
@@ -1219,4 +1221,279 @@ class EmailVerification(models.Model):
             verificado=True,
             verificado_at=timezone.now()
         )
+        return count
+
+
+class PasswordResetToken(models.Model):
+    """
+    Modelo para almacenar tokens temporales de recuperación de contraseña.
+    Similar al sistema de RefreshToken pero para reseteo de password.
+    Los tokens se almacenan hasheados para mayor seguridad.
+    """
+    
+    usuario = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name='password_reset_tokens'
+    )
+    
+    # Token hasheado (SHA-256) - nunca almacenamos el token en texto plano
+    token_hash = models.CharField(max_length=64, unique=True, db_index=True)
+    
+    # Control de expiración (30 minutos)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    
+    # Control de uso
+    usado = models.BooleanField(default=False)
+    usado_at = models.DateTimeField(null=True, blank=True)
+    
+    # Información del dispositivo/navegador
+    user_agent = models.CharField(max_length=500, blank=True, null=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    
+    class Meta:
+        db_table = 'password_reset_tokens'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['usuario', '-created_at']),
+            models.Index(fields=['token_hash']),
+            models.Index(fields=['expires_at']),
+        ]
+    
+    def __str__(self):
+        return f'PasswordResetToken para {self.usuario.username}'
+    
+    @staticmethod
+    def hash_token(token):
+        """Hashea un token usando SHA-256"""
+        return hashlib.sha256(token.encode()).hexdigest()
+    
+    @staticmethod
+    def generate_token():
+        """Genera un token seguro usando secrets"""
+        return secrets.token_urlsafe(32)
+    
+    def is_valid(self):
+        """Verifica si el token es válido (no expirado y no usado)"""
+        if self.usado:
+            return False
+        if timezone.now() > self.expires_at:
+            return False
+        return True
+    
+    def marcar_como_usado(self):
+        """Marca el token como usado"""
+        self.usado = True
+        self.usado_at = timezone.now()
+        self.save()
+    
+    @classmethod
+    def crear_token(cls, usuario, duracion_minutos=30, user_agent=None, ip_address=None):
+        """
+        Crea un nuevo token de recuperación de contraseña.
+        Retorna una tupla (token_plano, objeto_password_reset_token)
+        
+        Args:
+            usuario: Usuario para el que se crea el token
+            duracion_minutos: Duración en minutos (por defecto 30)
+            user_agent: User agent del navegador
+            ip_address: Dirección IP del cliente
+        """
+        token_plano = cls.generate_token()
+        token_hash = cls.hash_token(token_plano)
+        
+        # Calcular fecha de expiración
+        expires_at = timezone.now() + timedelta(minutes=duracion_minutos)
+        
+        # Revocar tokens anteriores sin usar
+        cls.objects.filter(usuario=usuario, usado=False).delete()
+        
+        password_reset_token = cls.objects.create(
+            usuario=usuario,
+            token_hash=token_hash,
+            expires_at=expires_at,
+            user_agent=user_agent,
+            ip_address=ip_address
+        )
+        
+        return token_plano, password_reset_token
+    
+    @classmethod
+    def verificar_token(cls, token_plano):
+        """
+        Verifica un token de recuperación y retorna el objeto si es válido.
+        Retorna None si el token no existe o no es válido.
+        """
+        token_hash = cls.hash_token(token_plano)
+        
+        try:
+            reset_token = cls.objects.get(token_hash=token_hash)
+            
+            if not reset_token.is_valid():
+                return None
+            
+            return reset_token
+        except cls.DoesNotExist:
+            return None
+    
+    @classmethod
+    def limpiar_tokens_expirados(cls):
+        """Elimina tokens expirados de la base de datos"""
+        tokens_expirados = cls.objects.filter(expires_at__lt=timezone.now())
+        count = tokens_expirados.count()
+        tokens_expirados.delete()
+        return count
+
+
+class PasswordRecoveryCode(models.Model):
+    """
+    ═══════════════════════════════════════════════════════════════════════════════
+    🔐 MODELO - Código de Recuperación de Contraseña
+    ═══════════════════════════════════════════════════════════════════════════════
+    
+    Almacena códigos de 6 dígitos para recuperación de contraseña.
+    Similar a EmailVerification pero para recuperación.
+    
+    Características:
+    - Código de 6 dígitos (como verificación de email)
+    - Expiración de 15 minutos
+    - Límite de 5 intentos fallidos
+    - Límite de 3 reenvíos
+    - Cooldown de 1 minuto entre reenvíos
+    - Uso único
+    """
+    
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='password_recovery_codes')
+    codigo = models.CharField(max_length=6, unique=False)
+    
+    # Estado
+    verificado = models.BooleanField(default=False)
+    verificado_at = models.DateTimeField(null=True, blank=True)
+    
+    # Intentos
+    intentos_fallidos = models.IntegerField(default=0)
+    
+    # Reenvíos
+    contador_reenvios = models.IntegerField(default=0)
+    ultimo_reenvio = models.DateTimeField(null=True, blank=True)
+    
+    # Auditoría
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.TextField(blank=True)
+    
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    
+    class Meta:
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['usuario', 'verificado']),
+            models.Index(fields=['expires_at']),
+        ]
+    
+    def __str__(self):
+        return f"RecoveryCode({self.usuario.username}, {self.codigo})"
+    
+    @staticmethod
+    def generar_codigo():
+        """Genera un código de 6 dígitos aleatorio criptográficamente seguro"""
+        import secrets
+        return ''.join([str(secrets.randbelow(10)) for _ in range(6)])
+    
+    @classmethod
+    def crear_codigo(cls, usuario, duracion_minutos=15, ip_address=None, user_agent=''):
+        """
+        Crea un nuevo código de recuperación.
+        Invalida códigos anteriores sin usar.
+        """
+        # Invalidar códigos anteriores sin usar
+        cls.objects.filter(usuario=usuario, verificado=False).delete()
+        
+        # Crear nuevo código
+        codigo = cls.generar_codigo()
+        expires_at = timezone.now() + timedelta(minutes=duracion_minutos)
+        
+        recovery_code = cls.objects.create(
+            usuario=usuario,
+            codigo=codigo,
+            expires_at=expires_at,
+            ip_address=ip_address,
+            user_agent=user_agent
+        )
+        
+        return recovery_code
+    
+    def is_valid(self):
+        """Verifica si el código es válido (no expirado, no verificado, intentos < 5)"""
+        if self.verificado:
+            return False
+        if timezone.now() > self.expires_at:
+            return False
+        if self.intentos_fallidos >= 5:
+            return False
+        return True
+    
+    def marcar_verificado(self):
+        """Marca el código como verificado"""
+        self.verificado = True
+        self.verificado_at = timezone.now()
+        self.save()
+    
+    def incrementar_intentos(self):
+        """Incrementa el contador de intentos fallidos"""
+        self.intentos_fallidos += 1
+        self.save()
+    
+    def puede_reenviar(self, minutos_espera=1):
+        """Verifica si se puede reenviar el código"""
+        if self.contador_reenvios >= 3:
+            return False
+        
+        if self.ultimo_reenvio is None:
+            return True
+        
+        tiempo_transcurrido = (timezone.now() - self.ultimo_reenvio).total_seconds() / 60
+        return tiempo_transcurrido >= minutos_espera
+    
+    def marcar_reenvio(self):
+        """Marca que se reenvió el código"""
+        self.contador_reenvios += 1
+        self.ultimo_reenvio = timezone.now()
+        self.save()
+    
+    @staticmethod
+    def verificar_codigo(usuario, codigo):
+        """Verifica si el código es válido para el usuario"""
+        try:
+            recovery_code = PasswordRecoveryCode.objects.get(
+                usuario=usuario,
+                codigo=codigo
+            )
+            
+            if recovery_code.is_valid():
+                return recovery_code
+            return None
+        except PasswordRecoveryCode.DoesNotExist:
+            return None
+    
+    @staticmethod
+    def limpiar_codigos_expirados():
+        """Limpia códigos expirados de la base de datos"""
+        codigos_expirados = PasswordRecoveryCode.objects.filter(
+            expires_at__lt=timezone.now(),
+            verificado=False
+        )
+        count = codigos_expirados.count()
+        codigos_expirados.delete()
+        return count
+    
+    @staticmethod
+    def invalidar_codigos_usuario(usuario):
+        """Invalida todos los códigos de un usuario"""
+        codigos = PasswordRecoveryCode.objects.filter(usuario=usuario, verificado=False)
+        count = codigos.count()
+        for codigo in codigos:
+            codigo.marcar_verificado()
         return count
